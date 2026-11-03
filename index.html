@@ -272,7 +272,13 @@ section.block{padding-block:clamp(2.6rem,5.5vw,4.6rem)}
 }
 @media (max-width:520px){.mapwrap{aspect-ratio:4/3}}
 .mapwrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0; display:block; z-index:1}
-.mapwrap .mapbtn{position:absolute; right:.7rem; bottom:.7rem; z-index:2; font-size:.8rem; min-height:40px; background:var(--paper); box-shadow:var(--shadow)}
+.mapwrap .mapbtn{position:absolute; right:.7rem; bottom:.7rem; z-index:3; font-size:.8rem; min-height:40px; background:var(--paper); box-shadow:var(--shadow)}
+/* el mapa de Google no se carga hasta que la persona lo autoriza (cookies de terceros) */
+.mapwrap .mapconsent{position:absolute; inset:0; z-index:2; display:grid; place-items:center; text-align:center; padding:1.2rem; background:var(--surface-2)}
+.mapwrap .mapconsent[hidden]{display:none!important}
+.mapconsent-in{max-width:36ch}
+.mapconsent p{margin:0 0 .8rem; font-size:.85rem; line-height:1.5; color:var(--muted)}
+.mapconsent .btn{min-height:40px; font-size:.8rem}
 .map-fallback{position:absolute; inset:0; display:grid; place-content:center; gap:.35rem; text-align:center; padding:1.5rem; color:var(--muted); font-size:.85rem}
 
 /* accesos rápidos: rutas, geolocalización y copiar dirección */
@@ -386,6 +392,41 @@ footer ul{list-style:none; margin:0; padding:0}
 footer a{text-decoration:none}
 footer a:hover{color:var(--accent)}
 .copy{margin-top:1.6rem; padding-top:1.1rem; border-top:1px solid var(--line); font-size:.75rem; color:var(--muted); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap}
+.copy a{color:var(--muted); text-decoration:underline; text-underline-offset:2px}
+.copy a:hover{color:var(--accent)}
+.copy .legal-links{display:flex; gap:.35rem; flex-wrap:wrap; align-items:center}
+
+/* ── cumplimiento: LSSI-CE (art. 10) + RGPD/LOPDGDD ── */
+.cookiebar{position:fixed; left:0; right:0; bottom:0; z-index:120; padding:.7rem max(16px,env(safe-area-inset-left,0px)) max(.7rem,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-right,0px))}
+.cookiebar[hidden]{display:none!important}
+.cookiebar-in{max-width:var(--max); margin-inline:auto; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:1rem 1.1rem; display:flex; gap:1rem; align-items:center; flex-wrap:wrap}
+.cookiebar p{margin:0; font-size:.82rem; line-height:1.55; color:var(--muted); max-width:64ch}
+.cookiebar p strong{color:var(--ink)}
+.cookiebar p a{color:var(--accent)}
+.cookiebar .acts{display:flex; gap:.5rem; flex-wrap:wrap; margin-left:auto}
+.cookiebar .btn{min-height:40px; padding:.5rem .9rem; font-size:.8rem}
+@media (max-width:640px){.cookiebar .acts{width:100%; margin-left:0}.cookiebar .acts .btn{flex:1 1 auto; justify-content:center}}
+
+.legal-dlg{position:fixed; inset:0; z-index:130; display:grid; place-items:center; padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.legal-dlg[hidden]{display:none!important}
+.legal-bg{position:absolute; inset:0; background:rgba(10,8,7,.62); backdrop-filter:blur(3px)}
+.legal-box{position:relative; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); width:100%; max-width:720px; max-height:min(84vh,780px); display:flex; flex-direction:column; overflow:hidden}
+.legal-top{display:flex; align-items:center; gap:1rem; padding:1rem 1.2rem; border-bottom:1px solid var(--line)}
+.legal-top h3{margin:0 auto 0 0; font-family:var(--font-display); font-weight:400; font-size:1.35rem}
+.legal-x{width:38px; height:38px; flex:0 0 auto; border-radius:999px; border:1px solid var(--line); background:transparent; color:var(--ink); font-size:1.05rem; line-height:1; cursor:pointer}
+.legal-x:hover{border-color:var(--ink)}
+.legal-tabs{display:flex; gap:.4rem; padding:.8rem 1.2rem 0; flex-wrap:wrap}
+.legal-tabs button{border:1px solid var(--line); background:transparent; color:var(--muted); border-radius:999px; padding:.35rem .8rem; font-size:.78rem; cursor:pointer; font-family:inherit}
+.legal-tabs button[aria-selected="true"]{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+.legal-body{padding:1rem 1.2rem 1.5rem; overflow-y:auto; font-size:.9rem; line-height:1.65; color:var(--muted)}
+.legal-body h4{font-family:var(--font-body); font-size:.9rem; color:var(--ink); margin:1.15rem 0 .3rem}
+.legal-body h4:first-child{margin-top:0}
+.legal-body p{margin:.4rem 0}
+.legal-body ul{padding-left:1.1rem; margin:.4rem 0}
+.legal-body li{margin:.3rem 0}
+.legal-body b{color:var(--ink)}
+.legal-body a{color:var(--accent)}
+.legal-fill{background:var(--accent-soft); color:var(--accent); border-radius:4px; padding:0 .3rem; font-weight:600; white-space:nowrap}
 
 /* ── lightbox ── */
 .lightbox{position:fixed; inset:0; z-index:90; display:grid; grid-template-columns:minmax(0,1fr); place-items:center; padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
@@ -675,8 +716,14 @@ footer a:hover{color:var(--accent)}
         <div class="mapwrap">
           <iframe
             title="Mapa de CH América en Avenida de América 26, 28028 Madrid"
-            src="https://maps.google.com/maps?q=Avenida+de+Am%C3%A9rica+26%2C+28028+Madrid&z=16&hl=es&output=embed"
+            data-src="https://maps.google.com/maps?q=Avenida+de+Am%C3%A9rica+26%2C+28028+Madrid&z=16&hl=es&output=embed"
             loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <div class="mapconsent" id="mapConsent">
+            <div class="mapconsent-in">
+              <p>El mapa lo sirve Google y, al cargarse, Google puede instalar cookies en tu dispositivo.</p>
+              <button class="btn btn-ghost" type="button" id="mapConsentBtn">Cargar el mapa de Google</button>
+            </div>
+          </div>
           <a class="btn btn-ghost mapbtn" href="https://www.google.com/maps/search/?api=1&query=CH+Am%C3%A9rica+Avenida+de+Am%C3%A9rica+26+28028+Madrid" target="_blank" rel="noopener">Abrir en Google Maps</a>
         </div>
 
@@ -965,7 +1012,12 @@ footer a:hover{color:var(--accent)}
     </div>
     <div class="copy">
       <span>© 2026 CH América · Madrid</span>
-      <span>Aviso legal, privacidad y cookies: pendiente de completar por la propiedad</span>
+      <span class="legal-links">
+        <a href="#" data-doc="aviso">Aviso legal</a> ·
+        <a href="#" data-doc="privacidad">Privacidad</a> ·
+        <a href="#" data-doc="cookies">Cookies</a> ·
+        <a href="#" id="cookiePrefs">Preferencias de cookies</a>
+      </span>
     </div>
   </div>
 </footer>
@@ -1025,6 +1077,33 @@ footer a:hover{color:var(--accent)}
 <div class="mobile-bar">
   <a class="btn btn-primary" href="#reservar">Reservar</a>
   <a class="btn btn-wa" id="waBar" href="#" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<!-- Aviso legal, privacidad y cookies (LSSI-CE art. 10 y RGPD/LOPDGDD) -->
+<div class="legal-dlg" id="legalDlg" hidden role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+  <div class="legal-bg" data-close-legal></div>
+  <div class="legal-box">
+    <div class="legal-top">
+      <h3 id="legalTitle">Información legal</h3>
+      <button class="legal-x" type="button" data-close-legal aria-label="Cerrar">✕</button>
+    </div>
+    <div class="legal-tabs" role="tablist">
+      <button type="button" role="tab" data-doc="aviso">Aviso legal</button>
+      <button type="button" role="tab" data-doc="privacidad">Privacidad</button>
+      <button type="button" role="tab" data-doc="cookies">Cookies</button>
+    </div>
+    <div class="legal-body" id="legalBody" tabindex="0"></div>
+  </div>
+</div>
+
+<div class="cookiebar" id="cookieBar" hidden>
+  <div class="cookiebar-in">
+    <p><strong>Cookies.</strong> Solo usamos almacenamiento técnico propio para recordar tu elección. El mapa de Google, que sí instala cookies de terceros, no se carga hasta que lo autorices. <a href="#" data-doc="cookies">Más información</a>.</p>
+    <div class="acts">
+      <button class="btn btn-ghost" type="button" id="ckNo">Solo necesarias</button>
+      <button class="btn" type="button" id="ckYes">Aceptar todas</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -2121,6 +2200,143 @@ $("#locCopy")?.addEventListener("click", async () => {
       : "No se pudo copiar. La dirección es: " + DESTINO, ok ? "ok" : "warn");
   }
 });
+
+/* ═══════════════════════════════════════════════════════════════
+   CUMPLIMIENTO — LSSI-CE (art. 10) y RGPD/LOPDGDD.
+
+   Antes de publicar hay que sustituir los valores entre ⟦ ⟧ de
+   LEGAL por los datos reales del titular. Mientras sigan así, el
+   aviso legal NO cumple y no se puede entregar al cliente.
+   ═══════════════════════════════════════════════════════════════ */
+const LEGAL = {
+  titular:   "⟦titular: nombre o razón social⟧",
+  nif:       "⟦NIF / NIE del titular⟧",
+  domicilio: "Avenida de América, 26 · Local · 28028 Madrid (España)",
+  email:     "⟦correo electrónico de contacto⟧",
+  tlf:       CONFIG.whatsappLabel
+};
+
+const fill = v => '<span class="legal-fill">' + v + "</span>";
+
+const LEGAL_DOCS = {
+  aviso: `
+    <h4>Titular del sitio</h4>
+    <p>En cumplimiento del artículo 10 de la Ley 34/2002, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE):</p>
+    <ul>
+      <li>Titular: ${fill(LEGAL.titular)}</li>
+      <li>NIF: ${fill(LEGAL.nif)}</li>
+      <li>Domicilio: ${fill(LEGAL.domicilio)}</li>
+      <li>Correo electrónico: ${fill(LEGAL.email)}</li>
+      <li>Teléfono: ${fill(LEGAL.tlf)}</li>
+    </ul>
+    <h4>Objeto</h4>
+    <p>Este sitio es informativo: presenta el alojamiento, sus habitaciones y servicios, y permite preparar una solicitud de reserva que se envía por WhatsApp. <b>No se realizan pagos ni reservas en línea</b>: la reserva existe cuando la recepción la confirma.</p>
+    <h4>Condiciones de uso</h4>
+    <p>El acceso es gratuito y no exige registro. La persona usuaria se compromete a hacer un uso correcto de los contenidos y a no emplearlos para actividades ilícitas, y a no introducir datos falsos en el formulario.</p>
+    <h4>Propiedad intelectual e industrial</h4>
+    <p>Los textos, el diseño y el código de este sitio pertenecen a su titular o se usan con autorización. Las fotografías del alojamiento son propiedad de ${fill(LEGAL.titular)}. No se autoriza su reproducción, distribución ni transformación sin permiso escrito.</p>
+    <h4>Responsabilidad</h4>
+    <p>La información sobre precios y disponibilidad es orientativa y puede variar; la tarifa aplicable es la que confirma la recepción. El titular no responde de interrupciones ajenas a su control ni del contenido de sitios de terceros enlazados, como Google Maps o WhatsApp.</p>
+    <h4>Legislación aplicable</h4>
+    <p>Esta relación se rige por la legislación española. Cualquier controversia se someterá a los juzgados y tribunales de Madrid, salvo que la normativa de consumo establezca otro fuero.</p>`,
+
+  privacidad: `
+    <h4>Responsable del tratamiento</h4>
+    <p>${fill(LEGAL.titular)}, NIF ${fill(LEGAL.nif)}, ${fill(LEGAL.domicilio)}. Correo electrónico: ${fill(LEGAL.email)}.</p>
+    <h4>Qué datos tratamos y para qué</h4>
+    <ul>
+      <li><b>Solicitudes de reserva:</b> fechas, número de personas y habitación elegida. Finalidad: preparar la solicitud y enviarla a la recepción. Base jurídica: aplicación de medidas precontractuales a petición tuya (art. 6.1.b RGPD).</li>
+      <li><b>Consultas por el asistente del sitio o por WhatsApp:</b> el texto que decidas escribirnos. Base jurídica: tu consentimiento (art. 6.1.a RGPD).</li>
+    </ul>
+    <h4>Dónde se tratan los datos</h4>
+    <p>El formulario de reserva y el asistente de este sitio funcionan <b>en tu propio navegador</b>: no envían nada a ningún servidor. Los datos solo salen de tu dispositivo cuando pulsas el botón que abre WhatsApp, y en ese momento los aloja WhatsApp Ireland Ltd. (Meta), con sus propias políticas de privacidad.</p>
+    <h4>Conservación</h4>
+    <p>Los mensajes recibidos se conservan mientras se atiende la consulta o la reserva y, después, durante los plazos legales aplicables en materia de facturación y obligaciones fiscales. Si no llega a formalizarse ninguna reserva, se suprimen en un plazo máximo de un año.</p>
+    <h4>Destinatarios</h4>
+    <p>No se ceden datos a terceros salvo obligación legal. El proveedor de alojamiento web y el servicio de mensajería tratan los datos como encargados o como responsables independientes según el caso.</p>
+    <h4>Derechos</h4>
+    <p>Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad escribiendo a ${fill(LEGAL.email)} y acreditando tu identidad. También puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es).</p>
+    <h4>Menores de edad</h4>
+    <p>El sitio no se dirige a menores de 14 años y no se recogen conscientemente datos de menores de esa edad.</p>`,
+
+  cookies: `
+    <h4>Qué usa este sitio</h4>
+    <p>Este sitio <b>no instala cookies publicitarias ni de analítica</b>. Solo utiliza:</p>
+    <ul>
+      <li><b>chamerica-consent</b> — almacenamiento local técnico, propio. Guarda tu elección sobre cookies para no volver a preguntártelo. Duración: hasta que borres los datos del navegador.</li>
+      <li><b>Cookies de Google Maps</b> — de terceros (Google Ireland Ltd.). Solo se instalan si pulsas «Cargar el mapa de Google» o aceptas todas. Finalidad: mostrar el mapa y recordar preferencias. Más información en policies.google.com/privacy.</li>
+      <li><b>WhatsApp</b> — no instala cookies en este sitio: solo se abre cuando pulsas un botón.</li>
+    </ul>
+    <h4>Cómo cambiar tu elección</h4>
+    <p>Pulsa «Preferencias de cookies» al pie de página para volver a decidir, o borra los datos del sitio en tu navegador. Si retiras el consentimiento, el mapa deja de cargarse.</p>
+    <h4>Base legal</h4>
+    <p>El almacenamiento técnico está exento de consentimiento (art. 22.2 LSSI-CE). Las cookies de terceros requieren tu consentimiento, que puedes dar, denegar o retirar en cualquier momento.</p>`
+};
+
+(function legalInit(){
+  const bar  = $("#cookieBar");
+  const dlg  = $("#legalDlg");
+  const body = $("#legalBody");
+  if (!dlg || !body) return;
+
+  const KEY = "chamerica-consent";        /* "all" | "necessary" */
+  const read = () => { try{ return localStorage.getItem(KEY); }catch(e){ return null; } };
+  const save = v => { try{ localStorage.setItem(KEY, v); }catch(e){} };
+
+  const mapFrame = document.querySelector(".mapwrap iframe");
+  const mapConsent = $("#mapConsent");
+
+  function loadMap(){
+    if (mapFrame && !mapFrame.getAttribute("src") && mapFrame.dataset.src) {
+      mapFrame.src = mapFrame.dataset.src;
+    }
+    if (mapConsent) mapConsent.hidden = true;
+  }
+
+  /* si se retira el consentimiento, el mapa se descarga de verdad */
+  function unloadMap(){
+    if (mapFrame && mapFrame.getAttribute("src")) mapFrame.removeAttribute("src");
+    if (mapConsent) mapConsent.hidden = false;
+  }
+
+  /* estado inicial: si ya hay decisión, el banner no molesta */
+  const saved = read();
+  if (saved === "all") loadMap();
+  if (bar && !saved) bar.hidden = false;
+
+  function decide(v){
+    save(v);
+    if (bar) bar.hidden = true;
+    if (v === "all") loadMap(); else unloadMap();
+  }
+
+  $("#ckYes")?.addEventListener("click", () => decide("all"));
+  $("#ckNo")?.addEventListener("click", () => decide("necessary"));
+  $("#mapConsentBtn")?.addEventListener("click", () => decide("all"));
+  $("#cookiePrefs")?.addEventListener("click", e => {
+    e.preventDefault();
+    if (bar) bar.hidden = false;
+  });
+
+  function openDoc(name){
+    body.innerHTML = LEGAL_DOCS[name] || LEGAL_DOCS.aviso;
+    $$("[data-doc]", dlg).forEach(b =>
+      b.setAttribute("aria-selected", String(b.dataset.doc === name)));
+    dlg.hidden = false;
+    body.scrollTop = 0;
+    body.focus();
+  }
+  function closeDoc(){ dlg.hidden = true; }
+
+  $$("[data-doc]").forEach(el => el.addEventListener("click", e => {
+    e.preventDefault();
+    openDoc(el.dataset.doc);
+  }));
+  $$("[data-close-legal]").forEach(el => el.addEventListener("click", closeDoc));
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !dlg.hidden) { e.preventDefault(); closeDoc(); }
+  });
+})();
 </script>
 </body>
 </html>
