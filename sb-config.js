@@ -18,6 +18,6 @@
    "service_role".
    ───────────────────────────────────────────────────────────────── */
 window.CH_SUPABASE = {
-  url:     "",
-  anonKey: ""
+  url:     "https://gjseeahlxfjqqoirzewz.supabase.co",
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdqc2VlYWhseGZqcXFvaXJ6ZXd6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM3MzU1MDMsImV4cCI6MjEwOTMxMTUwM30.V1dLY0XzsFPUVf7CgAnAEGH2y3sWPVxS7ZNjvnuWDKc"
 };
