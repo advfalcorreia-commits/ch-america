@@ -99,6 +99,40 @@ create trigger reservations_touch
 -- ════════════════════════════════════════════════════════════════════
 --  SEGURIDAD — sin esto la clave pública dejaría la base abierta
 -- ════════════════════════════════════════════════════════════════════
+
+-- ── quién es "recepción" ───────────────────────────────────────────
+-- Ojo: el rol "authenticated" NO basta. Si en el proyecto está activado
+-- el registro público, cualquiera puede crearse una cuenta y quedaría
+-- como "authenticated". Por eso el permiso se ata a correos concretos
+-- de esta tabla. Cambia el correo por el de verdad antes de ejecutar.
+create table if not exists public.admins (
+  email text primary key,
+  note  text not null default ''
+);
+
+insert into public.admins (email, note) values
+  ('recepcion@hostalamerica.es', 'cuenta única de recepción')
+on conflict (email) do nothing;
+
+-- Comprueba el correo del token contra la lista. SECURITY DEFINER para
+-- poder leer public.admins aunque el que llama no tenga permiso.
+create or replace function public.is_staff()
+returns boolean
+language sql stable security definer
+set search_path = public, pg_temp
+as $$
+  select exists (
+    select 1 from public.admins a
+    where lower(a.email) = lower(coalesce(auth.jwt() ->> 'email', ''))
+  );
+$$;
+
+alter table public.admins enable row level security;
+
+drop policy if exists "la recepcion ve la lista" on public.admins;
+create policy "la recepcion ve la lista" on public.admins
+  for select to authenticated using (public.is_staff());
+
 alter table public.rooms         enable row level security;
 alter table public.blocked_dates enable row level security;
 alter table public.reservations  enable row level security;
@@ -124,27 +158,58 @@ create policy "alta publica de solicitudes" on public.reservations
   for insert to anon, authenticated
   with check (status = 'pending');
 
--- Recepción (sesión iniciada con correo y contraseña) manda sobre todo.
+-- Recepción: solo las cuentas de public.admins, no todo "authenticated".
 drop policy if exists "recepcion administra reservas" on public.reservations;
 create policy "recepcion administra reservas" on public.reservations
-  for all to authenticated using (true) with check (true);
+  for all to authenticated using (public.is_staff()) with check (public.is_staff());
 
 drop policy if exists "recepcion administra habitaciones" on public.rooms;
 create policy "recepcion administra habitaciones" on public.rooms
-  for all to authenticated using (true) with check (true);
+  for all to authenticated using (public.is_staff()) with check (public.is_staff());
 
 drop policy if exists "recepcion administra bloqueos" on public.blocked_dates;
 create policy "recepcion administra bloqueos" on public.blocked_dates
-  for all to authenticated using (true) with check (true);
+  for all to authenticated using (public.is_staff()) with check (public.is_staff());
 
 drop policy if exists "recepcion administra ajustes" on public.settings;
 create policy "recepcion administra ajustes" on public.settings
-  for all to authenticated using (true) with check (true);
+  for all to authenticated using (public.is_staff()) with check (public.is_staff());
+
+-- ════════════════════════════════════════════════════════════════════
+--  PRECIO CALCULADO EN EL SERVIDOR
+--  La web solo envía fechas y datos del huésped. noches y total los pone
+--  Postgres a partir de la tarifa del cuarto, así no se pueden falsificar.
+-- ════════════════════════════════════════════════════════════════════
+create or replace function public.tarifar_reserva()
+returns trigger
+language plpgsql security definer
+set search_path = public, pg_temp
+as $$
+declare
+  tarifa numeric(10,2);
+begin
+  new.nights := greatest(1, new.check_out - new.check_in);
+  select price into tarifa from public.rooms where id = new.room_id;
+  new.total := case when tarifa is null then null else tarifa * new.nights end;
+  return new;
+end $$;
+
+drop trigger if exists reservations_precio on public.reservations;
+create trigger reservations_precio
+  before insert or update of check_in, check_out, room_id on public.reservations
+  for each row execute function public.tarifar_reserva();
+
+do $$ begin
+  alter table public.reservations
+    add constraint noches_coherentes check (nights = check_out - check_in);
+exception when duplicate_object then null; end $$;
 
 -- ════════════════════════════════════════════════════════════════════
 --  ÚLTIMO PASO — crear el usuario de recepción
 --  Authentication → Users → Add user → Create new user.
---  Pon el correo del hostal y una contraseña larga, y deja
---  "Auto Confirm User" activado. Ese es el acceso a /adm.html.
---  No hace falta crear más usuarios: la recepción usa uno solo.
+--  Usa EXACTAMENTE el correo que pusiste en public.admins (arriba),
+--  contraseña larga, y deja "Auto Confirm User" activado.
+--
+--  IMPORTANTE: en Authentication → Providers → Email, desactiva
+--  "Allow new users to sign up". Si no, cualquiera puede registrarse.
 -- ════════════════════════════════════════════════════════════════════

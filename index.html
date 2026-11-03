@@ -1149,6 +1149,8 @@ const ROOMS = [
 /* ── utilidades ── */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+/* todo valor que venga de la base de datos pasa por aquí antes de entrar en innerHTML */
+const esc = v => String(v == null ? "" : v).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
 /* versões leves para cartões e miniaturas (as originais ficam para o lightbox) */
 const cardSrc = src => src.replace("assets/", "assets/card/");
 const thumbSrc = src => src.replace("assets/", "assets/thumb/");
@@ -1323,27 +1325,27 @@ ROOMS.forEach((r, i) => {
 
   const shots = r.photos.map((src, k) =>
     '<div class="slide"><img ' + (k === 0 ? 'src="' + cardSrc(src) + '"' : 'data-src="' + cardSrc(src) + '"')
-    + ' alt="' + r.name + ' — foto ' + (k+1) + ' de ' + r.photos.length + '" width="760" height="1013"></div>'
+    + ' alt="' + esc(r.name) + ' — foto ' + (k+1) + ' de ' + r.photos.length + '" width="760" height="1013"></div>'
   ).join("");
 
   card.innerHTML =
     '<div class="room-media carousel" data-room-carousel="' + i + '">'
       + '<div class="track">' + shots + '</div>'
-      + '<button class="c-btn prev" type="button" aria-label="Foto anterior de ' + r.name + '">'
+      + '<button class="c-btn prev" type="button" aria-label="Foto anterior de ' + esc(r.name) + '">'
         + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>'
-      + '<button class="c-btn next" type="button" aria-label="Foto siguiente de ' + r.name + '">'
+      + '<button class="c-btn next" type="button" aria-label="Foto siguiente de ' + esc(r.name) + '">'
         + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>'
-      + '<span class="room-tag ' + (r.premium ? "premium" : "") + '">' + r.tag + '</span>'
-      + '<button class="c-btn" type="button" data-open-gallery="' + i + '" aria-label="Ver las ' + r.photos.length + ' fotos de ' + r.name + '" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;background:transparent;transform:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none"></button>'
+      + '<span class="room-tag ' + (r.premium ? "premium" : "") + '">' + esc(r.tag) + '</span>'
+      + '<button class="c-btn" type="button" data-open-gallery="' + i + '" aria-label="Ver las ' + r.photos.length + ' fotos de ' + esc(r.name) + '" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;background:transparent;transform:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none"></button>'
       + '<span class="c-count" data-count aria-live="polite">1 / ' + r.photos.length + '</span>'
     + '</div>'
     + '<div class="room-body">'
-      + '<h3>' + r.name + '</h3>'
-      + '<div class="room-meta"><span>' + r.m2 + ' m²</span><span>·</span><span>2 personas</span><span>·</span><span>' + r.view + '</span></div>'
-      + '<div class="room-meta">' + r.feats.slice(0,3).map(f => '<span class="chip">' + f + '</span>').join("") + '</div>'
+      + '<h3>' + esc(r.name) + '</h3>'
+      + '<div class="room-meta"><span>' + esc(r.m2) + ' m²</span><span>·</span><span>2 personas</span><span>·</span><span>' + esc(r.view) + '</span></div>'
+      + '<div class="room-meta">' + r.feats.slice(0,3).map(f => '<span class="chip">' + esc(f) + '</span>').join("") + '</div>'
       + '<div class="room-foot">'
         + '<div class="price">' + eur(r.price) + '<small>por noche</small></div>'
-        + '<button class="btn btn-primary btn-sm" type="button" data-book="' + r.id + '">Reservar</button>'
+        + '<button class="btn btn-primary btn-sm" type="button" data-book="' + esc(r.id) + '">Reservar</button>'
       + '</div>'
     + '</div>';
 
