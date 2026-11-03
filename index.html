@@ -219,11 +219,14 @@ section.block{padding-block:clamp(2.6rem,5.5vw,4.6rem)}
 
 /* ── habitaciones ── */
 .rooms-track{gap:1.1rem; padding-bottom:.5rem}
-.rooms-track .slide{flex:0 0 clamp(250px,32%,330px); scroll-snap-align:start}
+/* só os cartões do carrossel externo; sem ">" este seletor também pegava
+   os slides internos de cada cartão e encolhia a foto a 250px */
+.rooms-track > .slide{flex:0 0 clamp(250px,32%,330px); scroll-snap-align:start}
 .room{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; height:100%}
 .room:hover{box-shadow:var(--shadow)}
 .room-media{position:relative; aspect-ratio:3/4; background:var(--surface-2); overflow:hidden}
 .room-media .track{height:100%}
+.room-media .slide{flex:0 0 100%; scroll-snap-align:center}
 .room-media img{width:100%; height:100%; object-fit:cover}
 .room-media .c-btn{width:36px; height:36px; backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(20,19,18,.62); color:#fff; border-color:rgba(255,255,255,.35)}
 /* as setas têm de ficar acima do botão invisível que abre a galeria */
