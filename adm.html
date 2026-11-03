@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Administración · Hostal CH América</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap">
+<script src="sb-config.js"></script>
+<style>
+/* ─────────────────────────────────────────────────────────────
+   Panel de recepción del Hostal CH América.
+   Misma paleta que la web pública, pero más densa: aquí se trabaja.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --paper:#FAF7F2; --surface:#FFFFFF; --surface-2:#F2ECE3;
+  --ink:#17130F; --muted:#6C6257; --line:#E5DCD1;
+  --accent:#8A1F2B; --accent-soft:#F6E7E5; --on-accent:#FFFFFF;
+  --ok:#1D7A4C; --ok-soft:#E3F2E9;
+  --warn:#8A5A12; --warn-soft:#FBEFD9;
+  --danger:#A3202C; --danger-soft:#FBE7E7;
+  --shadow:0 1px 2px rgba(23,19,15,.05), 0 14px 36px -20px rgba(23,19,15,.4);
+  --radius:14px;
+  --font-display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --font-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#121110; --surface:#1B1917; --surface-2:#231F1C;
+    --ink:#F2ECE4; --muted:#A79B8D; --line:#302A25;
+    --accent:#E4696F; --accent-soft:#2E1D1E; --on-accent:#1A0E10;
+    --ok:#4FBF8B; --ok-soft:#1B2C24;
+    --warn:#E0B062; --warn-soft:#2C2419;
+    --danger:#F08289; --danger-soft:#2E1B1C;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 18px 42px -22px rgba(0,0,0,.95);
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font-body); font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:400; margin:0; line-height:1.15}
+button,input,select,textarea{font:inherit; color:inherit}
+a{color:var(--accent)}
+.wrap{max-width:1180px; margin:0 auto; padding:0 22px}
+[hidden]{display:none !important}
+
+/* ── cabecera ── */
+.top{
+  position:sticky; top:0; z-index:40; background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.top-in{display:flex; align-items:center; gap:14px; min-height:64px; padding:10px 0; flex-wrap:wrap}
+.brand{display:flex; align-items:baseline; gap:10px; margin-right:auto}
+.brand b{font-family:var(--font-display); font-size:1.3rem; font-weight:400; letter-spacing:.01em}
+.brand span{font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+.who{font-size:.85rem; color:var(--muted); max-width:220px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+
+/* ── botones ── */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.45rem;
+  min-height:40px; padding:.5rem 1rem; border-radius:999px;
+  border:1px solid var(--line); background:var(--surface); color:var(--ink);
+  font-size:.88rem; font-weight:600; text-decoration:none; cursor:pointer;
+  transition:background .15s, border-color .15s, transform .1s;
+}
+.btn:hover{border-color:var(--muted)}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+.btn-primary:hover{filter:brightness(1.07)}
+.btn-ok{background:var(--ok); border-color:var(--ok); color:#fff}
+.btn-danger{background:transparent; border-color:var(--danger); color:var(--danger)}
+.btn-sm{min-height:32px; padding:.25rem .7rem; font-size:.8rem}
+.btn-ghost{background:transparent}
+.btn:disabled{opacity:.5; cursor:not-allowed}
+
+/* ── pestañas ── */
+.tabs{display:flex; gap:6px; overflow-x:auto; padding:14px 0 0; -webkit-overflow-scrolling:touch}
+.tab{
+  flex:0 0 auto; min-height:40px; padding:.45rem .95rem; border-radius:999px;
+  border:1px solid transparent; background:transparent; color:var(--muted);
+  font-size:.9rem; font-weight:600; cursor:pointer; white-space:nowrap;
+}
+.tab[aria-selected="true"]{background:var(--surface-2); border-color:var(--line); color:var(--ink)}
+.tab:hover{color:var(--ink)}
+
+/* ── avisos ── */
+.note{
+  border:1px solid var(--line); background:var(--surface-2); border-radius:var(--radius);
+  padding:12px 16px; font-size:.86rem; color:var(--muted); margin:14px 0;
+}
+.note b{color:var(--ink)}
+.note.warn{background:var(--warn-soft); border-color:var(--warn); color:var(--warn)}
+.note.warn b{color:var(--warn)}
+
+/* ── tarjetas y métricas ── */
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+.kpis{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:12px; margin:18px 0}
+.kpi{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px}
+.kpi .n{font-family:var(--font-display); font-size:1.9rem; line-height:1}
+.kpi .l{font-size:.76rem; text-transform:uppercase; letter-spacing:.1em; color:var(--muted); margin-top:6px}
+
+/* ── filtros ── */
+.chips{display:flex; gap:8px; flex-wrap:wrap; margin:16px 0}
+.chip{
+  min-height:34px; padding:.25rem .8rem; border-radius:999px; cursor:pointer;
+  border:1px solid var(--line); background:var(--surface); color:var(--muted);
+  font-size:.82rem; font-weight:600;
+}
+.chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--on-accent)}
+
+/* ── tabla de pedidos ── */
+.tbl-wrap{overflow-x:auto; border-radius:var(--radius); border:1px solid var(--line); background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:860px}
+th,td{text-align:left; padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
+th{
+  font-size:.72rem; text-transform:uppercase; letter-spacing:.09em; color:var(--muted);
+  font-weight:600; background:var(--surface-2); position:sticky; top:0;
+}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--surface-2)}
+td .sub{display:block; font-size:.78rem; color:var(--muted)}
+td .acts{display:flex; gap:6px; flex-wrap:wrap}
+
+.pill{
+  display:inline-flex; align-items:center; gap:.35rem;
+  padding:.15rem .6rem; border-radius:999px; font-size:.75rem; font-weight:700;
+  letter-spacing:.02em; white-space:nowrap;
+}
+.pill::before{content:""; width:6px; height:6px; border-radius:50%; background:currentColor}
+.pill.pend{background:var(--warn-soft); color:var(--warn)}
+.pill.conf{background:var(--ok-soft); color:var(--ok)}
+.pill.canc{background:var(--danger-soft); color:var(--danger)}
+.pill.done{background:var(--surface-2); color:var(--muted)}
+
+.empty{padding:48px 24px; text-align:center; color:var(--muted)}
+.empty b{display:block; font-family:var(--font-display); font-size:1.4rem; color:var(--ink); margin-bottom:6px}
+
+/* ── calendario ── */
+.cal-top{display:flex; align-items:center; gap:10px; margin:18px 0 12px; flex-wrap:wrap}
+.cal-top .month{font-family:var(--font-display); font-size:1.5rem; margin-right:auto}
+.cal-scroll{overflow-x:auto; padding-bottom:6px}
+.cal{display:grid; gap:2px; min-width:max-content}
+.cal .hcell{
+  font-size:.68rem; color:var(--muted); text-align:center; padding-bottom:4px;
+  text-transform:uppercase; letter-spacing:.05em;
+}
+.cal .dhead{
+  font-size:.68rem; color:var(--muted); text-align:center; line-height:1.1; padding-bottom:2px;
+}
+.cal .rname{
+  font-size:.8rem; font-weight:600; padding-right:12px; white-space:nowrap;
+  display:flex; align-items:center; gap:6px;
+}
+.cal .rname small{font-weight:400; color:var(--muted); font-size:.72rem}
+.cell{
+  width:28px; height:32px; border-radius:6px; border:1px solid var(--line);
+  background:var(--surface); cursor:pointer; padding:0; font-size:.72rem; color:var(--muted);
+  display:flex; align-items:center; justify-content:center;
+  transition:transform .1s, background .15s;
+}
+.cell:hover{transform:scale(1.12); z-index:2}
+.cell.we{background:var(--surface-2)}
+.cell.free{color:var(--muted)}
+.cell.block{background:var(--warn-soft); border-color:var(--warn); color:var(--warn); font-weight:700}
+.cell.pend{background:var(--warn); border-color:var(--warn); color:#fff; font-weight:700}
+.cell.conf{background:var(--ok); border-color:var(--ok); color:#fff; font-weight:700}
+.cell.off{opacity:.32; cursor:default; border-style:dashed}
+.cell.off:hover{transform:none}
+.cell.today{outline:2px solid var(--accent); outline-offset:1px}
+.legend{display:flex; gap:16px; flex-wrap:wrap; font-size:.8rem; color:var(--muted); margin-top:14px}
+.legend i{display:inline-block; width:13px; height:13px; border-radius:4px; margin-right:6px; vertical-align:-2px; border:1px solid var(--line)}
+.lg-free{background:var(--surface)} .lg-block{background:var(--warn-soft); border-color:var(--warn)}
+.lg-pend{background:var(--warn)} .lg-conf{background:var(--ok)}
+
+/* ── formularios ── */
+.field{display:flex; flex-direction:column; gap:5px}
+.field label{font-size:.76rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); font-weight:600}
+.field input, .field select{
+  min-height:42px; padding:.45rem .7rem; border-radius:10px;
+  border:1px solid var(--line); background:var(--surface); color:var(--ink); width:100%;
+}
+.field input:focus, .field select:focus{outline:2px solid var(--accent); outline-offset:1px}
+.field input[type="number"]{max-width:140px}
+#sMax{max-width:none}
+.grid2{display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:14px; align-items:end}
+.section-h{display:flex; align-items:center; gap:12px; margin:0 0 14px; flex-wrap:wrap}
+.section-h h2{font-size:1.4rem; margin-right:auto}
+.card-pad{padding:20px}
+
+/* ── login ── */
+.login-wrap{min-height:100vh; display:grid; place-items:center; padding:24px}
+.login{
+  width:100%; max-width:390px; background:var(--surface); border:1px solid var(--line);
+  border-radius:18px; box-shadow:var(--shadow); padding:30px 26px;
+}
+.login h1{font-size:1.75rem; margin-bottom:4px}
+.login p.lead{color:var(--muted); font-size:.87rem; margin:0 0 20px}
+.login .field{margin-bottom:14px}
+.login .btn{width:100%; margin-top:6px}
+.err{color:var(--danger); font-size:.85rem; min-height:20px; margin-top:10px}
+
+/* ── aviso flotante ── */
+.toast{
+  position:fixed; left:50%; bottom:22px; transform:translate(-50%, 20px);
+  background:var(--ink); color:var(--paper); padding:11px 18px; border-radius:999px;
+  font-size:.86rem; font-weight:600; box-shadow:var(--shadow); z-index:90;
+  opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; max-width:90vw;
+}
+.toast.on{opacity:1; transform:translate(-50%,0)}
+
+.spinner{
+  width:16px; height:16px; border-radius:50%; border:2px solid currentColor;
+  border-right-color:transparent; display:inline-block; animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.skel{color:var(--muted); padding:40px; text-align:center; font-size:.9rem}
+
+footer.adm{padding:28px 0 40px; color:var(--muted); font-size:.8rem}
+
+@media (max-width:720px){
+  .wrap{padding:0 16px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .who{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ ACCESO ══════════════ -->
+<div id="loginView" class="login-wrap" hidden>
+  <form class="login" id="loginForm" novalidate>
+    <h1>Recepción</h1>
+    <p class="lead">Hostal CH América · panel de reservas</p>
+
+    <div id="demoNote" hidden>
+      <div class="note warn">
+        <b>Modo demostración.</b> No hay ninguna base de datos conectada, así que lo que
+        hagas aquí se queda en este navegador. Para activar el panel de verdad, rellena
+        <code>sb-config.js</code> con los datos de tu proyecto de Supabase.
+      </div>
+      <button class="btn btn-primary" type="button" id="demoEnter">Entrar en modo demostración</button>
+    </div>
+
+    <div id="realLogin">
+      <div class="field">
+        <label for="lEmail">Correo</label>
+        <input id="lEmail" type="email" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label for="lPass">Contraseña</label>
+        <input id="lPass" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn btn-primary" type="submit" id="lBtn">Entrar</button>
+      <div class="err" id="lErr" role="alert"></div>
+    </div>
+
+    <p style="margin:18px 0 0; font-size:.8rem; color:var(--muted)">
+      <a href="index.html">← Volver a la web</a>
+    </p>
+  </form>
+</div>
+
+<!-- ══════════════ PANEL ══════════════ -->
+<div id="appView" hidden>
+  <header class="top">
+    <div class="wrap top-in">
+      <div class="brand"><b>CH América</b><span>Recepción</span></div>
+      <span class="who" id="whoEmail"></span>
+      <button class="btn btn-sm btn-ghost" type="button" id="reloadBtn">Actualizar</button>
+      <button class="btn btn-sm" type="button" id="logoutBtn">Salir</button>
+    </div>
+    <div class="wrap">
+      <div class="tabs" role="tablist" aria-label="Secciones">
+        <button class="tab" role="tab" id="tab-pedidos"    aria-selected="true"  aria-controls="view-pedidos">Pedidos</button>
+        <button class="tab" role="tab" id="tab-calendario" aria-selected="false" aria-controls="view-calendario">Calendario</button>
+        <button class="tab" role="tab" id="tab-datos"      aria-selected="false" aria-controls="view-datos">Precios y datos</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding-bottom:40px">
+    <div id="demoBar" class="note warn" hidden style="margin-top:16px">
+      <b>Modo demostración</b> — los datos no se guardan en ningún servidor, solo en este
+      navegador. Conecta Supabase en <code>sb-config.js</code> para usarlo de verdad.
+    </div>
+
+    <!-- ── pedidos ── -->
+    <section id="view-pedidos" role="tabpanel" aria-labelledby="tab-pedidos">
+      <div class="kpis" id="kpis"></div>
+      <div class="chips" id="filters">
+        <button class="chip" type="button" data-f="pending"   aria-pressed="true">Pendientes</button>
+        <button class="chip" type="button" data-f="confirmed" aria-pressed="false">Confirmadas</button>
+        <button class="chip" type="button" data-f="all"       aria-pressed="false">Todas</button>
+        <button class="chip" type="button" data-f="cancelled" aria-pressed="false">Canceladas</button>
+      </div>
+      <div class="tbl-wrap"><div id="pedidosBox" class="skel">Cargando…</div></div>
+    </section>
+
+    <!-- ── calendario ── -->
+    <section id="view-calendario" role="tabpanel" aria-labelledby="tab-calendario" hidden>
+      <div class="cal-top">
+        <span class="month" id="calMonth">—</span>
+        <button class="btn btn-sm" type="button" id="calPrev" aria-label="Mes anterior">‹</button>
+        <button class="btn btn-sm" type="button" id="calToday">Hoy</button>
+        <button class="btn btn-sm" type="button" id="calNext" aria-label="Mes siguiente">›</button>
+      </div>
+      <div class="note">
+        Pulsa un día libre para <b>cerrarlo</b> (mantenimiento, uso propio…); vuelve a pulsarlo
+        para abrirlo. Los días con reserva se cambian desde <b>Pedidos</b>, no desde aquí.
+      </div>
+      <div class="cal-scroll"><div class="cal" id="calGrid"></div></div>
+      <div class="legend">
+        <span><i class="lg-free"></i>Libre</span>
+        <span><i class="lg-block"></i>Cerrado a mano</span>
+        <span><i class="lg-pend"></i>Solicitud pendiente</span>
+        <span><i class="lg-conf"></i>Reserva confirmada</span>
+      </div>
+    </section>
+
+    <!-- ── precios y datos ── -->
+    <section id="view-datos" role="tabpanel" aria-labelledby="tab-datos" hidden>
+      <div class="card card-pad" style="margin-top:18px">
+        <div class="section-h">
+          <h2>Habitaciones</h2>
+          <button class="btn btn-primary btn-sm" type="button" id="saveRooms">Guardar habitaciones</button>
+        </div>
+        <p class="note" style="margin-top:0">
+          El nombre, los metros y el precio se publican al instante en la web.
+          Desmarcar <b>Activa</b> oculta la habitación del motor sin borrarla.
+        </p>
+        <div class="tbl-wrap"><div id="roomsBox" class="skel">Cargando…</div></div>
+      </div>
+
+      <div class="card card-pad" style="margin-top:18px">
+        <div class="section-h">
+          <h2>Contacto y normas</h2>
+          <button class="btn btn-primary btn-sm" type="button" id="saveSettings">Guardar datos</button>
+        </div>
+        <div class="grid2">
+          <div class="field">
+            <label for="sWa">WhatsApp (solo dígitos)</label>
+            <input id="sWa" inputmode="numeric" placeholder="34600123456">
+          </div>
+          <div class="field">
+            <label for="sWaLabel">WhatsApp (como se muestra)</label>
+            <input id="sWaLabel" placeholder="+34 600 123 456">
+          </div>
+          <div class="field">
+            <label for="sIn">Entrada</label>
+            <input id="sIn" placeholder="14:00">
+          </div>
+          <div class="field">
+            <label for="sOut">Salida</label>
+            <input id="sOut" placeholder="12:00">
+          </div>
+          <div class="field">
+            <label for="sMax">Noches máximas por reserva</label>
+            <input id="sMax" type="number" min="1" max="365">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="adm">
+      Hostal CH América · <a href="index.html">ver la web pública</a>
+    </footer>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   0 · CONFIGURACIÓN Y UTILIDADES
+   ═══════════════════════════════════════════════════════════════ */
+const CFG    = window.CH_SUPABASE || {};
+const DEMO   = !CFG.url || !CFG.anonKey || !/^https?:\/\//i.test(String(CFG.url));
+const API    = DEMO ? "" : String(CFG.url).replace(/\/+$/, "");
+const ANON   = DEMO ? "" : CFG.anonKey;
+const SKEY   = "cha-adm-session";
+const DKEY   = "cha-adm-demo";
+
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const pad2 = n => String(n).padStart(2, "0");
+
+function parseISO(s){ if(!s || !/^\d{4}-\d{2}-\d{2}/.test(s)) return null; const [y,m,d] = s.slice(0,10).split("-").map(Number); return new Date(y, m-1, d); }
+function toISO(d){ return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate()); }
+function todayLocal(){ const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+function addDays(d, n){ const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate()+n); return x; }
+function fmtDate(iso){ const d = parseISO(iso); return d ? d.toLocaleDateString("es-ES", { day:"2-digit", month:"short", year:"numeric" }) : "—"; }
+function fmtDateShort(iso){ const d = parseISO(iso); return d ? d.toLocaleDateString("es-ES", { day:"2-digit", month:"2-digit" }) : "—"; }
+const eur = n => new Intl.NumberFormat("es-ES", { style:"currency", currency:"EUR", maximumFractionDigits:0 }).format(Number(n) || 0);
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+let toastTimer;
+function toast(msg){
+  const t = $("#toast");
+  t.textContent = msg;
+  t.classList.add("on");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove("on"), 3200);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   1 · SESIÓN (Supabase Auth por correo y contraseña)
+   ═══════════════════════════════════════════════════════════════ */
+function getSession(){
+  try{ return JSON.parse(localStorage.getItem(SKEY) || "null"); }catch(e){ return null; }
+}
+function setSession(s){ try{ localStorage.setItem(SKEY, JSON.stringify(s)); }catch(e){} }
+function clearSession(){ try{ localStorage.removeItem(SKEY); }catch(e){} }
+
+async function login(email, password){
+  const r = await fetch(API + "/auth/v1/token?grant_type=password", {
+    method:"POST",
+    headers:{ apikey:ANON, "Content-Type":"application/json" },
+    body: JSON.stringify({ email, password })
+  });
+  const j = await r.json().catch(() => ({}));
+  if(!r.ok) throw new Error(j.error_description || j.msg || "Correo o contraseña incorrectos.");
+  const s = {
+    access_token: j.access_token,
+    refresh_token: j.refresh_token,
+    expires_at: Date.now() + (j.expires_in || 3600) * 1000,
+    email: (j.user && j.user.email) || email
+  };
+  setSession(s);
+  return s;
+}
+
+/* devuelve un token válido, refrescándolo si hace falta */
+async function token(){
+  const s = getSession();
+  if(!s || !s.access_token) return null;
+  if(s.expires_at && Date.now() < s.expires_at - 60000) return s;
+  try{
+    const r = await fetch(API + "/auth/v1/token?grant_type=refresh_token", {
+      method:"POST",
+      headers:{ apikey:ANON, "Content-Type":"application/json" },
+      body: JSON.stringify({ refresh_token: s.refresh_token })
+    });
+    if(!r.ok){ clearSession(); return null; }
+    const j = await r.json();
+    const ns = {
+      access_token: j.access_token,
+      refresh_token: j.refresh_token || s.refresh_token,
+      expires_at: Date.now() + (j.expires_in || 3600) * 1000,
+      email: (j.user && j.user.email) || s.email
+    };
+    setSession(ns);
+    return ns;
+  }catch(e){ return null; }
+}
+
+async function logout(){
+  const s = getSession();
+  if(s && s.access_token){
+    try{
+      await fetch(API + "/auth/v1/logout", {
+        method:"POST",
+        headers:{ apikey:ANON, Authorization:"Bearer " + s.access_token }
+      });
+    }catch(e){}
+  }
+  clearSession();
+  try{ sessionStorage.removeItem("cha-adm-demo-on"); }catch(e){}
+  location.reload();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   2 · CAPA DE DATOS
+   Dos implementaciones con la misma interfaz:
+     · sb   → Supabase (PostgREST)
+     · demo → localStorage, para enseñar el panel sin backend
+   ═══════════════════════════════════════════════════════════════ */
+
+async function rest(path, opts = {}){
+  const { method = "GET", body, prefer, auth = true } = opts;
+  const h = { apikey: ANON, "Content-Type": "application/json" };
+  if(auth){
+    const s = await token();
+    if(!s){ needLogin(); throw new Error("Sesión caducada."); }
+    h.Authorization = "Bearer " + s.access_token;
+  } else {
+    h.Authorization = "Bearer " + ANON;
+  }
+  if(prefer) h.Prefer = prefer;
+
+  const r = await fetch(API + path, {
+    method, headers: h, body: body == null ? undefined : JSON.stringify(body)
+  });
+
+  if(r.status === 401){ clearSession(); needLogin(); throw new Error("Sesión caducada. Vuelve a entrar."); }
+  if(!r.ok){
+    let msg = r.status + " " + r.statusText;
+    try{
+      const j = await r.json();
+      msg = j.message || j.hint || j.error_description || msg;
+    }catch(e){}
+    throw new Error(msg);
+  }
+  const txt = await r.text();
+  return txt ? JSON.parse(txt) : null;
+}
+
+const sbStore = {
+  async rooms(){ return rest("/rest/v1/rooms?select=*&order=sort.asc"); },
+  async settings(){ const r = await rest("/rest/v1/settings?id=eq.1&select=*"); return r && r[0]; },
+  async reservations(){ return rest("/rest/v1/reservations?select=*&order=created_at.desc&limit=500"); },
+  async blocked(){ return rest("/rest/v1/blocked_dates?select=room_id,day"); },
+
+  async setStatus(id, status){
+    return rest("/rest/v1/reservations?id=eq." + encodeURIComponent(id), {
+      method:"PATCH", body:{ status }, prefer:"return=minimal"
+    });
+  },
+  async setBlocked(roomId, day, on){
+    if(on){
+      /* on_conflict evita el 409 si dos personas cierran el mismo día a la vez */
+      return rest("/rest/v1/blocked_dates?on_conflict=room_id,day", {
+        method:"POST", prefer:"return=minimal,resolution=ignore-duplicates",
+        body:[{ room_id:roomId, day }]
+      });
+    }
+    return rest("/rest/v1/blocked_dates?room_id=eq." + encodeURIComponent(roomId)
+              + "&day=eq." + encodeURIComponent(day), { method:"DELETE", prefer:"return=minimal" });
+  },
+  async saveRoom(row){
+    return rest("/rest/v1/rooms?id=eq." + encodeURIComponent(row.id), {
+      method:"PATCH", prefer:"return=minimal",
+      body:{ name:row.name, tag:row.tag, m2:row.m2, price:row.price, active:row.active }
+    });
+  },
+  async saveSettings(o){
+    return rest("/rest/v1/settings?id=eq.1", { method:"PATCH", prefer:"return=minimal", body:o });
+  }
+};
+
+/* ── demostración: un único blob en localStorage ── */
+function demoSeed(){
+  const t = todayLocal();
+  const d = n => toISO(addDays(t, n));
+  return {
+    rooms:[
+      { id:"r1", name:"Doble Patio",     tag:"Patio interior",  m2:14, price:45, active:true, sort:1 },
+      { id:"r2", name:"Doble Patio II",  tag:"Patio interior",  m2:13, price:39, active:true, sort:2 },
+      { id:"r3", name:"Doble Patio III", tag:"Patio interior",  m2:13, price:39, active:true, sort:3 },
+      { id:"r4", name:"Doble Patio IV",  tag:"Patio interior",  m2:14, price:45, active:true, sort:4 },
+      { id:"r5", name:"Doble Superior",  tag:"La más amplia",   m2:20, price:59, active:true, sort:5 },
+      { id:"r6", name:"Doble Calle",     tag:"Calle tranquila", m2:14, price:49, active:true, sort:6 }
+    ],
+    settings:{ whatsapp:"34600000000", whatsapp_label:"+34 600 000 000", check_in:"14:00", check_out:"12:00", max_nights:30 },
+    reservations:[
+      { id:1, ref:"r5-"+d(9).replace(/-/g,""), room_id:"r5", check_in:d(9),  check_out:d(12), nights:3, guests:2,
+        name:"Lucía Ferrer", email:"lucia.ferrer@example.com", phone:"+34 611 222 333", country:"España",
+        eta:"18:00", notes:"Llegamos en tren, quizá un poco más tarde.", total:177, status:"pending",   created_at:new Date().toISOString() },
+      { id:2, ref:"r1-"+d(16).replace(/-/g,""), room_id:"r1", check_in:d(16), check_out:d(19), nights:3, guests:2,
+        name:"João Almeida", email:"joao.almeida@example.com", phone:"+351 912 345 678", country:"Portugal",
+        eta:"unknown", notes:"", total:135, status:"confirmed", created_at:new Date(Date.now()-864e5).toISOString() },
+      { id:3, ref:"r3-"+d(-6).replace(/-/g,""), room_id:"r3", check_in:d(-6), check_out:d(-3), nights:3, guests:1,
+        name:"Marta Núñez", email:"marta.nunez@example.com", phone:"+34 699 111 222", country:"España",
+        eta:"20:30", notes:"", total:117, status:"done",      created_at:new Date(Date.now()-12*864e5).toISOString() }
+    ],
+    blocked:[ { room_id:"r2", day:d(21) }, { room_id:"r2", day:d(22) } ]
+  };
+}
+
+function demoRead(){
+  try{
+    const raw = localStorage.getItem(DKEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  const seed = demoSeed();
+  try{ localStorage.setItem(DKEY, JSON.stringify(seed)); }catch(e){}
+  return seed;
+}
+function demoWrite(db){ try{ localStorage.setItem(DKEY, JSON.stringify(db)); }catch(e){} }
+
+const demoStore = {
+  async rooms(){ return demoRead().rooms.slice().sort((a,b) => a.sort - b.sort); },
+  async settings(){ return demoRead().settings; },
+  async reservations(){ return demoRead().reservations.slice().sort((a,b) => String(b.created_at).localeCompare(String(a.created_at))); },
+  async blocked(){ return demoRead().blocked.slice(); },
+  async setStatus(id, status){
+    const db = demoRead();
+    const r = db.reservations.find(x => String(x.id) === String(id));
+    if(r) r.status = status;
+    demoWrite(db);
+  },
+  async setBlocked(roomId, day, on){
+    const db = demoRead();
+    db.blocked = db.blocked.filter(b => !(b.room_id === roomId && b.day === day));
+    if(on) db.blocked.push({ room_id:roomId, day });
+    demoWrite(db);
+  },
+  async saveRoom(row){
+    const db = demoRead();
+    const r = db.rooms.find(x => x.id === row.id);
+    if(r) Object.assign(r, { name:row.name, tag:row.tag, m2:row.m2, price:row.price, active:row.active });
+    demoWrite(db);
+  },
+  async saveSettings(o){
+    const db = demoRead();
+    Object.assign(db.settings, o);
+    demoWrite(db);
+  }
+};
+
+const Store = DEMO ? demoStore : sbStore;
+
+/* ═══════════════════════════════════════════════════════════════
+   3 · ESTADO
+   ═══════════════════════════════════════════════════════════════ */
+const S = {
+  rooms: [], settings: {}, reservations: [], blocked: [],
+  filter: "pending",
+  calCursor: (() => { const t = todayLocal(); return new Date(t.getFullYear(), t.getMonth(), 1); })(),
+  busy: false
+};
+
+const STATUS_LABEL = { pending:"Pendiente", confirmed:"Confirmada", cancelled:"Cancelada", done:"Finalizada" };
+const STATUS_CLASS = { pending:"pend", confirmed:"conf", cancelled:"canc", done:"done" };
+
+async function loadAll(){
+  const [rooms, settings, reservations, blocked] = await Promise.all([
+    Store.rooms(), Store.settings(), Store.reservations(), Store.blocked()
+  ]);
+  S.rooms = (rooms || []).map(r => ({ ...r, price:Number(r.price) || 0, m2:Number(r.m2) || 0, active:r.active !== false }))
+                         .sort((a,b) => (a.sort || 0) - (b.sort || 0));
+  S.settings = settings || {};
+  S.reservations = (reservations || []).map(r => ({
+    ...r,
+    check_in: String(r.check_in).slice(0,10),
+    check_out: String(r.check_out).slice(0,10),
+    total: r.total == null ? null : Number(r.total)
+  }));
+  S.blocked = (blocked || []).map(b => ({ room_id:b.room_id, day:String(b.day).slice(0,10) }));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4 · PEDIDOS
+   ═══════════════════════════════════════════════════════════════ */
+function roomName(id){
+  const r = S.rooms.find(x => x.id === id);
+  return r ? r.name : "—";
+}
+
+function filtered(){
+  if(S.filter === "all") return S.reservations;
+  return S.reservations.filter(r => r.status === S.filter);
+}
+
+function renderKpis(){
+  const t = todayLocal();
+  const pend = S.reservations.filter(r => r.status === "pending").length;
+  const hoy = S.reservations.filter(r =>
+    r.status !== "cancelled" && parseISO(r.check_in) && parseISO(r.check_out) &&
+    parseISO(r.check_in) <= t && t < parseISO(r.check_out)
+  ).length;
+  const mes = S.reservations.filter(r => {
+    if(r.status === "cancelled") return false;
+    const ci = parseISO(r.check_in);
+    return ci && ci.getFullYear() === t.getFullYear() && ci.getMonth() === t.getMonth();
+  });
+  const ingresos = mes.reduce((a, r) => a + (r.total || 0), 0);
+
+  $("#kpis").innerHTML = [
+    ["Pendientes", pend],
+    ["En casa hoy", hoy],
+    ["Reservas este mes", mes.length],
+    ["Ingresos previstos", eur(ingresos)]
+  ].map(([l, n]) =>
+    '<div class="kpi"><div class="n">' + n + '</div><div class="l">' + l + '</div></div>'
+  ).join("");
+}
+
+function waLinkFor(r){
+  const digits = String(r.phone || "").replace(/[^\d]/g, "");
+  const text = "Hola " + (String(r.name || "").split(" ")[0] || "") +
+    ", te escribimos del Hostal CH América sobre tu solicitud " + r.ref + ".";
+  return "https://wa.me/" + digits + "?text=" + encodeURIComponent(text);
+}
+
+function renderPedidos(){
+  const rows = filtered();
+  const box = $("#pedidosBox");
+
+  if(!S.reservations.length){
+    box.className = "";
+    box.innerHTML = '<div class="empty"><b>Todavía no hay solicitudes</b>' +
+      'Cuando alguien complete el formulario de la web, aparecerá aquí.</div>';
+    return;
+  }
+  if(!rows.length){
+    box.className = "";
+    box.innerHTML = '<div class="empty"><b>Nada por aquí</b>No hay reservas con este estado.</div>';
+    return;
+  }
+
+  box.className = "";
+  box.innerHTML =
+    '<table><thead><tr>' +
+      '<th>Huésped</th><th>Habitación</th><th>Fechas</th><th>Total</th><th>Estado</th><th>Acciones</th>' +
+    '</tr></thead><tbody>' +
+    rows.map(r => {
+      const acts = [];
+      if(r.status === "pending"){
+        acts.push('<button class="btn btn-sm btn-ok" type="button" data-act="confirmed" data-id="' + esc(r.id) + '">Confirmar</button>');
+      }
+      if(r.status === "confirmed"){
+        acts.push('<button class="btn btn-sm" type="button" data-act="done" data-id="' + esc(r.id) + '">Salida</button>');
+      }
+      if(r.status !== "cancelled"){
+        acts.push('<button class="btn btn-sm btn-danger" type="button" data-act="cancelled" data-id="' + esc(r.id) + '">Cancelar</button>');
+      } else {
+        acts.push('<button class="btn btn-sm" type="button" data-act="pending" data-id="' + esc(r.id) + '">Reabrir</button>');
+      }
+      acts.push('<a class="btn btn-sm" href="' + esc(waLinkFor(r)) + '" target="_blank" rel="noopener">WhatsApp</a>');
+
+      const notas = r.notes ? '<span class="sub">“' + esc(r.notes) + '”</span>' : "";
+      const eta = r.eta && r.eta !== "unknown" ? " · llega " + esc(r.eta) : "";
+
+      return '<tr>' +
+        '<td>' +
+          '<strong>' + esc(r.name) + '</strong>' +
+          '<span class="sub">' + esc(r.email) + '</span>' +
+          '<span class="sub">' + esc(r.phone) + ' · ' + esc(r.country || "—") + '</span>' +
+        '</td>' +
+        '<td>' + esc(roomName(r.room_id)) + '<span class="sub">' + esc(r.ref) + '</span></td>' +
+        '<td>' + fmtDate(r.check_in) + ' → ' + fmtDate(r.check_out) +
+          '<span class="sub">' + r.nights + ' noche' + (r.nights === 1 ? "" : "s") + ' · ' + r.guests +
+          (r.guests === 1 ? " persona" : " personas") + esc(eta) + '</span>' +
+          notas +
+        '</td>' +
+        '<td>' + (r.total == null ? "—" : eur(r.total)) + '</td>' +
+        '<td><span class="pill ' + (STATUS_CLASS[r.status] || "done") + '">' + (STATUS_LABEL[r.status] || r.status) + '</span>' +
+          '<span class="sub">' + fmtDateShort(r.created_at) + '</span></td>' +
+        '<td><div class="acts">' + acts.join("") + '</div></td>' +
+      '</tr>';
+    }).join("") +
+    '</tbody></table>';
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5 · CALENDARIO
+   ═══════════════════════════════════════════════════════════════ */
+function occupancyMap(){
+  /* día de entrada ocupado, día de salida libre para el siguiente */
+  const occ = new Map();
+  S.reservations.forEach(r => {
+    if(r.status === "cancelled") return;
+    const ci = parseISO(r.check_in), co = parseISO(r.check_out);
+    if(!ci || !co) return;
+    for(let d = ci; d < co; d = addDays(d, 1)){
+      occ.set(r.room_id + "|" + toISO(d), r.status);
+    }
+  });
+  return occ;
+}
+
+function blockedSet(){
+  const s = new Set();
+  S.blocked.forEach(b => s.add(b.room_id + "|" + b.day));
+  return s;
+}
+
+function renderCal(){
+  const grid = $("#calGrid");
+  const cur = S.calCursor;
+  const y = cur.getFullYear(), m = cur.getMonth();
+  const first = new Date(y, m, 1);
+  const days = new Date(y, m + 1, 0).getDate();
+  const daysInPrev = new Date(y, m, 0).getDate();
+
+  const monthName = first.toLocaleDateString("es-ES", { month:"long", year:"numeric" });
+  $("#calMonth").textContent = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+
+  const occ = occupancyMap();
+  const blk = blockedSet();
+  const today = todayLocal();
+  const rooms = S.rooms.slice().sort((a,b) => (a.sort || 0) - (b.sort || 0));
+
+  /* columnas: 1 de nombre + `days` de días; fila 0 = cabecera */
+  grid.style.gridTemplateColumns = "minmax(150px, max-content) repeat(" + days + ", 28px)";
+
+  const parts = ['<div class="hcell"></div>'];
+  for(let d = 1; d <= days; d++){
+    const date = new Date(y, m, d);
+    const wd = date.toLocaleDateString("es-ES", { weekday:"narrow" });
+    parts.push('<div class="dhead">' + d + '<br>' + wd + '</div>');
+  }
+
+  rooms.forEach(room => {
+    parts.push('<div class="rname">' + esc(room.name) +
+      (room.active ? "" : ' <small>(oculta)</small>') + '</div>');
+
+    for(let d = 1; d <= days; d++){
+      const date = new Date(y, m, d);
+      const iso  = toISO(date);
+      const key  = room.id + "|" + iso;
+      const st   = occ.get(key);
+      const isToday = date.getTime() === today.getTime();
+      const weekend = date.getDay() === 0 || date.getDay() === 6;
+
+      const cls = ["cell"];
+      if(weekend) cls.push("we");
+      if(isToday) cls.push("today");
+
+      let label = String(d);
+      let title = room.name + " · " + date.toLocaleDateString("es-ES", { weekday:"long", day:"numeric", month:"long" });
+
+      if(st === "pending" || st === "confirmed"){
+        cls.push(st === "pending" ? "pend" : "conf");
+        title += st === "pending" ? " — solicitud pendiente" : " — reserva confirmada";
+        label = "·";
+      } else if(blk.has(key)){
+        cls.push("block");
+        title += " — cerrado a mano";
+      }
+
+      parts.push('<button type="button" class="' + cls.join(" ") + '" ' +
+        'data-room="' + esc(room.id) + '" data-day="' + iso + '" ' +
+        'data-state="' + (st ? st : (blk.has(key) ? "block" : "free")) + '" ' +
+        'title="' + esc(title) + '" aria-label="' + esc(title) + '">' + label + '</button>');
+    }
+  });
+
+  grid.innerHTML = parts.join("");
+}
+
+async function toggleDay(roomId, day, state){
+  if(state === "pending" || state === "confirmed"){
+    toast("Ese día tiene una reserva. Gestiónala en Pedidos.");
+    return;
+  }
+  if(S.busy) return;
+  S.busy = true;
+  try{
+    const on = state !== "block";
+    await Store.setBlocked(roomId, day, on);
+    await loadAll();
+    renderAll();
+    toast(on ? "Día cerrado." : "Día abierto otra vez.");
+  }catch(e){
+    toast("No se pudo guardar: " + e.message);
+  }finally{ S.busy = false; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   6 · PRECIOS Y DATOS
+   ═══════════════════════════════════════════════════════════════ */
+function renderRoomsEditor(){
+  const box = $("#roomsBox");
+  if(!S.rooms.length){
+    box.className = "";
+    box.innerHTML = '<div class="empty"><b>No hay habitaciones</b>Revisa que el esquema de Supabase se haya ejecutado.</div>';
+    return;
+  }
+  box.className = "";
+  box.innerHTML =
+    '<table><thead><tr>' +
+      '<th>Habitación</th><th>Etiqueta</th><th>m²</th><th>€/noche</th><th>Activa</th>' +
+    '</tr></thead><tbody>' +
+    S.rooms.map(r =>
+      '<tr data-room="' + esc(r.id) + '">' +
+        '<td><input class="f-name" value="' + esc(r.name) + '" aria-label="Nombre"></td>' +
+        '<td><input class="f-tag" value="' + esc(r.tag || "") + '" aria-label="Etiqueta"></td>' +
+        '<td><input class="f-m2" type="number" min="1" max="200" value="' + r.m2 + '" aria-label="Metros" style="max-width:90px"></td>' +
+        '<td><input class="f-price" type="number" min="0" step="1" value="' + r.price + '" aria-label="Precio" style="max-width:110px"></td>' +
+        '<td><input class="f-active" type="checkbox" ' + (r.active ? "checked" : "") + ' aria-label="Activa"></td>' +
+      '</tr>'
+    ).join("") +
+    '</tbody></table>';
+
+  $$("input", box).forEach(i => {
+    i.style.minHeight = "38px";
+  });
+}
+
+function renderSettingsForm(){
+  const s = S.settings || {};
+  $("#sWa").value = s.whatsapp || "";
+  $("#sWaLabel").value = s.whatsapp_label || "";
+  $("#sIn").value = s.check_in || "";
+  $("#sOut").value = s.check_out || "";
+  $("#sMax").value = s.max_nights || "";
+}
+
+async function saveRooms(){
+  const rows = $$("#roomsBox tbody tr");
+  if(!rows.length) return;
+  const payload = rows.map(tr => ({
+    id: tr.dataset.room,
+    name: $(".f-name", tr).value.trim() || "Habitación",
+    tag: $(".f-tag", tr).value.trim(),
+    m2: Math.max(1, Number($(".f-m2", tr).value) || 1),
+    price: Math.max(0, Number($(".f-price", tr).value) || 0),
+    active: $(".f-active", tr).checked
+  }));
+  try{
+    for(const row of payload) await Store.saveRoom(row);
+    await loadAll();
+    renderAll();
+    toast("Habitaciones guardadas.");
+  }catch(e){
+    toast("No se pudo guardar: " + e.message);
+  }
+}
+
+async function saveSettings(){
+  const o = {
+    whatsapp: $("#sWa").value.replace(/[^\d]/g, ""),
+    whatsapp_label: $("#sWaLabel").value.trim(),
+    check_in: $("#sIn").value.trim(),
+    check_out: $("#sOut").value.trim(),
+    max_nights: Math.max(1, Number($("#sMax").value) || 30)
+  };
+  if(o.whatsapp.length < 8){
+    toast("El WhatsApp debe llevar prefijo de país, solo dígitos.");
+    return;
+  }
+  try{
+    await Store.saveSettings(o);
+    await loadAll();
+    renderAll();
+    toast("Datos guardados.");
+  }catch(e){
+    toast("No se pudo guardar: " + e.message);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   7 · PINTADO Y ARRANQUE
+   ═══════════════════════════════════════════════════════════════ */
+function renderAll(){
+  renderKpis();
+  renderPedidos();
+  renderCal();
+  renderRoomsEditor();
+  renderSettingsForm();
+}
+
+function switchTab(name){
+  ["pedidos", "calendario", "datos"].forEach(k => {
+    $("#tab-" + k).setAttribute("aria-selected", String(k === name));
+    $("#view-" + k).hidden = k !== name;
+  });
+}
+
+function needLogin(){
+  clearSession();
+  $("#appView").hidden = true;
+  $("#loginView").hidden = false;
+  $("#lErr").textContent = "";
+}
+
+function enterApp(email){
+  $("#loginView").hidden = true;
+  $("#appView").hidden = false;
+  $("#whoEmail").textContent = email || "";
+  $("#demoBar").hidden = !DEMO;
+  return refresh();
+}
+
+async function refresh(){
+  try{
+    await loadAll();
+    renderAll();
+  }catch(e){
+    toast("Error al cargar: " + e.message);
+    $("#pedidosBox").className = "skel";
+    $("#pedidosBox").textContent = "No se pudo cargar. " + e.message;
+  }
+}
+
+/* ── eventos ── */
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const btn = $("#lBtn"), err = $("#lErr");
+  err.textContent = "";
+  const email = $("#lEmail").value.trim();
+  const pass  = $("#lPass").value;
+  if(!email || !pass){ err.textContent = "Escribe el correo y la contraseña."; return; }
+  btn.disabled = true;
+  const prev = btn.textContent;
+  btn.innerHTML = '<span class="spinner"></span>';
+  try{
+    await login(email, pass);
+    await enterApp(email);
+  }catch(ex){
+    err.textContent = ex.message;
+  }finally{
+    btn.disabled = false;
+    btn.textContent = prev;
+  }
+});
+
+$("#demoEnter").addEventListener("click", () => {
+  try{ sessionStorage.setItem("cha-adm-demo-on", "1"); }catch(e){}
+  enterApp("demostración");
+});
+
+$("#logoutBtn").addEventListener("click", logout);
+$("#reloadBtn").addEventListener("click", refresh);
+
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest("[data-f]");
+  if(!b) return;
+  S.filter = b.dataset.f;
+  $$("button", $("#filters")).forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  renderPedidos();
+});
+
+$("#pedidosBox").addEventListener("click", async e => {
+  const b = e.target.closest("[data-act]");
+  if(!b) return;
+  const id = b.dataset.id, act = b.dataset.act;
+  if(act === "cancelled" && !confirm("¿Cancelar esta reserva? Se liberarán las fechas.")) return;
+  b.disabled = true;
+  try{
+    await Store.setStatus(id, act);
+    await loadAll();
+    renderAll();
+    toast("Reserva actualizada: " + (STATUS_LABEL[act] || act).toLowerCase() + ".");
+  }catch(err){
+    toast("No se pudo actualizar: " + err.message);
+    b.disabled = false;
+  }
+});
+
+$("#calGrid").addEventListener("click", e => {
+  const b = e.target.closest(".cell");
+  if(!b) return;
+  toggleDay(b.dataset.room, b.dataset.day, b.dataset.state);
+});
+
+$("#calPrev").addEventListener("click", () => {
+  S.calCursor = new Date(S.calCursor.getFullYear(), S.calCursor.getMonth() - 1, 1);
+  renderCal();
+});
+$("#calNext").addEventListener("click", () => {
+  S.calCursor = new Date(S.calCursor.getFullYear(), S.calCursor.getMonth() + 1, 1);
+  renderCal();
+});
+$("#calToday").addEventListener("click", () => {
+  const t = todayLocal();
+  S.calCursor = new Date(t.getFullYear(), t.getMonth(), 1);
+  renderCal();
+});
+
+$$(".tab").forEach(t => t.addEventListener("click", () => switchTab(t.id.replace("tab-", ""))));
+
+$("#saveRooms").addEventListener("click", saveRooms);
+$("#saveSettings").addEventListener("click", saveSettings);
+
+/* ── arranque ── */
+(function boot(){
+  if(DEMO){
+    $("#demoNote").hidden = false;
+    $("#realLogin").hidden = true;
+    $("#loginView").hidden = false;
+    let already = false;
+    try{ already = sessionStorage.getItem("cha-adm-demo-on") === "1"; }catch(e){}
+    if(already) enterApp("demostración");
+    return;
+  }
+  const s = getSession();
+  if(s && s.access_token) enterApp(s.email);
+  else needLogin();
+})();
+</script>
+</body>
+</html>

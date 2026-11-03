@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap">
+<!-- precios, fechas cerradas y datos de contacto; vacío = funcionan los de este fichero -->
+<script src="sb-config.js"></script>
 <style>
 /* ─────────────────────────────────────────────────────────────
    CH AMÉRICA — hostal urbano, Avenida de América 26, Madrid
@@ -1167,14 +1169,20 @@ function fmtDate(iso){ const d = parseISO(iso); if(!d) return "—"; return d.to
 function fmtDateLong(iso){ const d = parseISO(iso); if(!d) return "—"; return d.toLocaleDateString("es-ES", { weekday:"short", day:"numeric", month:"long" }); }
 function esFecha(s){ return /^\d{4}-\d{2}-\d{2}$/.test(s); }
 
-const WA_BASE = "https://wa.me/" + CONFIG.whatsapp + "?text=";
-const waLink = text => WA_BASE + encodeURIComponent(text);
+/* El número puede llegar de la base de datos después de arrancar, así que
+   el enlace se construye en cada llamada y no se guarda en una constante. */
+const waLink = text => "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(text);
 const WA_GENERIC = "Hola CH América, me gustaría consultar disponibilidad para una habitación doble.";
 
-$$("#waHead, #waHero, #waFoot, #waBar").forEach(a => { a.href = waLink(WA_GENERIC); a.target = "_blank"; a.rel = "noopener"; });
-$("#phoneText").textContent = CONFIG.whatsappLabel;
-$("#headPhone").textContent = CONFIG.whatsappLabel;
-$("#headPhone").href = waLink(WA_GENERIC);
+function applyWaLinks(){
+  $$("#waHead, #waHero, #waFoot, #waBar").forEach(a => {
+    a.href = waLink(WA_GENERIC); a.target = "_blank"; a.rel = "noopener";
+  });
+  $("#phoneText").textContent = CONFIG.whatsappLabel;
+  $("#headPhone").textContent = CONFIG.whatsappLabel;
+  $("#headPhone").href = waLink(WA_GENERIC);
+}
+applyWaLinks();
 
 /* ── menú móvil ── */
 const menuBtn = $("#menuBtn"), mobnav = $("#mobnav");
@@ -1300,7 +1308,14 @@ initCarousel({ root: heroRoot, track: heroTrack });
 /* ── habitaciones: carrusel de tarjetas, cada una con su carrusel ── */
 const roomsTrack = $("#roomsTrack"), roomsDots = $("#roomsDots");
 
+/* Se puede volver a pintar: cuando llegan los precios de la base de datos
+   se llama otra vez y las tarjetas reflejan lo que puso la recepción. */
+function renderRoomCards(){
+  roomsTrack.innerHTML = "";
+  roomsDots.innerHTML = "";
+
 ROOMS.forEach((r, i) => {
+  if(r.active === false) return;   /* desactivada desde la recepción */
   const slide = document.createElement("div");
   slide.className = "slide";
   const card = document.createElement("article");
@@ -1346,14 +1361,19 @@ ROOMS.forEach((r, i) => {
   });
   roomsDots.appendChild(dot);
 });
+}
 
 /* carruseles internos de cada tarjeta */
-$$("[data-room-carousel]").forEach((el, n) => {
-  /* fase repartida pelo ciclo (1/6 cada) + ritmo próprio: os seis carrosséis
-     nunca param na mesma foto ao mesmo tempo */
-  initCarousel({ root: el, track: $(".track", el), auto: true, loop: true,
-                 delay: 5200 + n * 380, offset: n * 900 });
-});
+function initRoomPhotos(){
+  $$("[data-room-carousel]").forEach((el, n) => {
+    /* fase repartida pelo ciclo (1/6 cada) + ritmo próprio: os seis carrosséis
+       nunca param na mesma foto ao mesmo tempo */
+    initCarousel({ root: el, track: $(".track", el), auto: true, loop: true,
+                   delay: 5200 + n * 380, offset: n * 900 });
+  });
+}
+renderRoomCards();
+initRoomPhotos();
 
 /* setas e indicadores del carrusel de habitaciones */
 const roomsCarousel = { step: () => (roomsTrack.querySelector(".room")?.getBoundingClientRect().width || 300) + 18 };
@@ -1476,24 +1496,35 @@ const booking = {
   step: 1,
   ci: "", co: "", guests: "2", roomId: "any",
   name: "", email: "", phone: "", country: "", eta: "", notes: "",
-  legal: false, sentAt: 0
+  legal: false, sentAt: 0, ref: ""
 };
 
 const bCi = $("#bCi"), bCo = $("#bCo"), bGuests = $("#bGuests"), bRoom = $("#bRoom");
 const bErr1 = $("#bErr1"), bHint1 = $("#bHint1");
 
-/* selects */
-const anyOpt = document.createElement("option");
-anyOpt.value = "any";
-anyOpt.textContent = "Cualquiera disponible (desde " + eur(Math.min(...ROOMS.map(r => r.price))) + ")";
-bRoom.appendChild(anyOpt);
-ROOMS.forEach(r => {
-  const o = document.createElement("option");
-  o.value = r.id;
-  o.textContent = r.name + " · " + r.m2 + " m² · " + eur(r.price) + "/noche";
-  bRoom.appendChild(o);
-});
-bRoom.value = "any";
+/* selects — se reconstruye si la recepción cambia precios o desactiva una habitación */
+function buildRoomSelect(){
+  const keep = booking.roomId || "any";
+  const list = ROOMS.filter(r => r.active !== false);
+
+  bRoom.innerHTML = "";
+  const anyOpt = document.createElement("option");
+  anyOpt.value = "any";
+  anyOpt.textContent = "Cualquiera disponible (desde "
+    + eur(list.length ? Math.min(...list.map(r => r.price)) : 0) + ")";
+  bRoom.appendChild(anyOpt);
+
+  list.forEach(r => {
+    const o = document.createElement("option");
+    o.value = r.id;
+    o.textContent = r.name + " · " + r.m2 + " m² · " + eur(r.price) + "/noche";
+    bRoom.appendChild(o);
+  });
+
+  bRoom.value = (keep === "any" || list.some(r => r.id === keep)) ? keep : "any";
+  booking.roomId = bRoom.value;
+}
+buildRoomSelect();
 
 const COUNTRIES = ["España","Portugal","Francia","Italia","Alemania","Reino Unido","Países Bajos","Bélgica","Suiza","Irlanda","Estados Unidos","México","Argentina","Chile","Colombia","Perú","Brasil","Uruguay","Venezuela","Ecuador","Canadá","Australia","Japón","China","Otro"];
 const bCountry = $("#bCountry");
@@ -1536,13 +1567,17 @@ function isBlocked(room, ci, co){
 function blockedAny(room, ci, co){ return isBlocked(room, ci, co); }
 
 function pickRoom(ci, co){
+  const usable = ROOMS.filter(r => r.active !== false);
   if(booking.roomId !== "any"){
     const r = roomById(booking.roomId);
-    return r ? { room: r, isAny: false, available: !isBlocked(r, ci, co) } : null;
+    return (r && r.active !== false)
+      ? { room: r, isAny: false, available: !isBlocked(r, ci, co) }
+      : null;
   }
-  const free = ROOMS.filter(r => !isBlocked(r, ci, co)).sort((a, b) => a.price - b.price);
+  const free = usable.filter(r => !isBlocked(r, ci, co)).sort((a, b) => a.price - b.price);
   if(free.length) return { room: free[0], isAny: true, available: true };
-  return { room: ROOMS.slice().sort((a, b) => a.price - b.price)[0], isAny: true, available: false };
+  if(!usable.length) return null;
+  return { room: usable.slice().sort((a, b) => a.price - b.price)[0], isAny: true, available: false };
 }
 
 function discountFor(n){
@@ -1562,6 +1597,7 @@ function priceBreakdown(){
 
 /* resumen lateral */
 function updateSummary(){
+  booking.ref = "";   /* fechas u habitación distintas = referencia nueva */
   const { n, pick, gross, disc, total, rate } = priceBreakdown();
   $("#sRoom").textContent = pick ? (pick.isAny ? "Mejor habitación disponible · " + pick.room.name : pick.room.name) : "—";
   $("#sCi").textContent = booking.ci ? fmtDate(booking.ci) : "—";
@@ -1729,10 +1765,15 @@ $("#bBack2").addEventListener("click", () => showStep(1));
 $("#bBack3").addEventListener("click", () => showStep(2));
 
 /* ── paso 3: recapitulación y envío ── */
+/* La referencia se calcula una vez por envío y se reutiliza: en la base de
+   datos es única, así que dos solicitudes parecidas no chocan. */
 function bookingRef(){
+  if(booking.ref) return booking.ref;
   const pick = pickRoom(booking.ci, booking.co);
   const base = pick && !pick.isAny ? pick.room.id : "any";
-  return base + "-" + (booking.ci || "").replace(/-/g, "");
+  const tail = Date.now().toString(36).slice(-3) + Math.random().toString(36).slice(2, 4);
+  booking.ref = (base + "-" + (booking.ci || "").replace(/-/g, "") + "-" + tail).toUpperCase();
+  return booking.ref;
 }
 
 function buildRecap(){
@@ -1812,6 +1853,7 @@ $("#bSend").addEventListener("click", () => {
     return;
   }
   const text = bookingMessage();
+  saveReservation();
   const url = waLink(text);
   let win = null;
   try{ win = window.open(url, "_blank"); }catch(err){ win = null; }
@@ -1893,6 +1935,111 @@ loadDraft();
 refreshDateBounds();
 updateSummary();
 showStep(1, false);
+
+/* ═══════════════════════════════════════════════════════════════
+   DATOS EN VIVO — precios, fechas cerradas y contacto
+   Con sb-config.js relleno, la web deja de usar los valores escritos
+   más arriba y lee los de la recepción. Si algo falla (sin red, clave
+   mal puesta), sigue funcionando con los valores locales: la página
+   nunca se queda en blanco por esto.
+   ═══════════════════════════════════════════════════════════════ */
+const SB = window.CH_SUPABASE || {};
+const SB_ON = !!(SB.url && SB.anonKey && /^https?:\/\//i.test(String(SB.url)));
+const SB_API = SB_ON ? String(SB.url).replace(/\/+$/, "") : "";
+
+async function sbGet(path){
+  const r = await fetch(SB_API + path, {
+    headers: { apikey: SB.anonKey, Authorization: "Bearer " + SB.anonKey }
+  });
+  if(!r.ok) throw new Error("Supabase " + r.status);
+  return r.json();
+}
+
+/* El hueco público solo puede CREAR; leer reservas ajenas queda cerrado por RLS. */
+function saveReservation(){
+  if(!SB_ON) return;
+  const { n, pick, total } = priceBreakdown();
+  if(n <= 0 || !pick) return;
+  const row = {
+    ref:       bookingRef(),
+    room_id:   pick.room.id,
+    check_in:  booking.ci,
+    check_out: booking.co,
+    nights:    n,
+    guests:    booking.guests === "1" ? 1 : 2,
+    name:      booking.name.trim(),
+    email:     booking.email.trim(),
+    phone:     booking.phone.trim(),
+    country:   booking.country || "",
+    eta:       booking.eta === "unknown" ? "" : (booking.eta || ""),
+    notes:     booking.notes.trim(),
+    total:     total > 0 ? total : null,
+    status:    "pending"
+  };
+  fetch(SB_API + "/rest/v1/reservations", {
+    method: "POST",
+    keepalive: true,                 /* sobrevive al salto a WhatsApp */
+    headers: {
+      apikey: SB.anonKey,
+      Authorization: "Bearer " + SB.anonKey,
+      "Content-Type": "application/json",
+      Prefer: "return=minimal"
+    },
+    body: JSON.stringify([row])
+  }).catch(() => {});               /* nunca bloquea el envío por WhatsApp */
+}
+
+async function hydrateFromDb(){
+  if(!SB_ON) return;
+  try{
+    const [rooms, settings, blocked] = await Promise.all([
+      sbGet("/rest/v1/rooms?select=id,name,m2,price,active&order=sort.asc"),
+      sbGet("/rest/v1/settings?id=eq.1&select=*"),
+      sbGet("/rest/v1/blocked_dates?select=room_id,day")
+    ]);
+
+    let changed = false;
+
+    (rooms || []).forEach(row => {
+      const r = ROOMS.find(x => x.id === row.id);
+      if(!r) return;
+      const price = Number(row.price), m2 = Number(row.m2);
+      if(Number.isFinite(price) && price !== r.price){ r.price = price; changed = true; }
+      if(Number.isFinite(m2) && m2 !== r.m2){ r.m2 = m2; changed = true; }
+      if(row.name && row.name !== r.name){ r.name = row.name; changed = true; }
+      if((row.active !== false) !== (r.active !== false)){ r.active = row.active !== false; changed = true; }
+    });
+
+    /* fechas cerradas, agrupadas como las espera el motor */
+    Object.keys(BLOCKED).forEach(k => delete BLOCKED[k]);
+    (blocked || []).forEach(b => {
+      const day = String(b.day).slice(0, 10);
+      (BLOCKED[b.room_id] = BLOCKED[b.room_id] || []).push(day);
+    });
+
+    const s = settings && settings[0];
+    if(s && s.whatsapp){
+      const digits = String(s.whatsapp).replace(/[^\d]/g, "");
+      if(digits && digits !== CONFIG.whatsapp){ CONFIG.whatsapp = digits; changed = true; }
+    }
+    if(s && s.whatsapp_label) CONFIG.whatsappLabel = s.whatsapp_label;
+    if(s && s.check_in)       CONFIG.checkIn = s.check_in;
+    if(s && s.check_out)      CONFIG.checkOut = s.check_out;
+    if(s && Number(s.max_nights) > 0) CONFIG.maxNights = Number(s.max_nights);
+    applyWaLinks();
+
+    if(changed){
+      renderRoomCards();
+      initRoomPhotos();
+      buildRoomSelect();
+      if(typeof syncRoomsDots === "function") syncRoomsDots();
+      updateSummary();
+    }
+  }catch(err){
+    console.warn("CH América: sin datos en vivo —", err.message);
+  }
+}
+hydrateFromDb();
 
 /* ═══════════════════════════════════════════════════════════════
    AGENTE DE RECEPCIÓN
