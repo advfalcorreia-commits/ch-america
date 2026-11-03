@@ -2051,16 +2051,19 @@ const I18N = {
     hello:"Hola, soy la recepción virtual de CH América. Puedo ayudarte con habitaciones, precios, cómo llegar o tu solicitud de reserva. ¿Qué necesitas?",
     quick:["Precios","Cómo llegar","Check-in","Reservar"],
     fallback:"No tengo esa respuesta con seguridad. Lo mejor es escribir a recepción por WhatsApp: te contestan en minutos. También puedo ayudarte con precios, habitaciones, metro, aeropuerto, check-in, wifi, pagos o cancelaciones.",
+    human:"Claro. Te paso con una persona de recepción: pulsa el botón y se abre WhatsApp con el hostal, que responde directamente, normalmente en pocos minutos. Si prefieres, deja aquí tu duda y la envío yo en el mensaje.",
     handoff:"Te abro WhatsApp con recepción.", wa:"WhatsApp de recepción" },
   en: { status:"Online", placeholder:"Type your question…",
     hello:"Hi, this is the CH América virtual reception. I can help with rooms, rates, how to get here or your booking request. How can I help?",
     quick:["Rates","Getting here","Check-in","Book"],
     fallback:"I'm not certain about that one. The fastest route is WhatsApp: reception replies within minutes. You can also ask me about rates, rooms, metro, the airport, check-in, wifi, payments or cancellations.",
+    human:"Of course. Let me put you through to reception: tap the button and WhatsApp opens to the property, where a person answers, usually within minutes. If you prefer, leave your question here and I'll include it in the message.",
     handoff:"Opening WhatsApp with reception.", wa:"Reception WhatsApp" },
   pt: { status:"Online", placeholder:"Escreva a sua pergunta…",
     hello:"Olá, esta é a recepção virtual do CH América. Posso ajudar com quartos, tarifas, como chegar ou o seu pedido de reserva. Em que posso ajudar?",
     quick:["Preços","Como chegar","Check-in","Reservar"],
     fallback:"Não tenho essa resposta com segurança. O melhor é falar com a recepção pelo WhatsApp: respondem em minutos. Também pode perguntar sobre preços, quartos, metro, aeroporto, check-in, wifi, pagamentos ou cancelamentos.",
+    human:"Com certeza. Passo-o à recepção: toque no botão e abre o WhatsApp do hostal, onde responde uma pessoa, normalmente em poucos minutos. Se preferir, deixe aqui a sua dúvida e envio-a na mensagem.",
     handoff:"A abrir o WhatsApp da recepção.", wa:"WhatsApp da recepção" }
 };
 
@@ -2221,9 +2224,24 @@ function renderLang(){
   $$("#chatLangs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
   setQuick(t.quick);
 }
+/* pedir uma pessoa real tem prioridade sobre qualquer intenção automática:
+   "hablar con humano", "quiero una persona", "atención humana", "no bot"… */
+const HUMAN_WORDS = ["humano","humana","humans","human","recepcionista","recepcionistas",
+  "operador","operadora","agente","agent","operator","attendant","atendente","rececionista",
+  "persona real","pessoa real","real person","real human","persona de verdad"];
+const HUMAN_VERBS = ["hablar con","falar com","speak to","speak with","talk to","talk with","quiero hablar","quero falar","pasame con","passe me para","atencion humana","atendimento humano","human please","alguien de verdad","alguem real"];
+
+function wantsHuman(tokens, phrase){
+  for(const w of HUMAN_WORDS) if(phrase.includes(norm(w))) return true;
+  for(const v of HUMAN_VERBS) if(phrase.includes(norm(v))) return true;
+  if(tokens.includes("alguien") || tokens.includes("alguem")) return true;
+  return false;
+}
+
 function answer(text){
   const tokens = tokensOf(text);
   const phrase = norm(text);
+  if(wantsHuman(tokens, phrase)) return { text: I18N[lang].human, quick: [I18N[lang].wa] };
   let best = null, score = 0;
   for(const it of INTENTS){
     const s = scoreIntent(it, tokens, phrase);
