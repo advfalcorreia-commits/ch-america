@@ -1,0 +1,2123 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hostal CH América</title>
+<meta name="description" content="Hostal CH América en Madrid: seis habitaciones dobles con baño privado en Avenida de América 26. Reserva directa por WhatsApp, sin intermediarios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   CH AMÉRICA — hostal urbano, Avenida de América 26, Madrid
+   Paleta: papel cálido, tinta y granate de la casa.
+   Tipografía: Instrument Serif (display) / Instrument Sans (texto).
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --paper:#FAF7F2;
+  --surface:#FFFFFF;
+  --surface-2:#F2ECE3;
+  --ink:#17130F;
+  --muted:#6C6257;
+  --line:#E5DCD1;
+  --accent:#8A1F2B;
+  --accent-soft:#F6E7E5;
+  --on-accent:#FFFFFF;
+  --ok:#1D7A4C;
+  --danger:#A3202C;
+  --shadow:0 1px 2px rgba(23,19,15,.05), 0 14px 36px -20px rgba(23,19,15,.4);
+  --radius:16px;
+  --max:1180px;
+  --font-display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --font-body:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121110; --surface:#1B1917; --surface-2:#231F1C;
+    --ink:#F2ECE4; --muted:#A79B8D; --line:#302A25;
+    --accent:#E4696F; --accent-soft:#2E1D1E; --on-accent:#1A0E10;
+    --ok:#4FBF8B; --danger:#F08289;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 18px 42px -22px rgba(0,0,0,.95);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121110; --surface:#1B1917; --surface-2:#231F1C;
+  --ink:#F2ECE4; --muted:#A79B8D; --line:#302A25;
+  --accent:#E4696F; --accent-soft:#2E1D1E; --on-accent:#1A0E10;
+  --ok:#4FBF8B; --danger:#F08289;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 18px 42px -22px rgba(0,0,0,.95);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-padding-top:92px}
+section[id]{scroll-margin-top:92px}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font-body); font-size:16px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-bottom:0;
+}
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:400; letter-spacing:-.01em; line-height:1.08; text-wrap:balance; margin:0}
+p{margin:0}
+a{color:inherit}
+img{display:block; max-width:100%; height:auto}
+button{font-family:inherit}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.wrap{max-width:var(--max); margin-inline:auto; width:100%}
+.eyebrow{font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); font-weight:600}
+.lede{color:var(--muted); font-size:1.02rem; max-width:58ch}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding:.72rem 1.2rem; border-radius:999px; min-height:46px;
+  font-size:.92rem; font-weight:600; text-decoration:none;
+  border:1px solid transparent; cursor:pointer;
+  transition:background .15s, border-color .15s, color .15s, transform .12s;
+}
+.btn:active{transform:translateY(1px)}
+.btn[aria-disabled="true"]{opacity:.45; cursor:not-allowed; transform:none}
+.btn-primary{background:var(--accent); color:var(--on-accent)}
+.btn-primary:hover{background:var(--ink); color:var(--paper)}
+.btn-ghost{background:transparent; color:var(--ink); border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-quiet{background:var(--surface-2); color:var(--ink)}
+.btn-quiet:hover{background:var(--line)}
+.btn-wa{background:#1F8F4E; color:#fff}
+.btn-wa:hover{background:#17723e}
+.btn-sm{padding:.5rem .9rem; min-height:40px; font-size:.85rem}
+:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:8px}
+
+/* ── cabecera ── */
+.site-head{
+  position:sticky; top:0; z-index:50;
+  background:color-mix(in srgb, var(--paper) 90%, transparent);
+  backdrop-filter:blur(14px); border-bottom:1px solid var(--line);
+}
+.head-inner{max-width:var(--max); margin-inline:auto; display:flex; align-items:center; gap:1rem; padding-block:.65rem}
+.brand{display:flex; align-items:center; gap:.7rem; text-decoration:none; flex-shrink:0}
+.brand img{width:44px; height:44px; object-fit:contain; background:#fff; border-radius:10px; padding:4px}
+.brand-name{font-family:var(--font-display); font-size:1.15rem; line-height:1.05; display:block}
+.brand-sub{display:block; font-family:var(--font-body); font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-top:2px}
+.head-nav{display:flex; gap:1.3rem; margin-left:auto}
+.head-nav a{font-size:.86rem; text-decoration:none; color:var(--muted); font-weight:500; padding-block:.4rem; border-bottom:1px solid transparent}
+.head-nav a:hover{color:var(--ink); border-color:var(--accent)}
+.head-cta{display:flex; gap:.5rem; align-items:center; margin-left:.4rem}
+.head-phone{font-size:.86rem; text-decoration:none; color:var(--muted); font-variant-numeric:tabular-nums}
+.head-phone:hover{color:var(--ink)}
+.menu-btn{display:none; margin-left:auto; background:transparent; border:1px solid var(--line); border-radius:10px; width:44px; height:44px; align-items:center; justify-content:center; cursor:pointer; color:var(--ink)}
+.mobnav{display:none; border-top:1px solid var(--line); background:var(--paper)}
+.mobnav[hidden]{display:none}
+.mobnav ul{list-style:none; margin:0; padding:.5rem 0 1rem; display:grid; gap:.15rem}
+.mobnav a{display:block; padding:.7rem .2rem; text-decoration:none; font-weight:600; border-bottom:1px solid var(--line)}
+@media (max-width:900px){
+  .head-nav, .head-phone{display:none}
+  .menu-btn{display:inline-flex}
+  .head-cta{margin-left:0}
+  .mobnav:not([hidden]){display:block}
+}
+@media (max-width:560px){ .head-cta .btn-wa{display:none} }
+
+/* ── hero ── */
+.hero{padding-block:clamp(1.8rem,4vw,3.2rem) clamp(1.2rem,2.5vw,2rem)}
+.hero-grid{display:grid; grid-template-columns:1.02fr .98fr; gap:clamp(1.5rem,4vw,3.4rem); align-items:center}
+.hero h1{font-size:clamp(2.4rem,5vw,4rem); margin-block:.55rem .8rem}
+.hero h1 em{font-style:italic; color:var(--accent)}
+.hero-actions{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.5rem}
+.hero-note{font-size:.8rem; color:var(--muted); margin-top:.85rem}
+@media (max-width:860px){
+  .hero-grid{grid-template-columns:1fr}
+}
+
+/* ── carrusel genérico ── */
+.carousel{position:relative}
+.track{
+  display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%; scroll-snap-align:center; position:relative}
+.c-btn{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+  width:44px; height:44px; border-radius:999px; border:1px solid var(--line);
+  background:color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter:blur(6px); color:var(--ink);
+  display:grid; place-items:center; cursor:pointer;
+  transition:background .15s, opacity .15s;
+}
+.c-btn:hover{background:var(--surface)}
+.c-btn.prev{left:10px}
+.c-btn.next{right:10px}
+.c-btn[aria-disabled="true"]{opacity:0; pointer-events:none}
+.c-count{
+  position:absolute; right:12px; bottom:12px; z-index:3;
+  background:rgba(12,10,9,.72); color:#fff; border-radius:999px;
+  padding:.25rem .6rem; font-size:.74rem; font-variant-numeric:tabular-nums; font-weight:600;
+}
+.caption{
+  position:absolute; left:12px; bottom:12px; right:80px; z-index:3;
+  color:#fff; font-size:.82rem; text-shadow:0 1px 8px rgba(0,0,0,.7);
+}
+.dots{display:flex; justify-content:center; gap:0; margin-top:.5rem}
+.dots button{
+  background:none; border:0; padding:14px 5px; cursor:pointer; line-height:0;
+}
+.dots button span{display:block; width:22px; height:3px; border-radius:999px; background:var(--line)}
+.dots button[aria-current="true"] span{background:var(--accent); width:30px}
+
+.hero-media{border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:var(--surface-2); aspect-ratio:3/3.4}
+.hero-media .track{height:100%}
+.hero-media img{width:100%; height:100%; object-fit:cover}
+
+/* ── barra de reserva (hero) ── */
+.bookbar{
+  background:var(--surface); border:1px solid var(--line); border-radius:14px;
+  box-shadow:var(--shadow); padding:.6rem; margin-top:clamp(1.2rem,3vw,2rem);
+}
+.bookbar form{display:grid; grid-template-columns:1fr 1fr .9fr auto; gap:.5rem; align-items:end}
+.bookbar .f{display:flex; flex-direction:column; gap:.2rem; min-width:0}
+.bookbar label{font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:600; padding-left:.55rem}
+.bookbar input, .bookbar select{
+  font-family:inherit; font-size:.95rem; color:var(--ink);
+  background:var(--paper); border:1px solid var(--line); border-radius:10px;
+  padding:.6rem .65rem; min-height:46px; width:100%;
+}
+.bookbar input:focus, .bookbar select:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent)}
+.bookbar .btn{width:100%}
+@media (max-width:760px){
+  .bookbar form{grid-template-columns:1fr 1fr}
+  .bookbar .f-wide{grid-column:1/-1}
+  .bookbar .btn{grid-column:1/-1}
+}
+
+/* ── franja de datos ── */
+.strip{border-block:1px solid var(--line); background:var(--surface)}
+.strip-grid{display:grid; grid-template-columns:repeat(4,1fr); max-width:var(--max); margin-inline:auto}
+.strip-grid>div{padding:1rem 1.1rem; border-left:1px solid var(--line)}
+.strip-grid>div:first-child{border-left:0; padding-left:0}
+.strip-grid .k{font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600}
+.strip-grid .v{font-family:var(--font-display); font-size:1.02rem; margin-top:.1rem}
+@media (max-width:760px){
+  .strip-grid{grid-template-columns:1fr 1fr}
+  .strip-grid>div{padding-inline:.9rem; border-top:1px solid var(--line)}
+  .strip-grid>div:first-child,.strip-grid>div:nth-child(2){border-top:0}
+  .strip-grid>div:nth-child(odd){border-left:0}
+}
+
+/* ── secciones ── */
+section.block{padding-block:clamp(2.6rem,5.5vw,4.6rem)}
+.block-head{display:flex; align-items:end; justify-content:space-between; gap:1.4rem; margin-bottom:1.8rem; flex-wrap:wrap}
+.block-head h2{font-size:clamp(1.8rem,3.2vw,2.7rem); margin-top:.4rem}
+.block-head .lede{max-width:46ch; font-size:.95rem}
+.rail-head{display:flex; gap:.5rem; align-items:center}
+
+/* ── habitaciones ── */
+.rooms-track{gap:1.1rem; padding-bottom:.5rem}
+.rooms-track .slide{flex:0 0 clamp(250px,32%,330px); scroll-snap-align:start}
+.room{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; height:100%}
+.room:hover{box-shadow:var(--shadow)}
+.room-media{position:relative; aspect-ratio:3/4; background:var(--surface-2); overflow:hidden}
+.room-media .track{height:100%}
+.room-media img{width:100%; height:100%; object-fit:cover}
+.room-media .c-btn{width:36px; height:36px; backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(20,19,18,.62); color:#fff; border-color:rgba(255,255,255,.35)}
+/* as setas têm de ficar acima do botão invisível que abre a galeria */
+.room-media .c-btn.prev,.room-media .c-btn.next{z-index:4}
+.room-media .c-btn:hover{background:rgba(20,19,18,.85); color:#fff}
+.room-tag{position:absolute; top:.7rem; left:.7rem; z-index:3; background:var(--paper); border-radius:999px; padding:.2rem .6rem; font-size:.66rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--ink)}
+.room-tag.premium{background:var(--accent); color:var(--on-accent)}
+.room-body{padding:1rem 1.05rem 1.15rem; display:flex; flex-direction:column; gap:.5rem; flex:1}
+.room-body h3{font-size:1.28rem}
+.room-meta{display:flex; flex-wrap:wrap; gap:.3rem .65rem; font-size:.78rem; color:var(--muted)}
+.chip{font-size:.71rem; padding:.18rem .5rem; border-radius:999px; background:var(--surface-2); color:var(--muted)}
+.room-foot{margin-top:auto; display:flex; align-items:end; justify-content:space-between; gap:.7rem; padding-top:.7rem; border-top:1px solid var(--line)}
+.price{font-family:var(--font-display); font-size:1.45rem; line-height:1; font-variant-numeric:tabular-nums}
+.price small{display:block; font-family:var(--font-body); font-size:.7rem; color:var(--muted); margin-top:.15rem}
+
+/* ── galería ── */
+.gal-mosaic{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:150px; gap:.6rem}
+.gal-mosaic button{padding:0; border:0; background:var(--surface-2); cursor:pointer; overflow:hidden; border-radius:10px; position:relative}
+.gal-mosaic button:first-child{grid-column:span 2; grid-row:span 2}
+.gal-mosaic button img{width:100%; height:100%; object-fit:cover; transition:transform .4s}
+.gal-mosaic button:hover img{transform:scale(1.04)}
+.gal-mosaic .more{position:absolute; inset:0; display:grid; place-items:center; background:rgba(12,10,9,.55); color:#fff; font-weight:600; font-size:.95rem}
+@media (max-width:760px){
+  .gal-mosaic{grid-template-columns:1fr 1fr; grid-auto-rows:120px}
+}
+
+/* ── servicios ── */
+.svc-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+.svc{background:var(--surface); padding:1.2rem 1.1rem; display:flex; flex-direction:column; gap:.45rem}
+.svc svg{width:22px; height:22px; stroke:var(--accent); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round}
+.svc h3{font-family:var(--font-body); font-size:.92rem; font-weight:600}
+.svc p{font-size:.81rem; color:var(--muted); line-height:1.45}
+@media (max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.svc-grid{grid-template-columns:1fr}}
+
+/* ── ubicación ── */
+.loc-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(1.4rem,4vw,3rem); align-items:start}
+@media (max-width:820px){.loc-grid{grid-template-columns:1fr}}
+/* mapa real de Google, con respaldo si el iframe no carga */
+.mapwrap{
+  position:relative; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
+  aspect-ratio:16/11; background:var(--surface-2);
+}
+@media (max-width:520px){.mapwrap{aspect-ratio:4/3}}
+.mapwrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0; display:block; z-index:1}
+.mapwrap .mapbtn{position:absolute; right:.7rem; bottom:.7rem; z-index:2; font-size:.8rem; min-height:40px; background:var(--paper); box-shadow:var(--shadow)}
+.map-fallback{position:absolute; inset:0; display:grid; place-content:center; gap:.35rem; text-align:center; padding:1.5rem; color:var(--muted); font-size:.85rem}
+
+/* accesos rápidos: rutas, geolocalización y copiar dirección */
+.loc-actions{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.75rem}
+.chip{
+  display:inline-flex; align-items:center; gap:.35rem; min-height:40px; padding:0 .85rem;
+  border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink);
+  font:inherit; font-size:.8rem; font-weight:600; text-decoration:none; cursor:pointer;
+  transition:border-color .18s, color .18s, background .18s;
+}
+.chip:hover{border-color:var(--accent); color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.chip svg{width:15px; height:15px; flex-shrink:0; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+.chip[disabled]{opacity:.55; cursor:progress}
+.loc-status{font-size:.78rem; color:var(--muted); margin-top:.55rem; min-height:1.15em}
+.loc-status[data-tone="ok"]{color:var(--ok)}
+.loc-status[data-tone="warn"]{color:var(--danger)}
+.lines{display:inline-flex; gap:.22rem; margin-left:.35rem; vertical-align:middle}
+.lines i{
+  font-style:normal; font-size:.62rem; font-weight:700; line-height:1;
+  min-width:1.15rem; height:1.15rem; display:inline-grid; place-content:center;
+  border-radius:5px; background:var(--accent-soft); color:var(--accent);
+}
+.loc-list{display:flex; flex-direction:column; margin-top:1.2rem}
+.loc-row{display:flex; align-items:baseline; gap:.7rem; padding-block:.6rem; border-top:1px solid var(--line); min-width:0}
+.loc-row:last-child{border-bottom:1px solid var(--line)}
+.loc-row .n{font-size:.9rem; min-width:0}
+.loc-row .d{margin-left:auto; font-variant-numeric:tabular-nums; font-size:.8rem; color:var(--muted); white-space:nowrap; flex-shrink:0}
+
+/* ── reservas: pasos ── */
+.booking{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden}
+.steps{display:flex; gap:.4rem; padding:.7rem; border-bottom:1px solid var(--line); background:var(--surface-2); flex-wrap:wrap}
+.steps button{
+  background:transparent; border:0; cursor:pointer; padding:.5rem .85rem; border-radius:999px;
+  font-size:.84rem; font-weight:600; color:var(--muted); min-height:40px;
+}
+.steps button[aria-current="step"]{background:var(--surface); color:var(--ink); box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.steps button:disabled{cursor:default; opacity:.55}
+.steps .num{display:inline-grid; place-items:center; width:20px; height:20px; border-radius:999px; background:var(--line); color:var(--ink); font-size:.7rem; margin-right:.4rem}
+.steps button[aria-current="step"] .num{background:var(--accent); color:var(--on-accent)}
+.book-body{padding:clamp(1.1rem,3vw,1.8rem)}
+.book-grid{display:grid; grid-template-columns:1.25fr .75fr; gap:clamp(1.2rem,3vw,2.2rem); align-items:start}
+@media (max-width:860px){.book-grid{grid-template-columns:1fr}}
+.fields{display:grid; grid-template-columns:1fr 1fr; gap:.8rem}
+@media (max-width:560px){.fields{grid-template-columns:1fr}}
+.field{display:flex; flex-direction:column; gap:.28rem; min-width:0}
+.field.wide{grid-column:1/-1}
+.field label{font-size:.7rem; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); font-weight:600}
+.field input,.field select,.field textarea{
+  font-family:inherit; font-size:.94rem; color:var(--ink); background:var(--paper);
+  border:1px solid var(--line); border-radius:10px; padding:.62rem .7rem; min-height:46px; width:100%;
+}
+.field textarea{min-height:80px; resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent)}
+.field input[aria-invalid="true"], .field select[aria-invalid="true"]{border-color:var(--danger); box-shadow:0 0 0 3px color-mix(in srgb, var(--danger) 14%, transparent)}
+.hint{font-size:.76rem; color:var(--muted)}
+.err{font-size:.78rem; color:var(--danger); min-height:1.1em}
+.step-title{font-size:1.15rem; margin-bottom:.2rem; outline:none}
+.step-sub{font-size:.85rem; color:var(--muted); margin-bottom:1rem}
+.actions{display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem; align-items:center}
+.actions .spacer{flex:1}
+.summary{background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:1.05rem}
+.summary h3{font-size:1.1rem; margin-bottom:.6rem}
+.sum-row{display:flex; justify-content:space-between; gap:1rem; font-size:.87rem; padding-block:.2rem}
+.sum-row span:last-child{font-variant-numeric:tabular-nums; text-align:right}
+.sum-row.sub{color:var(--muted)}
+.sum-total{display:flex; justify-content:space-between; align-items:baseline; border-top:1px solid var(--line); margin-top:.5rem; padding-top:.6rem}
+.sum-total .amount{font-family:var(--font-display); font-size:1.7rem; font-variant-numeric:tabular-nums}
+.notice{font-size:.8rem; color:var(--muted); line-height:1.5}
+.notice strong{color:var(--ink)}
+.disclaimer{
+  margin-top:.8rem; padding:.7rem .8rem; border-radius:10px;
+  background:var(--accent-soft); color:var(--ink); font-size:.82rem;
+}
+.legal-check{display:flex; gap:.55rem; align-items:flex-start; font-size:.85rem; margin-top:.4rem}
+.legal-check input{width:20px; height:20px; margin-top:.15rem; flex-shrink:0}
+.recap{display:grid; gap:.1rem; margin-bottom:.8rem}
+.recap .sum-row{padding-block:.32rem; border-bottom:1px dashed var(--line)}
+.pre-fallback{
+  margin-top:.7rem; padding:.7rem; background:var(--surface-2); border-radius:10px;
+  font-size:.8rem; white-space:pre-wrap; word-break:break-word;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace; max-height:220px; overflow:auto;
+}
+.sent-ok{color:var(--ok); font-size:.85rem; margin-top:.6rem}
+
+/* ── barrio ── */
+.hood{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+@media (max-width:820px){.hood{grid-template-columns:1fr}}
+.hood article{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:1.1rem}
+.hood h3{font-size:1.08rem; margin-bottom:.25rem}
+.hood p{font-size:.85rem; color:var(--muted)}
+
+/* ── faq ── */
+.faq{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line); padding-block:.85rem}
+details summary{cursor:pointer; font-weight:600; font-size:.94rem; list-style:none; display:flex; justify-content:space-between; gap:1rem; align-items:center; min-height:32px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+"; font-family:var(--font-display); font-size:1.3rem; color:var(--accent); line-height:1}
+details[open] summary::after{content:"–"}
+details p{font-size:.87rem; color:var(--muted); margin-top:.5rem; max-width:70ch}
+
+/* ── pie ── */
+footer{border-top:1px solid var(--line); background:var(--surface); padding-block:2.4rem 1.6rem; margin-top:1rem}
+.foot-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:2rem}
+@media (max-width:820px){.foot-grid{grid-template-columns:1fr}}
+.foot-brand{display:flex; gap:.8rem; align-items:center; margin-bottom:.8rem}
+.foot-brand img{width:52px; height:52px; background:#fff; border-radius:10px; padding:5px; object-fit:contain}
+footer h4{font-family:var(--font-body); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin:0 0 .55rem}
+footer p, footer li{font-size:.85rem; color:var(--muted); line-height:1.8}
+footer ul{list-style:none; margin:0; padding:0}
+footer a{text-decoration:none}
+footer a:hover{color:var(--accent)}
+.copy{margin-top:1.6rem; padding-top:1.1rem; border-top:1px solid var(--line); font-size:.75rem; color:var(--muted); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap}
+
+/* ── lightbox ── */
+.lightbox{position:fixed; inset:0; z-index:90; display:grid; grid-template-columns:minmax(0,1fr); place-items:center; padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.lightbox[hidden]{display:none!important}
+.lb-bg{position:absolute; inset:0; background:rgba(10,8,7,.9); backdrop-filter:blur(6px)}
+.lb-inner{position:relative; width:100%; max-width:1080px; min-width:0; min-height:0; max-height:100%; display:flex; flex-direction:column; gap:.6rem}
+.lb-top{display:flex; align-items:center; gap:1rem; color:#fff}
+.lb-top h3{color:#fff; font-size:1.1rem; margin-right:auto}
+.lb-top .count{font-size:.8rem; color:#D9CFC4; font-variant-numeric:tabular-nums}
+.lb-close{background:rgba(255,255,255,.14); border:0; color:#fff; width:44px; height:44px; border-radius:999px; cursor:pointer; font-size:1.1rem}
+.lb-stage{position:relative; background:#000; border-radius:12px; overflow:hidden; display:grid; place-items:center; flex:1; min-height:0}
+.lb-stage img{max-height:min(72vh,760px); width:auto; max-width:100%; object-fit:contain}
+.lb-thumbs{display:flex; gap:.4rem; overflow-x:auto; padding-bottom:.2rem; min-width:0}
+.lb-thumbs button{padding:0; border:2px solid transparent; border-radius:8px; overflow:hidden; background:none; cursor:pointer; flex:0 0 76px; height:58px}
+.lb-thumbs button[aria-current="true"]{border-color:#fff}
+.lb-thumbs img{width:100%; height:100%; object-fit:cover}
+
+/* ── agente ── */
+.chat-fab{
+  position:fixed; z-index:80; display:inline-flex; align-items:center; gap:.55rem;
+  right:calc(18px + env(safe-area-inset-right,0px));
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  background:var(--accent); color:var(--on-accent); border:0; border-radius:999px;
+  padding:.78rem 1.05rem; font-weight:600; font-size:.9rem; cursor:pointer;
+  box-shadow:0 10px 26px -10px rgba(0,0,0,.55);
+}
+.chat-fab:hover{filter:brightness(1.06)}
+.chat-fab .pulse{width:8px; height:8px; border-radius:999px; background:currentColor; opacity:.85}
+.chat{
+  position:fixed; z-index:85;
+  right:calc(16px + env(safe-area-inset-right,0px));
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  width:min(392px, calc(100vw - 24px));
+  height:min(600px, calc(100dvh - 32px));
+  background:var(--surface); border:1px solid var(--line); border-radius:18px;
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.5);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.chat[hidden]{display:none!important}
+.chat-head{display:flex; align-items:center; gap:.6rem; padding:.8rem .9rem; border-bottom:1px solid var(--line); background:var(--paper)}
+.chat-avatar{width:34px; height:34px; border-radius:999px; background:var(--accent); color:var(--on-accent); display:grid; place-items:center; font-family:var(--font-display); font-size:1rem; flex-shrink:0}
+.chat-head .t{font-weight:600; font-size:.9rem; line-height:1.2}
+.chat-head .s{font-size:.72rem; color:var(--muted)}
+.chat-head .x{margin-left:auto; background:none; border:0; color:var(--muted); font-size:1.15rem; cursor:pointer; width:36px; height:36px; border-radius:8px}
+.chat-head .x:hover{background:var(--surface-2); color:var(--ink)}
+.chat-langs{display:flex; gap:.2rem}
+.chat-langs button{font-size:.66rem; padding:.2rem .4rem; border-radius:6px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer}
+.chat-langs button[aria-pressed="true"]{background:var(--accent); color:var(--on-accent); border-color:var(--accent)}
+.chat-log{flex:1; overflow-y:auto; padding:.85rem; display:flex; flex-direction:column; gap:.55rem; background:var(--paper); -webkit-overflow-scrolling:touch}
+.msg{max-width:88%; padding:.58rem .78rem; border-radius:14px; font-size:.86rem; line-height:1.5; white-space:pre-line}
+.msg.bot{background:var(--surface); border:1px solid var(--line); border-bottom-left-radius:5px; align-self:flex-start}
+.msg.me{background:var(--accent); color:var(--on-accent); border-bottom-right-radius:5px; align-self:flex-end}
+.chat-quick{display:flex; flex-wrap:wrap; gap:.3rem; padding:0 .85rem .45rem; background:var(--paper)}
+.chat-quick button{font-size:.75rem; padding:.35rem .6rem; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink); cursor:pointer}
+.chat-quick button:hover{border-color:var(--accent); color:var(--accent)}
+.chat-form{display:flex; gap:.4rem; padding:.6rem; border-top:1px solid var(--line); background:var(--surface)}
+.chat-form input{flex:1; font-family:inherit; font-size:.88rem; padding:.6rem .7rem; border-radius:10px; border:1px solid var(--line); background:var(--paper); color:var(--ink); min-height:42px}
+.chat-form input:focus{outline:none; border-color:var(--accent)}
+.chat-form button{width:44px; height:44px; border-radius:10px; border:0; background:var(--accent); color:var(--on-accent); cursor:pointer; display:grid; place-items:center; flex-shrink:0}
+.chat-disclaimer{font-size:.65rem; color:var(--muted); text-align:center; padding:.25rem .6rem .5rem; background:var(--surface)}
+
+/* ── barra inferior móvil ── */
+.mobile-bar{
+  display:none; position:fixed; left:0; right:0; bottom:0; z-index:70;
+  background:color-mix(in srgb, var(--paper) 94%, transparent);
+  backdrop-filter:blur(12px); border-top:1px solid var(--line);
+  padding:.5rem max(12px, env(safe-area-inset-right, 0px)) calc(.5rem + env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
+  gap:.5rem;
+}
+.mobile-bar .btn{flex:1}
+@media (max-width:760px){
+  .mobile-bar{display:flex}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom, 0px))}
+  .chat-fab{bottom:calc(74px + env(safe-area-inset-bottom, 0px))}
+  .chat{bottom:calc(74px + env(safe-area-inset-bottom, 0px))}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important; transition:none!important; scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="head-inner">
+    <a class="brand" href="#top" aria-label="CH América, inicio">
+      <img src="assets/hero-837030931.jpg" alt="" width="44" height="44">
+      <span>
+        <span class="brand-name">CH América</span>
+        <span class="brand-sub">Hostal · Madrid</span>
+      </span>
+    </a>
+    <nav class="head-nav" aria-label="Secciones">
+      <a href="#habitaciones">Habitaciones</a>
+      <a href="#galeria">Fotos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <a class="head-phone" id="headPhone" href="#" target="_blank" rel="noopener">—</a>
+    <div class="head-cta">
+      <a class="btn btn-primary btn-sm" href="#reservar">Reservar</a>
+      <a class="btn btn-wa btn-sm" id="waHead" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobnav" aria-label="Abrir menú">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="mobnav" id="mobnav" hidden>
+    <div class="wrap">
+      <ul>
+        <li><a href="#habitaciones">Habitaciones</a></li>
+        <li><a href="#galeria">Fotos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="#reservar">Reservar</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+ <div class="wrap">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Avenida de América 26 · Salamanca · Madrid</p>
+        <h1>Seis habitaciones, <em>un Madrid</em> a dos minutos del metro.</h1>
+        <p class="lede">Hostal familiar reformado al completo: dobles con baño privado, aire acondicionado y wifi gratis, en la mejor conexión de la ciudad. Reserva directa, sin intermediarios.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#reservar">Reservar ahora</a>
+          <a class="btn btn-ghost" id="waHero" href="#" target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        </div>
+        <p class="hero-note">Español · English · Português — respuesta directa del alojamiento</p>
+      </div>
+      <div class="hero-media carousel" id="heroCarousel">
+        <div class="track" id="heroTrack" role="region" tabindex="0" aria-roledescription="carrusel" aria-label="Fotos del hostal"></div>
+        <button class="c-btn prev" data-dir="-1" aria-label="Foto anterior">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="c-btn next" data-dir="1" aria-label="Foto siguiente">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <span class="c-count" data-count aria-live="polite">1 / 6</span>
+      </div>
+    </div>
+
+    <div class="bookbar">
+      <form id="heroForm" novalidate>
+        <div class="f">
+          <label for="hbCi">Entrada</label>
+          <input type="date" id="hbCi" required>
+        </div>
+        <div class="f">
+          <label for="hbCo">Salida</label>
+          <input type="date" id="hbCo" required>
+        </div>
+        <div class="f f-wide">
+          <label for="hbGuests">Huéspedes</label>
+          <select id="hbGuests">
+            <option value="1">1 persona</option>
+            <option value="2" selected>2 personas</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Ver disponibilidad</button>
+      </form>
+    </div>
+  </section>
+ </div>
+
+<div class="strip">
+  <div class="strip-grid">
+    <div><div class="k">Habitaciones</div><div class="v">6 dobles · baño privado</div></div>
+    <div><div class="k">Metro</div><div class="v">Av. de América · 2 min</div></div>
+    <div><div class="k">Aeropuerto</div><div class="v">Barajas · 8 km</div></div>
+    <div><div class="k">Centro</div><div class="v">3,5 km · Sol</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="block" id="habitaciones">
+    <div class="block-head">
+      <div>
+        <p class="eyebrow">Habitaciones</p>
+        <h2>Seis dobles, ninguna igual</h2>
+      </div>
+      <div class="rail-head">
+        <button class="c-btn" id="roomsPrev" style="position:static;transform:none" aria-label="Habitación anterior" aria-controls="roomsTrack">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="c-btn" id="roomsNext" style="position:static;transform:none" aria-label="Habitación siguiente" aria-controls="roomsTrack">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="carousel">
+      <div class="track rooms-track" id="roomsTrack" role="region" tabindex="0" aria-roledescription="carrusel" aria-label="Tipos de habitación"></div>
+      <div class="dots" id="roomsDots" role="tablist" aria-label="Ir a una habitación"></div>
+    </div>
+    <p class="hint" style="margin-top:1rem">Todas las habitaciones son dobles con baño privado y no fumadores. Las tarifas son por noche; impuestos y tasa turística se confirman con la recepción.</p>
+  </section>
+
+  <section class="block" id="galeria">
+    <div class="block-head">
+      <div>
+        <p class="eyebrow">Galería</p>
+        <h2>Así es la casa</h2>
+      </div>
+      <p class="lede">28 fotos del alojamiento, agrupadas por habitación. Ábrelas a pantalla completa con las flechas del teclado.</p>
+    </div>
+    <div class="gal-mosaic" id="galMosaic"></div>
+  </section>
+
+  <section class="block" id="servicios">
+    <div class="block-head">
+      <div>
+        <p class="eyebrow">Servicios</p>
+        <h2>Lo necesario, bien hecho</h2>
+      </div>
+      <p class="lede">Lo que necesitas para dormir bien, ducharte y salir a la calle. Sin ruido.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.8a16 16 0 0 1 20 0"/><path d="M5 12.5a11 11 0 0 1 14 0"/><path d="M8.5 16.2a6 6 0 0 1 7 0"/><circle cx="12" cy="20" r=".9" fill="currentColor"/></svg>
+        <h3>WiFi gratis</h3><p>En todas las habitaciones y zonas comunes.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="10" rx="2"/><path d="M7 19h10M9 15v4M15 15v4"/></svg>
+        <h3>Aire acondicionado</h3><p>Y calefacción: Madrid en enero y en agosto.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16v3a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z"/><path d="M7 12V6a2 2 0 0 1 4 0"/></svg>
+        <h3>Baño privado</h3><p>En cada habitación, con ducha y toallas.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>
+        <h3>TV de pantalla plana</h3><p>Televisión en todas las habitaciones.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M6 9h12"/><path d="M10 21v-4h4v4"/></svg>
+        <h3>Nevera y microondas</h3><p>Mesa de comedor y menaje en la habitación.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h11v7a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path d="M15 11h2a2 2 0 0 1 0 4h-2"/><path d="M4 6.5c1.2-.8 2.4-.8 3.6 0"/></svg>
+        <h3>Cafetera</h3><p>Empieza el día sin salir de casa.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M8 11l2.5-2.5L13 11l3-3"/></svg>
+        <h3>Salón compartido</h3><p>Un espacio para leer o ver la televisión.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M9.5 9.5c.2-1.2 1.2-1.9 2.5-1.9s2.3.8 2.3 2c0 1.6-2.1 1.9-2.1 3.4"/><circle cx="12" cy="16.6" r=".7" fill="currentColor"/></svg>
+        <h3>Pago sin efectivo</h3><p>Tarjeta o transferencia.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8"/><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/></svg>
+        <h3>Español · English · Português</h3><p>Te atendemos en tu idioma.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>
+        <h3>No fumadores</h3><p>Prohibido fumar en todo el alojamiento.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+        <h3>Sin fiestas</h3><p>No se admiten despedidas ni celebraciones.</p>
+      </div>
+      <div class="svc">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <h3>Llegada flexible</h3><p>Acordamos contigo la hora de entrada.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="ubicacion">
+    <div class="block-head">
+      <div>
+        <p class="eyebrow">Ubicación</p>
+        <h2>En el nudo de Madrid</h2>
+      </div>
+    </div>
+    <div class="loc-grid">
+      <div>
+        <div class="mapwrap">
+          <iframe
+            title="Mapa de CH América en Avenida de América 26, 28028 Madrid"
+            src="https://maps.google.com/maps?q=Avenida+de+Am%C3%A9rica+26%2C+28028+Madrid&z=16&hl=es&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <a class="btn btn-ghost mapbtn" href="https://www.google.com/maps/search/?api=1&query=CH+Am%C3%A9rica+Avenida+de+Am%C3%A9rica+26+28028+Madrid" target="_blank" rel="noopener">Abrir en Google Maps</a>
+        </div>
+
+        <div class="loc-actions">
+          <a class="chip" href="https://www.google.com/maps/dir/?api=1&destination=Avenida+de+Am%C3%A9rica+26%2C+28028+Madrid&travelmode=transit" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="13" rx="3"/><path d="M5 10h14M8 16l-1.5 4M16 16l1.5 4M9.5 6.5h.01M14.5 6.5h.01"/></svg>
+            Metro y bus
+          </a>
+          <a class="chip" href="https://www.google.com/maps/dir/?api=1&destination=Avenida+de+Am%C3%A9rica+26%2C+28028+Madrid&travelmode=driving" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16v-3l2-5h12l2 5v3"/><path d="M3 16h18M6.5 16v2M17.5 16v2"/></svg>
+            En coche
+          </a>
+          <a class="chip" href="https://www.google.com/maps/dir/?api=1&destination=Avenida+de+Am%C3%A9rica+26%2C+28028+Madrid&travelmode=walking" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="13" cy="4.5" r="1.8"/><path d="M11 21l1.5-5-2.5-2 1.5-4 3 2.5 2.5.5M10 14l-2 2"/></svg>
+            A pie
+          </a>
+          <button class="chip" type="button" id="locGeo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg>
+            Desde mi ubicación
+          </button>
+          <button class="chip" type="button" id="locCopy">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M15 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h3"/></svg>
+            Copiar dirección
+          </button>
+        </div>
+        <p class="loc-status" id="locStatus" role="status" aria-live="polite"></p>
+        <p class="hint">Avenida de América, 26 · Local · 28028 Madrid · Código Plus C8QG+GF Madrid</p>
+      </div>
+      <div>
+        <p class="lede">A tres kilómetros y medio del centro, con la capital entera conectada desde la puerta.</p>
+        <div class="loc-list">
+          <div class="loc-row"><span class="n">Metro Avenida de América <span class="lines" aria-label="Líneas 4, 6, 7 y 9"><i>4</i><i>6</i><i>7</i><i>9</i></span></span><span class="d">2 min</span></div>
+          <div class="loc-row"><span class="n">Parada de autobús</span><span class="d">30 m</span></div>
+          <div class="loc-row"><span class="n">Aeropuerto Madrid-Barajas</span><span class="d">8 km</span></div>
+          <div class="loc-row"><span class="n">Estación de Atocha</span><span class="d">5,5 km</span></div>
+          <div class="loc-row"><span class="n">Torre Picasso</span><span class="d">2,6 km</span></div>
+          <div class="loc-row"><span class="n">Parque del Retiro</span><span class="d">3,1 km</span></div>
+          <div class="loc-row"><span class="n">Puerta del Sol</span><span class="d">3,5 km</span></div>
+          <div class="loc-row"><span class="n">Plaza de toros de Las Ventas</span><span class="d">1,5 km</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="reservar">
+    <div class="block-head">
+      <div>
+        <p class="eyebrow">Reservas</p>
+        <h2>Reserva en tres pasos</h2>
+      </div>
+      <p class="lede">Sin pagos online y sin comisiones: eliges fechas, dejas tus datos y envías la solicitud a la recepción por WhatsApp.</p>
+    </div>
+
+    <div class="booking">
+      <div class="steps" role="tablist" aria-label="Pasos de la reserva">
+        <button type="button" data-goto="1" aria-current="step"><span class="num">1</span>Fechas</button>
+        <button type="button" data-goto="2"><span class="num">2</span>Datos</button>
+        <button type="button" data-goto="3"><span class="num">3</span>Revisión</button>
+      </div>
+
+      <div class="book-body">
+        <div class="book-grid">
+          <div>
+            <!-- Paso 1 -->
+            <div data-step="1">
+              <h3 class="step-title" tabindex="-1">Fechas y habitación</h3>
+              <p class="step-sub">La disponibilidad que ves es orientativa: la recepción la confirma por WhatsApp.</p>
+              <div class="fields">
+                <div class="field">
+                  <label for="bCi">Entrada</label>
+                  <input type="date" id="bCi" required>
+                </div>
+                <div class="field">
+                  <label for="bCo">Salida</label>
+                  <input type="date" id="bCo" required>
+                </div>
+                <div class="field">
+                  <label for="bGuests">Huéspedes</label>
+                  <select id="bGuests">
+                    <option value="1">1 persona</option>
+                    <option value="2" selected>2 personas</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="bRoom">Habitación</label>
+                  <select id="bRoom"></select>
+                </div>
+                <div class="field wide">
+                  <span class="err" id="bErr1" role="alert"></span>
+                </div>
+              </div>
+              <div class="actions">
+                <button class="btn btn-primary" id="bNext1" type="button">Continuar</button>
+                <span class="hint" id="bHint1"></span>
+              </div>
+            </div>
+
+            <!-- Paso 2 -->
+            <div data-step="2" hidden>
+              <h3 class="step-title" tabindex="-1">Tus datos</h3>
+              <p class="step-sub">Solo para que la recepción pueda responderte y preparar tu llegada.</p>
+              <div class="fields">
+                <div class="field wide">
+                  <label for="bName">Nombre y apellidos</label>
+                  <input type="text" id="bName" autocomplete="name" required aria-describedby="eName">
+                  <span class="err" id="eName" role="alert"></span>
+                </div>
+                <div class="field">
+                  <label for="bEmail">Correo electrónico</label>
+                  <input type="email" id="bEmail" autocomplete="email" required aria-describedby="eEmail">
+                  <span class="err" id="eEmail" role="alert"></span>
+                </div>
+                <div class="field">
+                  <label for="bPhone">Teléfono</label>
+                  <input type="tel" id="bPhone" autocomplete="tel" placeholder="+34 600 000 000" required aria-describedby="ePhone">
+                  <span class="err" id="ePhone" role="alert"></span>
+                </div>
+                <div class="field">
+                  <label for="bCountry">País de residencia</label>
+                  <select id="bCountry" required></select>
+                </div>
+                <div class="field">
+                  <label for="bEta">Hora prevista de llegada</label>
+                  <select id="bEta" required>
+                    <option value="">Selecciona una hora</option>
+                    <option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option>
+                    <option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option>
+                    <option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option>
+                    <option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option>
+                    <option>22:00</option><option>22:30</option><option>23:00</option>
+                    <option value="unknown">Aún no lo sé</option>
+                  </select>
+                  <span class="hint" id="etaHint"></span>
+                  <span class="err" id="eEta" role="alert"></span>
+                </div>
+                <div class="field wide">
+                  <label for="bNotes">Peticiones (opcional)</label>
+                  <textarea id="bNotes" maxlength="300" placeholder="Cuna, llegada tarde, piso bajo…"></textarea>
+                  <span class="hint"><span id="notesCount">0</span> / 300</span>
+                </div>
+                <div class="field wide">
+                  <label class="legal-check" for="bLegal">
+                    <input type="checkbox" id="bLegal" required aria-describedby="eLegal">
+                    <span>He leído las <a href="#faq">condiciones de la reserva y la cancelación</a> y acepto que la recepción trate mis datos para responder a esta solicitud.</span>
+                  </label>
+                  <span class="err" id="eLegal" role="alert"></span>
+                </div>
+              </div>
+              <div class="actions">
+                <button class="btn btn-ghost" id="bBack2" type="button">Volver</button>
+                <span class="spacer"></span>
+                <button class="btn btn-primary" id="bNext2" type="button">Revisar solicitud</button>
+              </div>
+            </div>
+
+            <!-- Paso 3 -->
+            <div data-step="3" hidden>
+              <h3 class="step-title" tabindex="-1">Revisa y envía</h3>
+              <p class="step-sub">Comprueba que todo esté bien antes de enviarlo.</p>
+              <div class="recap" id="bRecap"></div>
+              <div class="disclaimer">
+                <strong>Esto es una solicitud, no una reserva confirmada.</strong> La recepción confirma la disponibilidad y las condiciones por WhatsApp antes de cualquier pago.
+              </div>
+              <div class="actions">
+                <button class="btn btn-ghost" id="bBack3" type="button">Editar</button>
+                <span class="spacer"></span>
+                <button class="btn btn-wa" id="bSend" type="button">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-1.9-.6-4-2.4-5.2-4.5-.5-.8-.8-1.6-.5-2.3.1-.4.5-.8.8-1 .2-.2.5-.2.7-.2h.5c.2 0 .4 0 .6.4l.7 1.6c.1.2 0 .4-.1.6l-.4.5c-.1.2-.2.3 0 .6.5.8 1.1 1.4 2 1.8.3.2.4.1.6-.1l.6-.6c.2-.2.4-.2.6-.1l1.5.7c.2.1.3.3.3.5 0 .2 0 .6-.4 1z"/></svg>
+                  Enviar por WhatsApp
+                </button>
+                <button class="btn btn-quiet" id="bCopy" type="button">Copiar</button>
+              </div>
+              <p class="sent-ok" id="bSent" role="status"></p>
+              <div id="bFallback"></div>
+            </div>
+          </div>
+
+          <aside class="summary" aria-live="polite">
+            <p class="eyebrow">Tu solicitud</p>
+            <h3 id="sRoom">—</h3>
+            <div class="sum-row"><span>Entrada</span><span id="sCi">—</span></div>
+            <div class="sum-row"><span>Salida</span><span id="sCo">—</span></div>
+            <div class="sum-row"><span>Noches</span><span id="sNights">—</span></div>
+            <div class="sum-row"><span>Huéspedes</span><span id="sGuests">2</span></div>
+            <div class="sum-row sub" id="rowRate"><span id="sRateLbl">Tarifa / noche</span><span id="sRate">—</span></div>
+            <div class="sum-row sub" id="rowDisc" hidden><span id="sDiscLbl">Descuento larga estancia</span><span id="sDisc">—</span></div>
+            <div class="sum-total"><span class="eyebrow" id="sTotalLbl">Total estimado</span><span class="amount" id="sTotal">—</span></div>
+            <p class="notice" style="margin-top:.6rem">Impuestos y tasa turística se confirman con la recepción. No se cobra nada por adelantado.</p>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <div>
+        <p class="eyebrow">El barrio</p>
+        <h2>Guindalera, en la práctica</h2>
+      </div>
+    </div>
+    <div class="hood">
+      <article>
+        <h3>A la puerta</h3>
+        <p>Santito Madrid, CAFÉ América y Casa Jorge a menos de 50 metros. Johnny Dog, a 450. Desayuno, vermú y cena sin coger el metro.</p>
+      </article>
+      <article>
+        <h3>Compras y negocios</h3>
+        <p>Torre Picasso a 2,6 km, AZCA y la Castellana a un taxi corto o cuatro paradas de metro.</p>
+      </article>
+      <article>
+        <h3>Un paseo</h3>
+        <p>El Retiro a 3,1 km, Las Ventas a 1,5 km. Sol, Gran Vía y el Prado, entre 3 y 4 km.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="block-head">
+      <div>
+        <p class="eyebrow">Antes de llegar</p>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+    </div>
+    <div class="faq">
+      <details open>
+        <summary>¿A qué hora puedo entrar y salir?</summary>
+        <p>La entrada está disponible a partir de las 14:00 y la salida hasta las 12:00. Si llegas antes o sales más tarde, escríbenos por WhatsApp: casi siempre lo arreglamos. Horarios pendientes de confirmación por la propiedad.</p>
+      </details>
+      <details>
+        <summary>¿Cómo funciona la reserva?</summary>
+        <p>La web no cobra nada. Envías una solicitud con tus fechas y datos, y la recepción te responde por WhatsApp para confirmar disponibilidad, precio final y forma de pago. La reserva existe cuando recibes esa confirmación.</p>
+      </details>
+      <details>
+        <summary>¿Cómo se paga?</summary>
+        <p>No trabajamos con efectivo: tarjeta o transferencia. El importe final y el momento del pago se acuerdan con la recepción antes de reservar. Las condiciones de cancelación también se confirman por escrito en ese momento.</p>
+      </details>
+      <details>
+        <summary>¿Hay recepción 24 horas?</summary>
+        <p>La atención es concertada. Al reservar acordamos una hora de llegada; las entradas después de las 23:00 se organizan por WhatsApp. Avísanos si el vuelo se retrasa.</p>
+      </details>
+      <details>
+        <summary>¿Qué documentación necesito?</summary>
+        <p>En España el registro de viajeros es obligatorio: en la entrada te pediremos el documento de identidad o pasaporte de cada huésped.</p>
+      </details>
+      <details>
+        <summary>¿Se admiten mascotas o se puede fumar?</summary>
+        <p>No a las dos cosas: el alojamiento es de no fumadores y no admite mascotas.</p>
+      </details>
+      <details>
+        <summary>¿Hay fiestas o despedidas?</summary>
+        <p>No se aceptan despedidas de soltero o soltera ni celebraciones. Es un edificio tranquilo, con vecinos.</p>
+      </details>
+    </div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img src="assets/hero-837030931.jpg" alt="" width="52" height="52">
+          <div>
+            <div class="brand-name" style="font-size:1.25rem">CH América</div>
+            <div class="brand-sub">Hostal · Madrid</div>
+          </div>
+        </div>
+        <p>Avenida de América, 26 · Local<br>28028 Madrid · España<br>Código Plus C8QG+GF Madrid</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p><a id="waFoot" href="#" target="_blank" rel="noopener"><span id="phoneText">—</span></a><br>Reservas por mensaje<br>Español · English · Português</p>
+      </div>
+      <div>
+        <h4>El alojamiento</h4>
+        <ul>
+          <li><a href="#habitaciones">Habitaciones</a></li>
+          <li><a href="#galeria">Fotos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+          <li><a href="#reservar">Reservar</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 CH América · Madrid</span>
+      <span>Aviso legal, privacidad y cookies: pendiente de completar por la propiedad</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+  <div class="lb-bg" data-close></div>
+  <div class="lb-inner">
+    <div class="lb-top">
+      <h3 id="lbTitle">Galería</h3>
+      <span class="count" id="lbCount" aria-live="polite">1 / 28</span>
+      <button class="lb-close" id="lbClose" aria-label="Cerrar galería">✕</button>
+    </div>
+    <div class="lb-stage">
+      <img id="lbImg" alt="" width="900" height="1200">
+      <button class="c-btn prev" id="lbPrev" aria-label="Foto anterior">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="c-btn next" id="lbNext" aria-label="Foto siguiente">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="lb-thumbs" id="lbThumbs"></div>
+  </div>
+</div>
+
+<!-- Agente -->
+<button class="chat-fab" id="chatFab" aria-expanded="false" aria-controls="chat">
+  <span class="pulse" aria-hidden="true"></span> Recepción
+</button>
+
+<div class="chat" id="chat" hidden role="dialog" aria-label="Asistente de recepción">
+  <div class="chat-head">
+    <div class="chat-avatar" aria-hidden="true">CH</div>
+    <div>
+      <div class="t">Recepción CH América</div>
+      <div class="s" id="chatStatus">En línea</div>
+    </div>
+    <div class="chat-langs" id="chatLangs">
+      <button type="button" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="pt" aria-pressed="false">PT</button>
+    </div>
+    <button class="x" id="chatClose" aria-label="Cerrar chat">✕</button>
+  </div>
+  <div class="chat-log" id="chatLog"></div>
+  <div class="chat-quick" id="chatQuick"></div>
+  <form class="chat-form" id="chatForm">
+    <input id="chatInput" type="text" placeholder="Escribe tu pregunta…" autocomplete="off" aria-label="Tu mensaje">
+    <button type="submit" aria-label="Enviar">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+    </button>
+  </form>
+  <div class="chat-disclaimer">Asistente automático con la información del hostal. Para confirmar una reserva, habla con recepción por WhatsApp.</div>
+</div>
+
+<div class="mobile-bar">
+  <a class="btn btn-primary" href="#reservar">Reservar</a>
+  <a class="btn btn-wa" id="waBar" href="#" target="_blank" rel="noopener">WhatsApp</a>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   CONFIGURACIÓN — el número real del hostal va aquí.
+   Solo dígitos, con prefijo de país. Ejemplo: "34600123456"
+   ═══════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  whatsapp: "34600000000",
+  whatsappLabel: "+34 600 000 000",
+  checkIn: "14:00",
+  checkOut: "12:00",
+  maxNights: 30
+};
+
+/* Disponibilidad orientativa: fechas ocupadas por habitación.
+   Formato "AAAA-MM-DD". Ejemplo: { r2: ["2026-04-03", "2026-04-04"] } */
+const BLOCKED = {};
+
+const ROOMS = [
+  { id:"r1", name:"Doble Patio", tag:"Patio interior", view:"Vista a patio interior", m2:14, premium:false, price:45,
+    feats:["Aire acondicionado","TV de pantalla plana","Nevera","Cafetera","Microondas"],
+    photos:["assets/r1-1-837043524.jpg","assets/r1-2-837543602.jpg","assets/r1-3-837543712.jpg","assets/r1-4-837543976.jpg"] },
+  { id:"r2", name:"Doble Patio II", tag:"Patio interior", view:"Vista a patio interior", m2:13, premium:false, price:39,
+    feats:["Aire acondicionado","TV de pantalla plana","Nevera","Cafetera"],
+    photos:["assets/r2-1-838681679.jpg","assets/r2-2-838681772.jpg","assets/r2-3-838681734.jpg","assets/r2-4-838681794.jpg"] },
+  { id:"r3", name:"Doble Patio III", tag:"Patio interior", view:"Vista a patio interior", m2:13, premium:false, price:39,
+    feats:["Aire acondicionado","TV de pantalla plana","Nevera","Cafetera"],
+    photos:["assets/r3-1-839052271.jpg","assets/r3-2-839052307.jpg","assets/r3-3-839052344.jpg","assets/r3-4-839052401.jpg","assets/r3-5-839052429.jpg"] },
+  { id:"r4", name:"Doble Patio IV", tag:"Patio interior", view:"Vista a patio interior", m2:14, premium:false, price:45,
+    feats:["Aire acondicionado","TV de pantalla plana","Nevera","Cafetera","Microondas"],
+    photos:["assets/r4-1-839057078.jpg","assets/r4-2-839057109.jpg","assets/r4-3-839057152.jpg","assets/r4-4-839057213.jpg"] },
+  { id:"r5", name:"Doble Superior", tag:"La más amplia", view:"La más amplia, 20 m²", m2:20, premium:true, price:59,
+    feats:["20 m²","Aire acondicionado","TV de pantalla plana","Nevera","Microondas","Mesa de comedor"],
+    photos:["assets/r5-1-844499689.jpg","assets/r5-2-844499661.jpg","assets/r5-3-844499562.jpg","assets/r5-4-844499516.jpg","assets/r5-5-844499476.jpg","assets/r5-6-844499434.jpg"] },
+  { id:"r6", name:"Doble Calle", tag:"Calle tranquila", view:"Vista a calle tranquila", m2:14, premium:false, price:49,
+    feats:["Aire acondicionado","TV de pantalla plana","Nevera","Cafetera","Vista a calle tranquila"],
+    photos:["assets/r6-1-844525460.jpg","assets/r6-2-844525471.jpg","assets/r6-3-844525479.jpg","assets/r6-4-844525491.jpg","assets/r6-5-844525503.jpg"] }
+];
+
+/* ── utilidades ── */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+/* versões leves para cartões e miniaturas (as originais ficam para o lightbox) */
+const cardSrc = src => src.replace("assets/", "assets/card/");
+const thumbSrc = src => src.replace("assets/", "assets/thumb/");
+const eur = n => new Intl.NumberFormat("es-ES", { style:"currency", currency:"EUR", maximumFractionDigits:0 }).format(n);
+const pad2 = n => String(n).padStart(2, "0");
+
+/* Fechas: siempre en calendario local, nunca new Date("AAAA-MM-DD") */
+function parseISO(s){ if(!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null; const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); }
+function toISO(d){ return d.getFullYear() + "-" + pad2(d.getMonth()+1) + "-" + pad2(d.getDate()); }
+function todayLocal(){ const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+function addDays(d, n){ const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate()+n); return x; }
+function nightsBetween(aISO, bISO){
+  const a = parseISO(aISO), b = parseISO(bISO);
+  if(!a || !b) return 0;
+  return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 86400000);
+}
+function fmtDate(iso){ const d = parseISO(iso); if(!d) return "—"; return d.toLocaleDateString("es-ES", { day:"2-digit", month:"short", year:"numeric" }); }
+function fmtDateLong(iso){ const d = parseISO(iso); if(!d) return "—"; return d.toLocaleDateString("es-ES", { weekday:"short", day:"numeric", month:"long" }); }
+function esFecha(s){ return /^\d{4}-\d{2}-\d{2}$/.test(s); }
+
+const WA_BASE = "https://wa.me/" + CONFIG.whatsapp + "?text=";
+const waLink = text => WA_BASE + encodeURIComponent(text);
+const WA_GENERIC = "Hola CH América, me gustaría consultar disponibilidad para una habitación doble.";
+
+$$("#waHead, #waHero, #waFoot, #waBar").forEach(a => { a.href = waLink(WA_GENERIC); a.target = "_blank"; a.rel = "noopener"; });
+$("#phoneText").textContent = CONFIG.whatsappLabel;
+$("#headPhone").textContent = CONFIG.whatsappLabel;
+$("#headPhone").href = waLink(WA_GENERIC);
+
+/* ── menú móvil ── */
+const menuBtn = $("#menuBtn"), mobnav = $("#mobnav");
+menuBtn.addEventListener("click", () => {
+  const open = mobnav.hidden;
+  mobnav.hidden = !open;
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+});
+$$("a", mobnav).forEach(a => a.addEventListener("click", () => {
+  mobnav.hidden = true;
+  menuBtn.setAttribute("aria-expanded", "false");
+}));
+
+/* ── carrusel genérico por scroll-snap ── */
+function initCarousel({ root, track, onChange, auto = false, delay = 5000, loop = false, offset = 0 }){
+  const slides = () => Array.from(track.children);
+  const prev = $(".c-btn.prev", root);
+  const next = $(".c-btn.next", root);
+  const count = root.querySelector("[data-count]");
+
+  /* ── passagem automática (só nos carrosséis que a pedem) ── */
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let timer = null, paused = false, inView = false;
+  /* fase própria deste card dentro do ciclo: é ela que impede os seis
+     carrosséis de andarem em uníssono (todos na mesma foto ao mesmo tempo) */
+  const phase = delay ? offset % delay : 0;
+
+  function schedule(wait){
+    timer = setTimeout(() => { go(1); schedule(delay); }, wait);
+  }
+  /* usePhase: só quando algo exterior (scroll, rato, aba) reinicia o ciclo é
+     que repomos a fase; a passagem normal mantém o ritmo deste card */
+  function restart(usePhase){
+    clearTimeout(timer);
+    if(!auto || reduced || paused || document.hidden || !inView) return;
+    schedule(usePhase && phase ? phase : delay);
+  }
+  function pause(){ paused = true; clearTimeout(timer); }
+  function resume(){ paused = false; restart(true); }
+
+  if(auto && !reduced){
+    if("IntersectionObserver" in window){
+      new IntersectionObserver(entries => {
+        inView = entries[0].isIntersecting;
+        restart(true);
+      }, { threshold: 0.25 }).observe(track);
+    } else {
+      inView = true;
+    }
+    root.addEventListener("mouseenter", pause);
+    root.addEventListener("mouseleave", resume);
+    root.addEventListener("focusin", pause);
+    root.addEventListener("focusout", resume);
+    root.addEventListener("pointerdown", pause);
+    root.addEventListener("pointerup", () => setTimeout(resume, delay));
+    document.addEventListener("visibilitychange", () => document.hidden ? pause() : resume());
+  }
+
+  function index(){
+    const s = slides();
+    if(!s.length) return 0;
+    return Math.round(track.scrollLeft / track.clientWidth);
+  }
+  /* carga diferida real: as fotos fora do ecrã só recebem src quando
+     estão a uma posição de distância, poupando memória/decodificação */
+  function loadNear(i){
+    const s = slides();
+    for(let k = i - 1; k <= i + 1; k++){
+      const img = s[k] && s[k].querySelector("img[data-src]");
+      if(img){ img.src = img.dataset.src; img.removeAttribute("data-src"); }
+    }
+  }
+  function sync(){
+    const i = index(), total = slides().length;
+    loadNear(i);
+    if(count) count.textContent = (i + 1) + " / " + total;
+    /* com passagem automática/circular as setas nunca ficam inúteis */
+    if(!loop){
+      if(prev) prev.setAttribute("aria-disabled", String(i <= 0));
+      if(next) next.setAttribute("aria-disabled", String(i >= total - 1));
+    }
+    if(onChange) onChange(i);
+  }
+  function go(dir){
+    const total = slides().length;
+    if(!total) return;
+    const i = index();
+    const target = loop
+      ? (i + dir + total) % total
+      : Math.max(0, Math.min(total - 1, i + dir));
+    track.scrollTo({ left: target * track.clientWidth, behavior: "smooth" });
+  }
+  if(prev) prev.addEventListener("click", () => { go(-1); restart(true); });
+  if(next) next.addEventListener("click", () => { go(1); restart(true); });
+  track.addEventListener("scroll", () => requestAnimationFrame(sync), { passive: true });
+  window.addEventListener("resize", sync);
+  track.addEventListener("keydown", e => {
+    if(e.key === "ArrowRight"){ e.preventDefault(); go(1); restart(true); }
+    if(e.key === "ArrowLeft"){ e.preventDefault(); go(-1); restart(true); }
+  });
+  sync();
+  restart(true);
+  return { go, sync, index };
+}
+
+/* ── galería: lista plana agrupada ── */
+const GALLERY = ROOMS.flatMap(r => r.photos.map((src, i) => ({ src, room: r.name, n: i + 1, total: r.photos.length })));
+
+/* ── hero: un carrusel de 6 ambientes ── */
+const heroRoot = $("#heroCarousel"), heroTrack = $("#heroTrack");
+const HERO = [ROOMS[4], ROOMS[0], ROOMS[5], ROOMS[2], ROOMS[1], ROOMS[3]];
+HERO.forEach(r => {
+  const s = document.createElement("div");
+  s.className = "slide";
+  s.innerHTML = '<img src="' + r.photos[0] + '" alt="' + r.name + ' — CH América, Madrid" width="900" height="1200"'
+    + (r === HERO[0] ? "" : ' loading="lazy"') + ' decoding="async">'
+    + '<span class="caption">' + r.name + " · " + r.m2 + " m²</span>";
+  heroTrack.appendChild(s);
+});
+initCarousel({ root: heroRoot, track: heroTrack });
+
+/* ── habitaciones: carrusel de tarjetas, cada una con su carrusel ── */
+const roomsTrack = $("#roomsTrack"), roomsDots = $("#roomsDots");
+
+ROOMS.forEach((r, i) => {
+  const slide = document.createElement("div");
+  slide.className = "slide";
+  const card = document.createElement("article");
+  card.className = "room";
+
+  const shots = r.photos.map((src, k) =>
+    '<div class="slide"><img ' + (k === 0 ? 'src="' + cardSrc(src) + '"' : 'data-src="' + cardSrc(src) + '"')
+    + ' alt="' + r.name + ' — foto ' + (k+1) + ' de ' + r.photos.length + '" width="760" height="1013"></div>'
+  ).join("");
+
+  card.innerHTML =
+    '<div class="room-media carousel" data-room-carousel="' + i + '">'
+      + '<div class="track">' + shots + '</div>'
+      + '<button class="c-btn prev" type="button" aria-label="Foto anterior de ' + r.name + '">'
+        + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>'
+      + '<button class="c-btn next" type="button" aria-label="Foto siguiente de ' + r.name + '">'
+        + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></button>'
+      + '<span class="room-tag ' + (r.premium ? "premium" : "") + '">' + r.tag + '</span>'
+      + '<button class="c-btn" type="button" data-open-gallery="' + i + '" aria-label="Ver las ' + r.photos.length + ' fotos de ' + r.name + '" style="position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;background:transparent;transform:none;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none"></button>'
+      + '<span class="c-count" data-count aria-live="polite">1 / ' + r.photos.length + '</span>'
+    + '</div>'
+    + '<div class="room-body">'
+      + '<h3>' + r.name + '</h3>'
+      + '<div class="room-meta"><span>' + r.m2 + ' m²</span><span>·</span><span>2 personas</span><span>·</span><span>' + r.view + '</span></div>'
+      + '<div class="room-meta">' + r.feats.slice(0,3).map(f => '<span class="chip">' + f + '</span>').join("") + '</div>'
+      + '<div class="room-foot">'
+        + '<div class="price">' + eur(r.price) + '<small>por noche</small></div>'
+        + '<button class="btn btn-primary btn-sm" type="button" data-book="' + r.id + '">Reservar</button>'
+      + '</div>'
+    + '</div>';
+
+  slide.appendChild(card);
+  roomsTrack.appendChild(slide);
+
+  const dot = document.createElement("button");
+  dot.type = "button";
+  dot.setAttribute("role", "tab");
+  dot.setAttribute("aria-label", r.name);
+  dot.innerHTML = "<span></span>";
+  dot.addEventListener("click", () => {
+    const w = card.getBoundingClientRect().width + 18;
+    roomsTrack.scrollTo({ left: i * w, behavior: "smooth" });
+  });
+  roomsDots.appendChild(dot);
+});
+
+/* carruseles internos de cada tarjeta */
+$$("[data-room-carousel]").forEach((el, n) => {
+  /* fase repartida pelo ciclo (1/6 cada) + ritmo próprio: os seis carrosséis
+     nunca param na mesma foto ao mesmo tempo */
+  initCarousel({ root: el, track: $(".track", el), auto: true, loop: true,
+                 delay: 5200 + n * 380, offset: n * 900 });
+});
+
+/* setas e indicadores del carrusel de habitaciones */
+const roomsCarousel = { step: () => (roomsTrack.querySelector(".room")?.getBoundingClientRect().width || 300) + 18 };
+$("#roomsPrev").addEventListener("click", () => roomsTrack.scrollBy({ left: -roomsCarousel.step(), behavior: "smooth" }));
+$("#roomsNext").addEventListener("click", () => roomsTrack.scrollBy({ left: roomsCarousel.step(), behavior: "smooth" }));
+function syncRoomsDots(){
+  const w = roomsCarousel.step();
+  const i = Math.round(roomsTrack.scrollLeft / w);
+  $$("button", roomsDots).forEach((d, k) => d.setAttribute("aria-current", k === i ? "true" : "false"));
+  const atStart = roomsTrack.scrollLeft < 8;
+  const atEnd = roomsTrack.scrollLeft + roomsTrack.clientWidth >= roomsTrack.scrollWidth - 8;
+  $("#roomsPrev").setAttribute("aria-disabled", String(atStart));
+  $("#roomsNext").setAttribute("aria-disabled", String(atEnd));
+}
+roomsTrack.addEventListener("scroll", () => requestAnimationFrame(syncRoomsDots), { passive: true });
+window.addEventListener("resize", syncRoomsDots);
+syncRoomsDots();
+
+/* ── mosaico de la galería ── */
+const mosaic = $("#galMosaic");
+const MOSAIC = [11, 0, 5, 17, 22, 26, 8, 14, 20];
+MOSAIC.forEach((gi, k) => {
+  const item = GALLERY[gi];
+  const b = document.createElement("button");
+  b.type = "button";
+  b.setAttribute("data-gallery-index", gi);
+  b.setAttribute("aria-label", "Abrir la foto " + (gi+1) + " de " + GALLERY.length + " — " + item.room);
+  b.innerHTML = '<img src="' + cardSrc(item.src) + '" alt="" width="760" height="1013" loading="lazy" decoding="async">'
+    + (k === 0 ? '<span class="more">Ver las ' + GALLERY.length + ' fotos</span>' : "");
+  mosaic.appendChild(b);
+});
+
+/* ── lightbox ── */
+const lb = $("#lightbox"), lbImg = $("#lbImg"), lbThumbs = $("#lbThumbs"), lbCount = $("#lbCount");
+let lbIndex = 0, lbReturnFocus = null;
+
+GALLERY.forEach((g, k) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.setAttribute("aria-label", "Foto " + (k+1) + " — " + g.room);
+  b.innerHTML = '<img src="' + thumbSrc(g.src) + '" alt="" width="76" height="58" loading="lazy" decoding="async">';
+  b.addEventListener("click", () => { lbIndex = k; renderLb(); });
+  lbThumbs.appendChild(b);
+});
+
+function renderLb(){
+  const g = GALLERY[lbIndex];
+  lbImg.src = g.src;
+  lbImg.alt = g.room + " — foto " + g.n + " de " + g.total;
+  $("#lbTitle").textContent = g.room;
+  lbCount.textContent = (lbIndex + 1) + " / " + GALLERY.length;
+  $$("button", lbThumbs).forEach((b, k) => b.setAttribute("aria-current", k === lbIndex ? "true" : "false"));
+  const active = lbThumbs.children[lbIndex];
+  if(active) active.scrollIntoView({ block: "nearest", inline: "center" });
+  $("#lbPrev").setAttribute("aria-disabled", String(lbIndex === 0));
+  $("#lbNext").setAttribute("aria-disabled", String(lbIndex === GALLERY.length - 1));
+}
+function openLb(index, opener){
+  lbReturnFocus = opener || document.activeElement;
+  lbIndex = Math.max(0, Math.min(GALLERY.length - 1, index));
+  renderLb();
+  lb.hidden = false;
+  document.body.style.overflow = "hidden";
+  $("#lbClose").focus();
+}
+function closeLb(){
+  lb.hidden = true;
+  document.body.style.overflow = "";
+  if(lbReturnFocus && lbReturnFocus.focus) lbReturnFocus.focus();
+}
+function lbStep(d){
+  lbIndex = Math.max(0, Math.min(GALLERY.length - 1, lbIndex + d));
+  renderLb();
+}
+$("#lbPrev").addEventListener("click", () => lbStep(-1));
+$("#lbNext").addEventListener("click", () => lbStep(1));
+$("#lbClose").addEventListener("click", closeLb);
+$$("[data-close]", lb).forEach(el => el.addEventListener("click", closeLb));
+mosaic.addEventListener("click", e => {
+  const b = e.target.closest("[data-gallery-index]");
+  if(b) openLb(Number(b.dataset.galleryIndex), b);
+});
+roomsTrack.addEventListener("click", e => {
+  const b = e.target.closest("[data-open-gallery]");
+  if(b){
+    const r = ROOMS[Number(b.dataset.openGallery)];
+    openLb(GALLERY.findIndex(g => g.src === r.photos[0]), b);
+  }
+});
+
+/* swipe en el lightbox */
+let touchX = null;
+lb.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener("touchend", e => {
+  if(touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if(Math.abs(dx) > 50) lbStep(dx < 0 ? 1 : -1);
+  touchX = null;
+}, { passive: true });
+
+document.addEventListener("keydown", e => {
+  if(!lb.hidden){
+    if(e.key === "Escape") closeLb();
+    if(e.key === "ArrowLeft"){ e.preventDefault(); lbStep(-1); }
+    if(e.key === "ArrowRight"){ e.preventDefault(); lbStep(1); }
+    if(e.key === "Tab"){
+      const f = $$("button", lb).filter(b => !b.hidden);
+      const first = f[0], last = f[f.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  }
+  if(e.key === "Escape" && !$("#chat").hidden) closeChat();
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   MOTOR DE RESERVAS
+   ═══════════════════════════════════════════════════════════════ */
+const booking = {
+  step: 1,
+  ci: "", co: "", guests: "2", roomId: "any",
+  name: "", email: "", phone: "", country: "", eta: "", notes: "",
+  legal: false, sentAt: 0
+};
+
+const bCi = $("#bCi"), bCo = $("#bCo"), bGuests = $("#bGuests"), bRoom = $("#bRoom");
+const bErr1 = $("#bErr1"), bHint1 = $("#bHint1");
+
+/* selects */
+const anyOpt = document.createElement("option");
+anyOpt.value = "any";
+anyOpt.textContent = "Cualquiera disponible (desde " + eur(Math.min(...ROOMS.map(r => r.price))) + ")";
+bRoom.appendChild(anyOpt);
+ROOMS.forEach(r => {
+  const o = document.createElement("option");
+  o.value = r.id;
+  o.textContent = r.name + " · " + r.m2 + " m² · " + eur(r.price) + "/noche";
+  bRoom.appendChild(o);
+});
+bRoom.value = "any";
+
+const COUNTRIES = ["España","Portugal","Francia","Italia","Alemania","Reino Unido","Países Bajos","Bélgica","Suiza","Irlanda","Estados Unidos","México","Argentina","Chile","Colombia","Perú","Brasil","Uruguay","Venezuela","Ecuador","Canadá","Australia","Japón","China","Otro"];
+const bCountry = $("#bCountry");
+COUNTRIES.forEach(c => {
+  const o = document.createElement("option");
+  o.value = c; o.textContent = c;
+  bCountry.appendChild(o);
+});
+bCountry.value = "España";
+booking.country = "España";
+
+/* límites de fecha recalculados en cada foco: nunca quedan en el pasado */
+function refreshDateBounds(){
+  const t = todayLocal();
+  const maxCi = toISO(addDays(t, 365));
+  bCi.min = toISO(t);
+  bCi.max = maxCi;
+  const hbCi = $("#hbCi"), hbCo = $("#hbCo");
+  hbCi.min = toISO(t);
+  hbCi.max = maxCi;
+  if(bCi.value) bCo.min = toISO(addDays(parseISO(bCi.value), 1));
+  bCo.max = toISO(addDays(t, 365 + 30));
+  if(hbCi.value) hbCo.min = toISO(addDays(parseISO(hbCi.value), 1));
+}
+[bCi, bCo].forEach(el => el.addEventListener("focus", refreshDateBounds));
+refreshDateBounds();
+
+function roomById(id){ return ROOMS.find(r => r.id === id); }
+
+function isBlocked(room, ci, co){
+  const list = BLOCKED[room.id];
+  if(!list || !list.length) return false;
+  const n = nightsBetween(ci, co);
+  for(let i = 0; i < n; i++){
+    if(list.includes(toISO(addDays(parseISO(ci), i)))) return true;
+  }
+  return false;
+}
+
+function blockedAny(room, ci, co){ return isBlocked(room, ci, co); }
+
+function pickRoom(ci, co){
+  if(booking.roomId !== "any"){
+    const r = roomById(booking.roomId);
+    return r ? { room: r, isAny: false, available: !isBlocked(r, ci, co) } : null;
+  }
+  const free = ROOMS.filter(r => !isBlocked(r, ci, co)).sort((a, b) => a.price - b.price);
+  if(free.length) return { room: free[0], isAny: true, available: true };
+  return { room: ROOMS.slice().sort((a, b) => a.price - b.price)[0], isAny: true, available: false };
+}
+
+function discountFor(n){
+  if(n >= 14) return 0.15;
+  if(n >= 7) return 0.10;
+  return 0;
+}
+
+function priceBreakdown(){
+  const n = nightsBetween(booking.ci, booking.co);
+  const pick = pickRoom(booking.ci, booking.co);
+  if(!pick || n <= 0) return { n: 0, pick: null, gross: 0, disc: 0, total: 0, rate: pick ? pick.room.price : 0 };
+  const gross = n * pick.room.price;
+  const disc = Math.round(gross * discountFor(n));
+  return { n, pick, gross, disc, total: gross - disc, rate: pick.room.price };
+}
+
+/* resumen lateral */
+function updateSummary(){
+  const { n, pick, gross, disc, total, rate } = priceBreakdown();
+  $("#sRoom").textContent = pick ? (pick.isAny ? "Mejor habitación disponible · " + pick.room.name : pick.room.name) : "—";
+  $("#sCi").textContent = booking.ci ? fmtDate(booking.ci) : "—";
+  $("#sCo").textContent = booking.co ? fmtDate(booking.co) : "—";
+  $("#sNights").textContent = n > 0 ? n + (n === 1 ? " noche" : " noches") : "—";
+  $("#sGuests").textContent = booking.guests === "1" ? "1 persona" : "2 personas";
+  $("#sRateLbl").textContent = pick && pick.isAny ? "Desde / noche" : "Tarifa / noche";
+  $("#sRate").textContent = rate ? eur(rate) : "—";
+  $("#rowDisc").hidden = disc <= 0;
+  if(disc > 0){
+    $("#sDiscLbl").textContent = "Descuento " + Math.round(discountFor(n) * 100) + " %";
+    $("#sDisc").textContent = "−" + eur(disc);
+  }
+  $("#sTotalLbl").textContent = pick && pick.isAny ? "Total desde" : "Total estimado";
+  $("#sTotal").textContent = n > 0 ? eur(total) : "—";
+
+  /* validación del paso 1 */
+  let err = "";
+  if(!booking.ci || !booking.co){
+    err = "";
+    $("#bHint1").textContent = "Elige las fechas para ver el precio.";
+  } else if(n <= 0){
+    err = "La salida tiene que ser al menos un día después de la entrada.";
+  } else if(parseISO(booking.ci) < todayLocal()){
+    err = "Elige una fecha de entrada a partir de hoy.";
+  } else if(n > CONFIG.maxNights){
+    err = "Para estancias de más de " + CONFIG.maxNights + " noches, escríbenos por WhatsApp.";
+  } else if(pick && !pick.available){
+    err = "No tenemos disponibilidad registrada para esas fechas. Puedes enviar la solicitud igualmente: la recepción te propone alternativas.";
+  }
+  bErr1.textContent = err;
+  if(!err) $("#bHint1").textContent = n > 0 ? n + " noches · " + eur(total) + " estimados" : "";
+
+  const blocked = !!err && !(pick && !pick.available);
+  $("#bNext1").setAttribute("aria-disabled", String(blocked));
+  return { n, pick, total, err, blocked };
+}
+
+[["ci", bCi], ["co", bCo], ["guests", bGuests], ["roomId", bRoom]].forEach(([key, el]) => {
+  el.addEventListener("change", () => {
+    booking[key] = el.value;
+    if(key === "ci"){
+      const t = todayLocal();
+      bCi.min = toISO(t);
+      if(booking.ci){
+        bCo.min = toISO(addDays(parseISO(booking.ci), 1));
+        if(!booking.co || nightsBetween(booking.ci, booking.co) < 1){
+          booking.co = toISO(addDays(parseISO(booking.ci), 1));
+          bCo.value = booking.co;
+        }
+      }
+    }
+    updateSummary();
+    saveDraft();
+  });
+});
+
+/* ── navegación entre pasos ── */
+const stepEls = { 1: $('[data-step="1"]'), 2: $('[data-step="2"]'), 3: $('[data-step="3"]') };
+const stepBtns = $$(".steps button");
+
+function showStep(n, focus = true){
+  booking.step = n;
+  Object.entries(stepEls).forEach(([k, el]) => { el.hidden = Number(k) !== n; });
+  stepBtns.forEach((b, i) => {
+    const target = i + 1;
+    b.disabled = target > maxReachableStep();
+    if(target === n) b.setAttribute("aria-current", "step");
+    else b.removeAttribute("aria-current");
+  });
+  if(n === 3) buildRecap();
+  if(focus){
+    const title = $(".step-title", stepEls[n]);
+    if(title) title.focus({ preventScroll: true });
+    stepEls[n].scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+function maxReachableStep(){
+  if(!booking.ci || !booking.co || nightsBetween(booking.ci, booking.co) < 1) return 1;
+  return booking.legal && !step2Errors().length ? 3 : 2;
+}
+stepBtns.forEach((b, i) => b.addEventListener("click", () => {
+  const target = i + 1;
+  if(target > maxReachableStep()) return;
+  showStep(target);
+}));
+
+/* ── paso 2: validación ── */
+function fieldError(id, msg){
+  const input = $("#" + id), err = $("#e" + id.slice(1));
+  if(err) err.textContent = msg;
+  if(input) input.setAttribute("aria-invalid", msg ? "true" : "false");
+  return msg;
+}
+function validName(){ return booking.name.trim().split(/\s+/).filter(Boolean).length >= 2; }
+function validEmail(){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(booking.email.trim()); }
+function validPhone(){ return booking.phone.replace(/[^\d]/g, "").length >= 6; }
+
+function step2Errors(){
+  const out = [];
+  if(!validName()) out.push("name");
+  if(!validEmail()) out.push("email");
+  if(!validPhone()) out.push("phone");
+  if(!booking.eta) out.push("eta");
+  if(!booking.legal) out.push("legal");
+  return out;
+}
+function validateField(key){
+  if(key === "name") return fieldError("bName", validName() ? "" : "Escribe nombre y apellido.");
+  if(key === "email") return fieldError("bEmail", validEmail() ? "" : "Introduce un correo válido, con @ y dominio.");
+  if(key === "phone") return fieldError("bPhone", validPhone() ? "" : "Indica el teléfono con prefijo, p. ej. +34 600 000 000.");
+  if(key === "eta") return fieldError("bEta", booking.eta ? "" : "Indica una hora aproximada o marca «Aún no lo sé».");
+  if(key === "legal") return fieldError("bLegal", booking.legal ? "" : "Marca la casilla para continuar.");
+  return "";
+}
+
+bCi.addEventListener("input", () => { booking.ci = bCi.value; });
+bCo.addEventListener("input", () => { booking.co = bCo.value; });
+
+$("#bName").addEventListener("input", e => { booking.name = e.target.value; saveDraft(); });
+$("#bEmail").addEventListener("input", e => { booking.email = e.target.value; saveDraft(); });
+$("#bPhone").addEventListener("input", e => { booking.phone = e.target.value; saveDraft(); });
+$("#bNotes").addEventListener("input", e => {
+  booking.notes = e.target.value;
+  $("#notesCount").textContent = String(e.target.value.length);
+  saveDraft();
+});
+bCountry.addEventListener("change", () => { booking.country = bCountry.value; saveDraft(); });
+$("#bEta").addEventListener("change", e => {
+  booking.eta = e.target.value;
+  $("#etaHint").textContent = (e.target.value !== "" && e.target.value !== "unknown" && e.target.value >= "23:00")
+    ? "Las llegadas después de las 23:00 se acuerdan por WhatsApp." : "";
+  saveDraft();
+});
+$("#bLegal").addEventListener("change", e => { booking.legal = e.target.checked; validateField("legal"); saveDraft(); });
+
+["bName:name", "bEmail:email", "bPhone:phone"].forEach(pair => {
+  const [id, key] = pair.split(":");
+  $("#" + id).addEventListener("blur", () => validateField(key));
+});
+
+$("#bNext1").addEventListener("click", () => {
+  const st = updateSummary();
+  if(st.blocked){
+    bErr1.textContent = st.err || "Revisa las fechas antes de continuar.";
+    bCi.focus();
+    return;
+  }
+  showStep(2);
+});
+
+$("#bNext2").addEventListener("click", () => {
+  const problems = step2Errors();
+  ["name", "email", "phone", "eta", "legal"].forEach(validateField);
+  if(problems.length){
+    const map = { name:"bName", email:"bEmail", phone:"bPhone", eta:"bEta", legal:"bLegal" };
+    const first = $("#" + map[problems[0]]);
+    if(first) first.focus();
+    return;
+  }
+  showStep(3);
+});
+
+$("#bBack2").addEventListener("click", () => showStep(1));
+$("#bBack3").addEventListener("click", () => showStep(2));
+
+/* ── paso 3: recapitulación y envío ── */
+function bookingRef(){
+  const pick = pickRoom(booking.ci, booking.co);
+  const base = pick && !pick.isAny ? pick.room.id : "any";
+  return base + "-" + (booking.ci || "").replace(/-/g, "");
+}
+
+function buildRecap(){
+  const { n, pick, total } = priceBreakdown();
+  const rows = [
+    ["Habitación", pick ? (pick.isAny ? "Cualquiera disponible (" + pick.room.name + ")" : pick.room.name + " · " + pick.room.m2 + " m²") : "—"],
+    ["Entrada", fmtDateLong(booking.ci)],
+    ["Salida", fmtDateLong(booking.co)],
+    ["Noches", n > 0 ? String(n) : "—"],
+    ["Huéspedes", booking.guests === "1" ? "1" : "2"],
+    ["Nombre", booking.name || "—"],
+    ["Correo", booking.email || "—"],
+    ["Teléfono", booking.phone || "—"],
+    ["País", booking.country || "—"],
+    ["Llegada", booking.eta && booking.eta !== "unknown" ? booking.eta + " h" : "Sin concretar"],
+    ["Total estimado", n > 0 ? eur(total) : "—"]
+  ];
+  if(booking.notes.trim()) rows.push(["Peticiones", booking.notes.trim()]);
+  $("#bRecap").innerHTML = rows.map(([k, v]) =>
+    '<div class="sum-row"><span>' + k + '</span><span>' + String(v).replace(/[<>&]/g, "") + '</span></div>'
+  ).join("");
+}
+
+function bookingMessage(){
+  const { n, pick, total } = priceBreakdown();
+  const L = [];
+  L.push("SOLICITUD DE RESERVA — CH América (web) · ref " + bookingRef());
+  L.push("Habitación: " + (pick ? (pick.isAny ? "cualquiera disponible (" + pick.room.name + ")" : pick.room.name + " (" + pick.room.m2 + " m²)") : "—"));
+  L.push("Entrada: " + fmtDate(booking.ci) + " · Salida: " + fmtDate(booking.co) + " · " + (n > 0 ? n + " noches" : "—"));
+  L.push("Huéspedes: " + (booking.guests === "1" ? "1" : "2"));
+  L.push("Total estimado: " + (n > 0 ? eur(total) : "—") + " (a confirmar)");
+  L.push("Nombre: " + booking.name.trim());
+  L.push("Tel: " + booking.phone.trim() + " · Email: " + booking.email.trim());
+  L.push("País: " + booking.country);
+  L.push("Llegada prevista: " + (booking.eta === "unknown" ? "sin concretar" : booking.eta + " h"));
+  if(booking.notes.trim()) L.push("Notas: " + booking.notes.trim());
+  let text = L.join("\n");
+  if(text.length > 700){
+    text = L.slice(0, 9).join("\n") + "\n(notas en el mensaje siguiente)";
+  }
+  return text;
+}
+
+$("#bCopy").addEventListener("click", async () => {
+  const text = bookingMessage();
+  try{
+    await navigator.clipboard.writeText(text);
+    $("#bSent").textContent = "Solicitud copiada. Puedes pegarla en WhatsApp o por correo.";
+  }catch(err){
+    showFallback(text, "No se pudo copiar automáticamente. Copia el texto de abajo:");
+  }
+});
+
+function showFallback(text, lead){
+  const box = $("#bFallback");
+  box.innerHTML = "";
+  const p = document.createElement("p");
+  p.className = "notice";
+  p.style.marginTop = ".6rem";
+  p.textContent = lead + " También puedes escribirnos a " + CONFIG.whatsappLabel + ".";
+  const pre = document.createElement("pre");
+  pre.className = "pre-fallback";
+  pre.textContent = text;
+  const a = document.createElement("a");
+  a.className = "btn btn-wa btn-sm";
+  a.style.marginTop = ".5rem";
+  a.href = waLink(text);
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.textContent = "Abrir WhatsApp";
+  box.append(p, pre, a);
+}
+
+$("#bSend").addEventListener("click", () => {
+  if(Date.now() - booking.sentAt < 30000){
+    $("#bSent").textContent = "Ya has enviado la solicitud. Espera un momento antes de volver a intentarlo.";
+    return;
+  }
+  const text = bookingMessage();
+  const url = waLink(text);
+  let win = null;
+  try{ win = window.open(url, "_blank"); }catch(err){ win = null; }
+  $("#bFallback").innerHTML = "";
+  if(!win){
+    showFallback(text, "Tu navegador bloqueó la ventana de WhatsApp.");
+    $("#bSent").textContent = "";
+    return;
+  }
+  booking.sentAt = Date.now();
+  $("#bSent").textContent = "Solicitud preparada en WhatsApp. Pulsa enviar allí: la reserva existe cuando la recepción te confirme.";
+});
+
+/* ── borrador local (mínimo y con caducidad) ── */
+const DRAFT_KEY = "cha-draft-v2";
+const DRAFT_TTL = 1000 * 60 * 60 * 24 * 3;
+
+function saveDraft(){
+  try{
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({
+      t: Date.now(),
+      ci: booking.ci, co: booking.co, guests: booking.guests, roomId: booking.roomId,
+      name: booking.name, email: booking.email, phone: booking.phone,
+      country: booking.country, eta: booking.eta, notes: booking.notes
+    }));
+  }catch(err){}
+}
+function loadDraft(){
+  try{
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if(!raw) return;
+    const d = JSON.parse(raw);
+    if(!d || !d.t || Date.now() - d.t > DRAFT_TTL){ localStorage.removeItem(DRAFT_KEY); return; }
+    if(esFecha(d.ci) && parseISO(d.ci) >= todayLocal()){ booking.ci = d.ci; bCi.value = d.ci; }
+    if(esFecha(d.co) && booking.ci && nightsBetween(booking.ci, d.co) >= 1){ booking.co = d.co; bCo.value = d.co; }
+    if(d.guests === "1" || d.guests === "2"){ booking.guests = d.guests; bGuests.value = d.guests; }
+    if(d.roomId && (d.roomId === "any" || roomById(d.roomId))){ booking.roomId = d.roomId; bRoom.value = d.roomId; }
+    ["name", "email", "phone", "notes"].forEach(k => { if(typeof d[k] === "string") booking[k] = d[k]; });
+    if(COUNTRIES.includes(d.country)){ booking.country = d.country; bCountry.value = d.country; }
+    if(typeof d.eta === "string"){ booking.eta = d.eta; $("#bEta").value = d.eta; }
+    $("#bName").value = booking.name;
+    $("#bEmail").value = booking.email;
+    $("#bPhone").value = booking.phone;
+    $("#bNotes").value = booking.notes;
+    $("#notesCount").textContent = String(booking.notes.length);
+  }catch(err){}
+}
+
+/* botones "Reservar" de cada habitación */
+roomsTrack.addEventListener("click", e => {
+  const b = e.target.closest("[data-book]");
+  if(!b) return;
+  booking.roomId = b.dataset.book;
+  bRoom.value = booking.roomId;
+  updateSummary();
+  saveDraft();
+  showStep(1, false);
+  $("#reservar").scrollIntoView({ behavior: "smooth" });
+  setTimeout(() => bCi.focus({ preventScroll: true }), 400);
+});
+
+/* widget del hero: lleva fechas al motor */
+$("#heroForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const ci = $("#hbCi").value, co = $("#hbCo").value, g = $("#hbGuests").value;
+  if(ci){ booking.ci = ci; bCi.value = ci; }
+  if(co){ booking.co = co; bCo.value = co; }
+  booking.guests = g; bGuests.value = g;
+  refreshDateBounds();
+  updateSummary();
+  saveDraft();
+  showStep(1, false);
+  $("#reservar").scrollIntoView({ behavior: "smooth" });
+  setTimeout(() => { const st = updateSummary(); if(!st.blocked) showStep(2); }, 450);
+});
+
+/* inicializar */
+loadDraft();
+refreshDateBounds();
+updateSummary();
+showStep(1, false);
+
+/* ═══════════════════════════════════════════════════════════════
+   AGENTE DE RECEPCIÓN
+   ═══════════════════════════════════════════════════════════════ */
+const I18N = {
+  es: { status:"En línea", placeholder:"Escribe tu pregunta…",
+    hello:"Hola, soy la recepción virtual de CH América. Puedo ayudarte con habitaciones, precios, cómo llegar o tu solicitud de reserva. ¿Qué necesitas?",
+    quick:["Precios","Cómo llegar","Check-in","Reservar"],
+    fallback:"No tengo esa respuesta con seguridad. Lo mejor es escribir a recepción por WhatsApp: te contestan en minutos. También puedo ayudarte con precios, habitaciones, metro, aeropuerto, check-in, wifi, pagos o cancelaciones.",
+    handoff:"Te abro WhatsApp con recepción.", wa:"WhatsApp de recepción" },
+  en: { status:"Online", placeholder:"Type your question…",
+    hello:"Hi, this is the CH América virtual reception. I can help with rooms, rates, how to get here or your booking request. How can I help?",
+    quick:["Rates","Getting here","Check-in","Book"],
+    fallback:"I'm not certain about that one. The fastest route is WhatsApp: reception replies within minutes. You can also ask me about rates, rooms, metro, the airport, check-in, wifi, payments or cancellations.",
+    handoff:"Opening WhatsApp with reception.", wa:"Reception WhatsApp" },
+  pt: { status:"Online", placeholder:"Escreva a sua pergunta…",
+    hello:"Olá, esta é a recepção virtual do CH América. Posso ajudar com quartos, tarifas, como chegar ou o seu pedido de reserva. Em que posso ajudar?",
+    quick:["Preços","Como chegar","Check-in","Reservar"],
+    fallback:"Não tenho essa resposta com segurança. O melhor é falar com a recepção pelo WhatsApp: respondem em minutos. Também pode perguntar sobre preços, quartos, metro, aeroporto, check-in, wifi, pagamentos ou cancelamentos.",
+    handoff:"A abrir o WhatsApp da recepção.", wa:"WhatsApp da recepção" }
+};
+
+const PRICE_MIN = Math.min(...ROOMS.map(r => r.price));
+const PRICE_MAX = Math.max(...ROOMS.map(r => r.price));
+
+const INTENTS = [
+  { id:"greet", kw:["hola","buenas","buenos dias","buenas tardes","hello","hi","hey","ola","olá","bom dia","boa tarde","boa noite"],
+    es:"¡Hola! ¿En qué te ayudo? Puedo darte precios, explicarte las habitaciones, indicarte cómo llegar o preparar tu solicitud de reserva.",
+    en:"Hello! How can I help? I can give you rates, describe the rooms, explain how to get here or set up your booking request.",
+    pt:"Olá! Em que posso ajudar? Posso dar preços, descrever os quartos, explicar como chegar ou preparar o seu pedido de reserva." },
+
+  { id:"price", kw:["precio","precios","cuanto","cuánto","tarifa","tarifas","coste","costar","cuesta","euro","euros","rate","rates","price","prices","cost","preco","preços","preco","quanto","custa","noite","noite"],
+    es:"Las dobles van de " + PRICE_MIN + " € a " + PRICE_MAX + " € por noche según tamaño y vistas. La tarifa final depende de la temporada y te la confirma la recepción antes de cualquier pago.",
+    en:"Doubles run from €" + PRICE_MIN + " to €" + PRICE_MAX + " per night depending on size and view. The final rate depends on the season and reception confirms it before any payment.",
+    pt:"Os duplos custam entre " + PRICE_MIN + " € e " + PRICE_MAX + " € por noite conforme o tamanho. A tarifa final depende da época e é confirmada pela recepção antes de qualquer pagamento." },
+
+  { id:"rooms", kw:["habitacion","habitaciones","cuarto","cuartos","cama","camas","doble","dobles","baño","baños","suite","room","rooms","bed","bathroom","quarto","quartos","banheiro","cuantos","cuántos"],
+    es:"Tenemos 6 dobles, todas reformadas y con baño privado: cuatro de 13–14 m² al patio interior, una de 14 m² a una calle tranquila y una Superior de 20 m². Todas con aire acondicionado, TV, nevera, microondas y cafetera.",
+    en:"We have 6 doubles, all refurbished with private bathrooms: four of 13–14 m² facing the inner courtyard, one 14 m² onto a quiet street and a 20 m² Superior. All with air conditioning, TV, fridge, microwave and coffee maker.",
+    pt:"Temos 6 duplos, todos renovados e com casa de banho privada: quatro de 13–14 m² virados para o pátio, um de 14 m² para uma rua tranquila e um Superior de 20 m². Todos com ar condicionado, TV, frigorífico, micro-ondas e máquina de café." },
+
+  { id:"location", kw:["donde","dónde","direccion","dirección","ubicacion","ubicación","llegar","metro","bus","autobus","transporte","avenida","situado","where","address","location","subway","onde","endereco","localizacao","chegar","metro","autocarro"],
+    es:"Estamos en Avenida de América 26, Local, 28028 Madrid (Salamanca, Guindalera). Metro Avenida de América — líneas 4, 6, 7 y 9 — a 2 minutos andando, y la parada de autobús a 30 metros. Del centro, 3,5 km.",
+    en:"We're at Avenida de América 26, Local, 28028 Madrid (Salamanca, Guindalera). Avenida de América metro — lines 4, 6, 7 and 9 — is a 2-minute walk, bus stop 30 metres away. 3.5 km from the centre.",
+    pt:"Estamos na Avenida de América 26, Local, 28028 Madrid (Salamanca, Guindalera). Metro Avenida de América — linhas 4, 6, 7 e 9 — a 2 minutos a pé, paragem de autocarro a 30 metros. A 3,5 km do centro." },
+
+  { id:"airport", kw:["aeropuerto","barajas","avion","vuelo","airport","flight","aeroporto","voo"],
+    es:"Barajas está a unos 8 km. En taxi, 15–25 minutos según el tráfico; en metro, la línea 8 llega a Mar de Cristal o Nuevos Ministerios y desde allí enlazas con la 4 o la 6 hasta Avenida de América.",
+    en:"Barajas is about 8 km away. By taxi, 15–25 minutes depending on traffic; by metro, line 8 reaches Mar de Cristal or Nuevos Ministerios, where you connect to line 4 or 6 to Avenida de América.",
+    pt:"O aeroporto de Barajas fica a cerca de 8 km. De táxi, 15–25 minutos; de metro, a linha 8 vai até Mar de Cristal ou Nuevos Ministerios e aí apanha a linha 4 ou 6 até Avenida de América." },
+
+  { id:"station", kw:["atocha","chamartin","chamartín","tren","estacion","estación","train","station","comboio","estação"],
+    es:"Desde Atocha son unos 5,5 km: metro línea 6 hasta Avenida de América, unos 20 minutos. Desde Chamartín, línea 10 hasta Nuevos Ministerios y enlace con la 6.",
+    en:"From Atocha it's about 5.5 km: metro line 6 to Avenida de América, around 20 minutes. From Chamartín, line 10 to Nuevos Ministerios then line 6.",
+    pt:"De Atocha são cerca de 5,5 km: metro linha 6 até Avenida de América, uns 20 minutos. De Chamartín, linha 10 até Nuevos Ministerios e depois a linha 6." },
+
+  { id:"checkin", kw:["check in","checkin","check-in","entrada","llegada","hora","horario","arrival","arrive","chegada","horario","que hora"],
+    es:"La entrada es a partir de las 14:00 y la salida hasta las 12:00. Si llegas antes o sales más tarde, dínoslo: casi siempre lo solucionamos. En la solicitud puedes indicar tu hora prevista de llegada.",
+    en:"Check-in is from 14:00 and check-out until 12:00. If you arrive earlier or need to leave later, tell us — we usually manage. In the request you can state your expected arrival time.",
+    pt:"O check-in é a partir das 14:00 e o check-out até às 12:00. Se chegar mais cedo ou precisar de sair mais tarde, diga-nos: quase sempre conseguimos. No pedido pode indicar a hora prevista de chegada." },
+
+  { id:"wifi", kw:["wifi","wi-fi","internet","conexion","conexión","clave","password","senha"],
+    es:"Sí, hay wifi gratis en todas las habitaciones y zonas comunes. La contraseña te la damos en la entrada.",
+    en:"Yes, free wifi in every room and shared areas. We give you the password at check-in.",
+    pt:"Sim, há wifi gratuito em todos os quartos e zonas comuns. Damos-lhe a palavra-passe no check-in." },
+
+  { id:"pay", kw:["pagar","pago","tarjeta","efectivo","transferencia","bizum","pay","payment","card","cash","pagamento","cartao","dinheiro","transferencia"],
+    es:"No trabajamos con efectivo: tarjeta o transferencia. El importe final y el momento del pago se acuerdan con la recepción antes de reservar; la web no cobra nada.",
+    en:"We're cashless: cards or bank transfer. The final amount and the payment moment are agreed with reception before you book; the website charges nothing.",
+    pt:"Não trabalhamos com dinheiro: cartão ou transferência. O valor final e o momento do pagamento são combinados com a recepção antes de reservar; o site não cobra nada." },
+
+  { id:"cancel", kw:["cancelar","cancelacion","cancelación","anular","devolucion","devolución","cancel","refund","anulacao","devolucao"],
+    es:"La solicitud no te compromete a nada: no se cobra nada por adelantado. Las condiciones de cancelación se confirman por escrito con la recepción al confirmar la reserva.",
+    en:"The request commits you to nothing: nothing is charged upfront. Cancellation terms are confirmed in writing by reception when the booking is confirmed.",
+    pt:"O pedido não compromete nada: não é cobrado nada antecipadamente. As condições de cancelamento são confirmadas por escrito pela recepção ao confirmar a reserva." },
+
+  { id:"pets", kw:["mascota","mascotas","perro","gato","pet","pets","dog","cat","animais","cao"],
+    es:"No admitimos mascotas, lo sentimos.",
+    en:"We're afraid pets aren't allowed.",
+    pt:"Infelizmente não aceitamos animais de estimação." },
+
+  { id:"smoke", kw:["fumar","fumador","tabaco","smoking","smoke","cigarro","fumador"],
+    es:"El alojamiento es de no fumadores en su totalidad, habitaciones y zonas comunes.",
+    en:"The whole property is non-smoking, rooms and shared areas.",
+    pt:"Todo o alojamento é para não fumadores, quartos e zonas comuns." },
+
+  { id:"breakfast", kw:["desayuno","comida","breakfast","cafe da manha","comer","restaurante","restaurantes"],
+    es:"No servimos desayuno, pero hay cafetera, nevera y microondas en la habitación, y a menos de 50 metros tienes CAFÉ América, Santito Madrid y Casa Jorge.",
+    en:"We don't serve breakfast, but every room has a coffee maker, fridge and microwave — and CAFÉ América, Santito Madrid and Casa Jorge are under 50 metres away.",
+    pt:"Não servimos pequeno-almoço, mas cada quarto tem máquina de café, frigorífico e micro-ondas — e a menos de 50 metros tem o CAFÉ América, o Santito Madrid e o Casa Jorge." },
+
+  { id:"party", kw:["fiesta","fiestas","despedida","party","celebrar","festa"],
+    es:"No se celebran fiestas ni despedidas: es un edificio tranquilo, con vecinos.",
+    en:"No parties or stag/hen dos: it's a quiet residential building.",
+    pt:"Não se realizam festas nem despedidas: é um edifício tranquilo, com vizinhos." },
+
+  { id:"tour", kw:["que ver","visitar","museo","retiro","prado","centro","turistico","turistico","tourism","what to see","museum","museu","o que ver"],
+    es:"Cerca tienes el Retiro (3,1 km), el Thyssen (3,8 km), Torre Picasso (2,6 km) y Las Ventas (1,5 km). Al centro llegas en metro en 15–20 minutos. Para comer, Casa Jorge y Santito Madrid están a menos de 50 metros.",
+    en:"Close by: El Retiro (3.1 km), the Thyssen (3.8 km), Torre Picasso (2.6 km) and Las Ventas (1.5 km). The centre is 15–20 minutes by metro. For food, Casa Jorge and Santito Madrid are under 50 metres away.",
+    pt:"Perto: o Retiro (3,1 km), o Thyssen (3,8 km), a Torre Picasso (2,6 km) e Las Ventas (1,5 km). Ao centro chega de metro em 15–20 minutos. Para comer, o Casa Jorge e o Santito Madrid ficam a menos de 50 metros." },
+
+  { id:"book", kw:["reservar","reserva","disponibilidad","disponible","book","booking","available","availability","disponibilidade"],
+    es:"Puedo prepararte la solicitud ahora: elige fechas y habitación en el formulario de Reservas y te abro WhatsApp con todos los datos. La recepción confirma disponibilidad en minutos.",
+    en:"I can set it up right now: pick your dates and room in the booking form and I'll open WhatsApp with all the details. Reception confirms availability within minutes.",
+    pt:"Posso preparar o pedido já: escolha as datas e o quarto no formulário de Reservas e abro o WhatsApp com todos os dados. A recepção confirma a disponibilidade em minutos." },
+
+  { id:"contact", kw:["telefono","teléfono","whatsapp","contacto","llamar","email","correo","phone","call","contact","telefone","contato","ligar"],
+    es:"Escríbenos por WhatsApp y contesta recepción directamente. Para reservar, el formulario de la web genera el mensaje con todos los datos.",
+    en:"Message us on WhatsApp and reception answers directly. To book, the form on the page builds the message with all the details.",
+    pt:"Escreva-nos no WhatsApp e a recepção responde diretamente. Para reservar, o formulário do site gera a mensagem com todos os dados." },
+
+  { id:"thanks", kw:["gracias","thank","obrigad","grato","perfecto","genial","vale"],
+    es:"¡A ti! Si necesitas algo más, aquí estoy. Para reservar, el formulario de la web llega directo a recepción.",
+    en:"Any time! If you need anything else, I'm here. To book, the form on the page goes straight to reception.",
+    pt:"De nada! Se precisar de algo mais, estou por aqui. Para reservar, o formulário do site chega direto à recepção." }
+];
+
+/* normaliza: minúsculas, sem acentos, tokens */
+function norm(s){
+  return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+function tokensOf(s){ return norm(s).split(" ").filter(Boolean); }
+
+/* pontuação por token exato (ou plural simples), nunca substring solta */
+function scoreIntent(intent, tokens, phrase){
+  let score = 0;
+  for(const kwRaw of new Set(intent.kw)){
+    const kw = norm(kwRaw);
+    if(!kw) continue;
+    if(kw.includes(" ")){
+      if(phrase.includes(kw)) score += 3;
+    } else {
+      if(tokens.includes(kw)) score += 2;
+      else if(tokens.includes(kw + "s") || tokens.includes(kw + "es")) score += 1;
+    }
+  }
+  return score;
+}
+
+let lang = "es";
+try{ const saved = localStorage.getItem("cha-lang"); if(saved && I18N[saved]) lang = saved; }catch(err){}
+
+const chat = $("#chat"), chatLog = $("#chatLog"), chatQuick = $("#chatQuick"), chatInput = $("#chatInput");
+let lastUserText = "";
+
+function addMsg(text, who){
+  const d = document.createElement("div");
+  d.className = "msg " + who;
+  d.textContent = text;
+  chatLog.appendChild(d);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+function setQuick(items){
+  chatQuick.innerHTML = "";
+  (items || []).forEach(label => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = label;
+    b.addEventListener("click", () => handleQuick(label));
+    chatQuick.appendChild(b);
+  });
+}
+function quickLabel(label){
+  const map = {
+    "Ver habitaciones": { en:"See rooms", pt:"Ver quartos" },
+    "Ir al formulario": { en:"Go to booking form", pt:"Ir ao formulário" },
+    "Reservar": { en:"Book", pt:"Reservar" },
+    "WhatsApp": { es:I18N.es.wa, en:I18N.en.wa, pt:I18N.pt.wa }
+  };
+  const m = map[label];
+  return m ? (m[lang] || label) : label;
+}
+function renderLang(){
+  const t = I18N[lang];
+  $("#chatStatus").textContent = t.status;
+  chatInput.placeholder = t.placeholder;
+  $$("#chatLangs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true" : "false"));
+  setQuick(t.quick);
+}
+function answer(text){
+  const tokens = tokensOf(text);
+  const phrase = norm(text);
+  let best = null, score = 0;
+  for(const it of INTENTS){
+    const s = scoreIntent(it, tokens, phrase);
+    if(s > score){ score = s; best = it; }
+  }
+  if(!best) return { text: I18N[lang].fallback, quick: [I18N[lang].wa] };
+  return { text: best[lang] || best.es };
+}
+function handleQuick(label){
+  const t = I18N[lang];
+  if(label === "Abrir en Google Maps" || label === t.wa || label === "WhatsApp"){
+    const q = lastUserText ? waLink("Hola CH América, vengo de la web. " + lastUserText) : waLink(WA_GENERIC);
+    window.open(q, "_blank");
+    addMsg(t.handoff, "bot");
+    return;
+  }
+  if(label === "Ver habitaciones" || label === "See rooms" || label === "Ver quartos"){
+    document.getElementById("habitaciones").scrollIntoView({ behavior:"smooth" });
+    addMsg(answer("habitaciones").text, "bot");
+    return;
+  }
+  if(label === "Ir al formulario" || label === "Go to booking form" || label === "Ir ao formulário"){
+    document.getElementById("reservar").scrollIntoView({ behavior:"smooth" });
+    addMsg(answer("reservar").text, "bot");
+    return;
+  }
+  send(label);
+}
+function send(text){
+  const clean = (text || "").trim();
+  if(!clean) return;
+  lastUserText = clean;
+  addMsg(clean, "me");
+  chatInput.value = "";
+  const r = answer(clean);
+  setTimeout(() => {
+    addMsg(r.text, "bot");
+    setQuick((r.quick || I18N[lang].quick).map(quickLabel));
+  }, 260);
+}
+function openChat(){
+  chat.hidden = false;
+  $("#chatFab").hidden = true;
+  $("#chatFab").setAttribute("aria-expanded", "true");
+  if(!chatLog.childElementCount){
+    addMsg(I18N[lang].hello, "bot");
+    setQuick(I18N[lang].quick);
+  }
+  setTimeout(() => chatInput.focus(), 60);
+}
+function closeChat(){
+  chat.hidden = true;
+  $("#chatFab").hidden = false;
+  $("#chatFab").setAttribute("aria-expanded", "false");
+  $("#chatFab").focus();
+}
+$("#chatFab").addEventListener("click", openChat);
+$("#chatClose").addEventListener("click", closeChat);
+$("#chatForm").addEventListener("submit", e => { e.preventDefault(); send(chatInput.value); });
+$$("#chatLangs button").forEach(b => b.addEventListener("click", () => {
+  lang = b.dataset.lang;
+  try{ localStorage.setItem("cha-lang", lang); }catch(err){}
+  renderLang();
+  addMsg(I18N[lang].hello, "bot");
+  setQuick(I18N[lang].quick);
+}));
+renderLang();
+
+/* ── ubicación: ruta desde el móvil y copiar dirección ── */
+const DESTINO = "Avenida de América 26, Local, 28028 Madrid";
+const locStatus = $("#locStatus");
+function locSay(msg, tone){
+  if(!locStatus) return;
+  locStatus.textContent = msg;
+  if(tone) locStatus.dataset.tone = tone;
+  else locStatus.removeAttribute("data-tone");
+}
+
+$("#locGeo")?.addEventListener("click", () => {
+  const btn = $("#locGeo");
+  if(!navigator.geolocation){
+    locSay("Tu navegador no permite geolocalización. Usa «Metro y bus» para ver la ruta.", "warn");
+    return;
+  }
+  btn.disabled = true;
+  locSay("Buscando tu posición…");
+  navigator.geolocation.getCurrentPosition(pos => {
+    btn.disabled = false;
+    const { latitude, longitude } = pos.coords;
+    const url = "https://www.google.com/maps/dir/?api=1"
+      + "&origin=" + latitude.toFixed(6) + "," + longitude.toFixed(6)
+      + "&destination=" + encodeURIComponent(DESTINO)
+      + "&travelmode=transit";
+    locSay("Ruta calculada desde tu posición.", "ok");
+    window.open(url, "_blank", "noopener");
+  }, err => {
+    btn.disabled = false;
+    locSay(err && err.code === 1
+      ? "Permiso de ubicación denegado. Puedes abrir la ruta con los botones de arriba."
+      : "No pudimos obtener tu posición. Prueba de nuevo o abre la ruta en Google Maps.", "warn");
+  }, { enableHighAccuracy: true, timeout: 9000, maximumAge: 60000 });
+});
+
+$("#locCopy")?.addEventListener("click", async () => {
+  const texto = "Hostal CH América · " + DESTINO;
+  try{
+    await navigator.clipboard.writeText(texto);
+    locSay("Dirección copiada al portapapeles.", "ok");
+  }catch(err){
+    /* respaldo para contextos sin permiso de portapapeles (p. ej. abierto
+       como archivo local): selecciona el texto en un campo temporal */
+    const ta = document.createElement("textarea");
+    ta.value = texto;
+    ta.setAttribute("readonly", "");
+    ta.style.cssText = "position:fixed;top:-9999px;opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try{ ok = document.execCommand("copy"); }catch(e){ ok = false; }
+    ta.remove();
+    locSay(ok
+      ? "Dirección copiada al portapapeles."
+      : "No se pudo copiar. La dirección es: " + DESTINO, ok ? "ok" : "warn");
+  }
+});
+</script>
+</body>
+</html>
