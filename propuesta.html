@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Propuesta de web, motor de reservas y panel de administración para el Hostal CH América, Avenida de América 26, Madrid.">
+<title>Propuesta CH América</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Plan: papel frío verdoso, tinta profunda, verde pino como acento y ocre reservado al dinero.
+   Display Fraunces · texto IBM Plex Sans · datos y etiquetas IBM Plex Mono. Una columna, aire. */
+:root{
+  --paper:#F3F2ED; --paper-2:#E8E7E0; --ink:#15201C; --ink-soft:#3B4A44;
+  --muted:#5E6B64; --rule:#D2D1C7; --pine:#1B4A3B; --pine-soft:#E3EBE5;
+  --ochre:#A9711F; --ochre-soft:#F0E6D6;
+  --font-d:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-b:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --font-m:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111815; --paper-2:#1A2320; --ink:#ECEFEA; --ink-soft:#C3CBC5;
+    --muted:#98A69E; --rule:#2B3733; --pine:#8ACCB2; --pine-soft:#1B2C26;
+    --ochre:#DDA65C; --ochre-soft:#2A2016;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111815; --paper-2:#1A2320; --ink:#ECEFEA; --ink-soft:#C3CBC5;
+  --muted:#98A69E; --rule:#2B3733; --pine:#8ACCB2; --pine-soft:#1B2C26;
+  --ochre:#DDA65C; --ochre-soft:#2A2016;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--font-b); font-size:17px; line-height:1.62;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:900px;margin:0 auto;padding-block:0}
+p{margin:0}
+
+/* ── cabecera ── */
+.top{
+  display:flex;flex-wrap:wrap;gap:10px 20px;align-items:baseline;justify-content:space-between;
+  padding-block:26px 18px;border-bottom:1px solid var(--rule);
+}
+.mono{font-family:var(--font-m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.top a{color:var(--pine);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--pine) 40%,transparent);padding-bottom:1px}
+.top a:hover{color:var(--ochre);border-color:var(--ochre)}
+.top-links{display:flex;flex-wrap:wrap;gap:18px}
+
+/* ── hero ── */
+.hero{padding-block:56px 44px;border-bottom:1px solid var(--rule)}
+.hero h1{
+  font-family:var(--font-d);font-weight:400;font-size:clamp(2rem,5.4vw,3.35rem);
+  line-height:1.08;letter-spacing:-.015em;margin:16px 0 0;text-wrap:balance;max-width:22ch;
+}
+.hero .lead{margin-top:22px;max-width:58ch;font-size:1.09rem;color:var(--ink-soft)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.fact{
+  font-family:var(--font-m);font-size:.76rem;letter-spacing:.04em;
+  padding:7px 12px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-soft);
+  background:var(--paper-2);
+}
+
+/* ── secciones ── */
+section{padding-block:46px;border-bottom:1px solid var(--rule)}
+section > h2{
+  font-family:var(--font-d);font-weight:600;font-size:clamp(1.4rem,3vw,1.85rem);
+  line-height:1.2;margin:0 0 8px;text-wrap:balance;
+}
+section > .sub{color:var(--muted);max-width:62ch;margin-bottom:28px}
+.body{max-width:66ch}
+.body p + p{margin-top:14px}
+.body strong{font-weight:600;color:var(--ink)}
+
+/* ── lista de entregables ── */
+.deliver{display:grid;gap:0;margin-top:6px}
+.deliver .item{
+  display:grid;grid-template-columns:minmax(0,1fr);gap:6px;
+  padding-block:18px;border-top:1px solid var(--rule);
+}
+.deliver .item:first-child{border-top:0;padding-top:4px}
+.deliver h3{
+  font-family:var(--font-b);font-weight:600;font-size:1rem;margin:0;
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;
+}
+.deliver .item p{color:var(--ink-soft);max-width:64ch}
+.deliver .n{font-family:var(--font-m);font-size:.72rem;color:var(--pine);letter-spacing:.08em}
+
+/* ── tres columnas del panel ── */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;margin-top:8px}
+.cols > div{padding:20px 22px 22px 0;border-top:2px solid var(--pine)}
+.cols h3{font-family:var(--font-b);font-size:.95rem;font-weight:600;margin:0 0 8px}
+.cols p{color:var(--ink-soft);font-size:.95rem}
+.cols .k{font-family:var(--font-m);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px}
+
+/* ── pasos numerados (secuencia real) ── */
+.steps{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:0;counter-reset:s}
+.steps li{
+  counter-increment:s;position:relative;padding:12px 0 12px 44px;
+  border-bottom:1px solid var(--rule);color:var(--ink-soft);
+}
+.steps li:last-child{border-bottom:0}
+.steps li::before{
+  content:counter(s);position:absolute;left:0;top:12px;
+  font-family:var(--font-m);font-size:.72rem;color:var(--pine);
+  border:1px solid var(--rule);border-radius:50%;width:24px;height:24px;
+  display:grid;place-items:center;
+}
+
+/* ── tabla ── */
+.tbl-wrap{overflow-x:auto;margin-top:22px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.94rem}
+caption{text-align:left;font-family:var(--font-m);font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);padding-bottom:10px}
+th,td{text-align:left;padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;font-size:.82rem;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td.num{font-family:var(--font-m);white-space:nowrap}
+tr.total td{border-bottom:0;border-top:2px solid var(--pine);color:var(--ink);font-weight:600}
+
+/* ── avisos ── */
+.note{
+  border-left:2px solid var(--ochre);background:var(--ochre-soft);
+  padding:16px 18px;margin-top:24px;font-size:.95rem;color:var(--ink-soft);max-width:64ch;
+}
+.note b{color:var(--ink)}
+
+/* ── enlaces al producto ── */
+.links{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+.links a{
+  font-family:var(--font-m);font-size:.8rem;letter-spacing:.02em;
+  display:inline-block;padding:11px 16px;border:1px solid var(--pine);border-radius:2px;
+  color:var(--pine);text-decoration:none;background:var(--pine-soft);
+}
+.links a:hover{background:var(--pine);color:var(--paper)}
+
+footer{padding-block:36px 64px;color:var(--muted);font-size:.86rem}
+footer .mono{margin-bottom:6px}
+@media (max-width:560px){
+  body{font-size:16px}
+  .hero{padding-block:38px 32px}
+  section{padding-block:34px}
+}
+
+@media print{
+  :root{--paper:#fff;--paper-2:#fff;--ink:#111;--ink-soft:#333;--muted:#555;--rule:#ccc;--pine:#14453a;--ochre:#8a5a12}
+  body{font-size:10.5pt}
+  .top-links,.links{display:none}
+  section{padding-block:20px;break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <span class="mono">Propuesta · Noviembre 2026</span>
+    <div class="top-links">
+      <a href="https://advfalcorreia-commits.github.io/ch-america/">Ver la web</a>
+      <a href="https://advfalcorreia-commits.github.io/ch-america/adm.html">Ver el panel</a>
+    </div>
+  </div>
+
+  <div class="hero">
+    <span class="mono">Hostal CH América · Avenida de América 26, Madrid</span>
+    <h1>La web del hostal y su motor de reservas directas</h1>
+    <p class="lead">Ya está construida y funcionando. La web pública, el motor de reservas y un panel para la recepción que permite cambiarlo todo sin depender de nadie. Cada reserva directa es una comisión que no se paga.</p>
+    <div class="facts">
+      <span class="fact">6 habitaciones</span>
+      <span class="fact">Reserva directa</span>
+      <span class="fact">Panel propio</span>
+      <span class="fact">RGPD</span>
+      <span class="fact">Sin cuota de alojamiento</span>
+    </div>
+  </div>
+
+  <section>
+    <h2>Qué tienes en las manos</h2>
+    <p class="sub">Cinco piezas, todas publicadas y en marcha hoy mismo.</p>
+    <div class="deliver">
+      <div class="item">
+        <h3><span class="n">01</span> La web pública</h3>
+        <p>Portada, las seis habitaciones con galería de fotos, servicios, ubicación con mapa, preguntas frecuentes y el formulario de reserva. En español, inglés y portugués, porque la mayoría de las consultas llegan de fuera.</p>
+      </div>
+      <div class="item">
+        <h3><span class="n">02</span> El motor de reservas</h3>
+        <p>El huésped elige fechas y habitación, ve el precio de su estancia calculado al momento y envía la solicitud. Cada solicitud lleva una referencia única y entra en el panel con todos sus datos. No cobra nada: la reserva la confirmas tú.</p>
+      </div>
+      <div class="item">
+        <h3><span class="n">03</span> El panel de recepción</h3>
+        <p>Donde se trabaja cada día. Pedidos, calendario de ocupación, cierre de fechas, precios y datos de contacto. Entra desde cualquier navegador con un correo y una contraseña.</p>
+      </div>
+      <div class="item">
+        <h3><span class="n">04</span> La parte legal</h3>
+        <p>Aviso legal, política de privacidad, política de cookies y el aviso de consentimiento, con el mapa de Google bloqueado hasta que el visitante lo acepta. Es lo que exige la LSSI-CE y el RGPD, y es lo primero que mira la inspección.</p>
+      </div>
+      <div class="item">
+        <h3><span class="n">05</span> La recepción virtual</h3>
+        <p>Un asistente en la esquina de la web que responde precios, cómo llegar, metro, aeropuerto, check-in, wifi, pagos y cancelaciones. Si el huésped pide hablar con una persona, se le pasa a tu WhatsApp con el mensaje ya escrito.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>El panel, por dentro</h2>
+    <p class="sub">Tres pantallas. Es todo lo que hay que aprender.</p>
+    <div class="cols">
+      <div>
+        <span class="k">Pedidos</span>
+        <h3>Solicitudes de reserva</h3>
+        <p>Huésped, fechas, noches, habitación, valor y referencia. Botones para confirmar, cancelar o cerrar como finalizada, filtro por estado y los indicadores del día: pendientes, entradas de hoy, reservas del mes, ingresos previstos. Cada fila tiene un botón de WhatsApp para responder al huésped.</p>
+      </div>
+      <div>
+        <span class="k">Calendario</span>
+        <h3>Ocupación del mes</h3>
+        <p>Una fila por habitación y los días en columna. Un clic sobre un día libre lo cierra por mantenimiento o uso propio; otro clic lo vuelve a abrir. Las fechas cerradas desaparecen del motor al instante. Los días con reserva no se tocan desde aquí: se pide ir a Pedidos, para que nadie cancele dos veces lo mismo por error.</p>
+      </div>
+      <div>
+        <span class="k">Precios y datos</span>
+        <h3>La web, en dos minutos</h3>
+        <p>Nombre, metros y precio de cada habitación, y un interruptor <strong>Activa</strong> para esconderla de la web sin borrarla. Debajo, el WhatsApp, la hora de entrada y salida y las noches máximas por reserva. Se guarda y la web pública cambia en el siguiente clic.</p>
+      </div>
+    </div>
+    <div class="note">
+      <b>Un día de recepción, en orden:</b> entras al panel, miras los pendientes y confirmas o cancelas; si vas a ocupar una habitación, la cierras en el calendario; si cambia la tarifa de temporada, la actualizas en Precios. Tres minutos. No hace falta llamar a nadie ni esperar a nadie.
+    </div>
+  </section>
+
+  <section>
+    <h2>Cómo funciona por dentro</h2>
+    <p class="sub">En cristiano, sin tecnicismos innecesarios.</p>
+    <div class="body">
+      <p>La web son archivos estáticos servidos con HTTPS: carga rápido, no se cae por falta de recursos y no tiene coste mensual de alojamiento. Los datos —reservas, fechas cerradas, precios, ajustes— viven en una base de datos gestionada (Supabase, sobre Postgres), separada de la web.</p>
+      <p>Existe un único punto de verdad: si cambias un precio en el panel, cambia en el formulario, en las tarjetas de habitación y en el importe que se calcula al reservar. No hay dos sitios donde puedan quedar precios distintos.</p>
+      <p>Si algún día la base de datos no responde, la web no se rompe: sigue mostrando los precios y el número de contacto guardados en el propio archivo. Prefiero una web que aguanta a una web que se cae entera por un fallo ajeno.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Datos de los huéspedes</h2>
+    <p class="sub">Lo que un hostal pequeño suele pasar por alto y una inspección no.</p>
+    <div class="body">
+      <p>Nadie puede leer las reservas de otro huésped. La web pública puede <strong>crear</strong> una solicitud, y nada más: no puede listarlas, ni modificarlas, ni borrarlas. Esa capacidad está reservada a la cuenta de recepción y a nadie más. Lo probé atacando la base de datos con la clave pública antes de darlo por bueno.</p>
+      <p>El importe de la reserva lo calcula el servidor a partir de las fechas y de la tarifa del cuarto. Aunque alguien manipule la página en su navegador, no puede inventarse un precio.</p>
+      <p>No hay rastreadores de terceros ni publicidad. La única cookie es la del aviso de consentimiento, y el mapa de Google solo se carga si el visitante lo acepta.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Aparecer en los buscadores</h2>
+    <p class="sub">Qué se puede, qué cuesta trabajo y qué no se debe prometer.</p>
+    <div class="body">
+      <p>Ahora mismo la web ya tiene lo básico bien puesto: título y descripción propios, idioma declarado, un solo encabezado principal, HTML ligero y diseño adaptado al móvil. Eso es la base, no el trabajo.</p>
+      <p>Faltan cuatro cosas técnicas que se resuelven en una tarde y cambian mucho: la dirección canónica, las etiquetas que generan la vista previa al compartir el enlace por WhatsApp, el mapa del sitio y el archivo que guía a los buscadores, y sobre todo los <strong>datos estructurados de hotel</strong> —dirección, coordenadas, habitaciones, rango de precios— que es lo que permite a Google mostrar la ficha enriquecida y no un enlace azul cualquiera.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <caption>Qué es razonable esperar</caption>
+        <thead>
+          <tr><th>Búsqueda</th><th>Competencia</th><th>Plazo realista</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>hostal Avenida de América</td><td>Baja</td><td class="num">1 – 2 meses</td></tr>
+          <tr><td>hostal cerca de IFEMA</td><td>Baja</td><td class="num">2 – 4 meses</td></tr>
+          <tr><td>hostal barato Salamanca Madrid</td><td>Media</td><td class="num">4 – 8 meses</td></tr>
+          <tr><td>hostal Madrid</td><td>Muy alta</td><td class="num">No</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <b>La verdad sobre el primer puesto.</b> Las búsquedas concretas y locales —el nombre de la avenida, el barrio, la feria— están a nuestro alcance. La genérica «hostal Madrid» está ocupada por Booking, Expedia y las cadenas, con presupuestos de publicidad que multiplican por mil lo que cuesta este proyecto. Quien te asegure el número uno ahí te está vendiendo humo. Lo que sí se puede firmar es el trabajo: las mejoras técnicas de arriba, la ficha de Google bien montada y un informe mensual con los números reales.
+    </div>
+    <div class="body" style="margin-top:24px">
+      <p><strong>El trabajo mensual, en concreto.</strong> Ficha de Google Business Profile con fotos, horario y publicaciones periódicas —es la que decide casi todo en «hostal cerca de mí»—; respuestas a las reseñas y una petición de reseña a cada huésped al salir; contenidos de barrio y de feria (IFEMA, el aeropuerto, el metro); enlaces desde directorios locales y desde la propia comunidad; y seguimiento de en qué puesto apareces para las búsquedas que importan.</p>
+      <p>Los resultados en búsqueda no son inmediatos ni gratuitos en tiempo: son trabajo sostenido. Lo primero que se nota es la ficha de Google, casi siempre en la primera o segunda semana de tenerla completa y con fotos buenas.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Qué necesito de ti</h2>
+    <p class="sub">Sin esto, la web no puede salir con tu nombre.</p>
+    <ul class="steps">
+      <li><strong>Datos del titular:</strong> nombre o razón social, NIF o NIE y correo de contacto para el aviso legal y la política de privacidad.</li>
+      <li><strong>El número de WhatsApp real.</strong> Ahora mismo todos los botones apuntan a un número de ejemplo. Es lo más urgente de todo.</li>
+      <li><strong>Fotos propias de las habitaciones.</strong> Las actuales vienen del anuncio público del hostal en un portal; no son tuyas y no se pueden usar en tu propia web.</li>
+      <li><strong>Los precios definitivos</strong> y las normas: hora de entrada y salida, estancia mínima y máxima.</li>
+      <li><strong>El dominio</strong> que quieras, a tu nombre. Yo configuro el resto.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Inversión</h2>
+    <p class="sub">Una entrega y un mantenimiento mensual. Sin comisión por reserva.</p>
+    <div class="tbl-wrap">
+      <table>
+        <caption>Entrega del proyecto</caption>
+        <thead><tr><th>Concepto</th><th>Importe</th></tr></thead>
+        <tbody>
+          <tr><td>Web pública: seis habitaciones, galerías, mapa, WhatsApp, tres idiomas</td><td class="num">900 €</td></tr>
+          <tr><td>Motor de reservas y panel de administración</td><td class="num">900 €</td></tr>
+          <tr><td>Aviso legal, privacidad, cookies y consentimiento (RGPD y LSSI-CE)</td><td class="num">250 €</td></tr>
+          <tr><td>Publicación, dominio, correo, datos y formación de una hora</td><td class="num">350 €</td></tr>
+          <tr class="total"><td>Total</td><td class="num">2.400 € + IVA</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="body" style="margin-top:26px">
+      <p><strong>Mantenimiento: 79 € al mes + IVA.</strong> Alojamiento, copias de seguridad, actualizaciones, soporte por WhatsApp y los cambios pequeños que vayan saliendo. El dominio, unos 15 € al año, va dentro.</p>
+      <p>Para que se vea en perspectiva: las plataformas de reserva cobran entre el 15 y el 20 % de cada reserva. Con seis habitaciones a 45 € y una ocupación del 65 %, son unos 900 € al mes en comisiones. Si las reservas directas se llevan solo una quinta parte de eso, el proyecto se paga en poco más de un año, y la web queda para siempre.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cómo seguimos</h2>
+    <p class="sub">La web ya está en marcha; esto es lo que queda para darla por terminada.</p>
+    <ul class="steps">
+      <li>Me pasas los datos del titular, el WhatsApp real, las fotos y los precios definitivos.</li>
+      <li>Cierro los cuatro puntos técnicos de buscadores: canónica, vista previa al compartir, mapa del sitio y datos estructurados de hotel.</li>
+      <li>Eliges el dominio y lo compras a tu nombre; yo apunto la web y activo el certificado.</li>
+      <li>Repaso contigo el panel en una sesión de una hora, con tus propias reservas de prueba.</li>
+      <li>Alta en Google Business Profile, con fotos, horario y las primeras publicaciones.</li>
+    </ul>
+    <div class="links">
+      <a href="https://advfalcorreia-commits.github.io/ch-america/">Web pública</a>
+      <a href="https://advfalcorreia-commits.github.io/ch-america/adm.html">Panel de recepción</a>
+    </div>
+    <div class="note" style="margin-top:26px">
+      Estas dos direcciones son provisionales, en un alojamiento de pruebas. Con tu dominio quedarán en <b>tudominio.es</b> y <b>tudominio.es/adm</b>.
+    </div>
+  </section>
+
+  <footer>
+    <div class="mono">Documento de trabajo</div>
+    <p>Propuesta para el Hostal CH América · Avenida de América 26, 28028 Madrid. Los importes no incluyen IVA.</p>
+  </footer>
+
+</div>
+</body>
+</html>
